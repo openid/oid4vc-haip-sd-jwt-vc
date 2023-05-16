@@ -1,0 +1,123 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Presentation Definition for a High Assurance Profile",
+    "type": "object",
+    "properties": {
+      "presentation_definition": {
+        "$ref": "#/definitions/presentation_definition"
+      }
+    },
+    "definitions": {
+      "presentation_definition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "input_descriptors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/input_descriptor"
+            }
+          },
+          "submission_requirements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/submission_requirement"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "input_descriptors"
+        ],
+        "additionalProperties": false
+      },
+      "input_descriptor": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "format": {
+            "$ref": "http://identity.foundation/claim-format-registry/schemas/presentation-definition-claim-format-designations.json"
+          },
+          "group": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "constraints": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "limit_disclosure": {
+                "type": "string",
+                "enum": [
+                  "required",
+                  "preferred"
+                ]
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "path": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "filter": {
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "constraints"
+        ]
+      },
+      "submission_requirement": {
+        "type": "object",
+        "oneOf": [
+          {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "rule": {
+                "type": "string",
+                "enum": [
+                  "pick"
+                ]
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "from": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "rule",
+              "from"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  }
+  
