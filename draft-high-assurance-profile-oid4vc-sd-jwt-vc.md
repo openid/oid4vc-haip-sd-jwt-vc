@@ -96,11 +96,11 @@ Unless explicitly stated, all normative requirements apply to all participating 
 
 * MUST support both pre-auth code flow and authorization code flow.
 * MUST support SD-JWT VC profile as defined in OID4VCI specification.
-* MUST support sender-constrained Tokens using a mechanism as defined in [IETF.DPoP].
+* MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
 
 ## Credential Offer
 
-* Both Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [OIDF.OID4VCI]
+* Both Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [@!OIDF.OID4VCI]
 * For Grant Type `authorization_code`, the Issuer MUST include a scope value. The wallet MUST use that value in the `scope` Authorization parameter. For `urn:ietf:params:oauth:grant-type:pre-authorized_code`, pre-authorized code is used by the issuer to identify the credential type.
 * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
 
@@ -108,10 +108,10 @@ Note: Authorization Code flow does not require Credential Offer from the Issuer 
 
 ## Authorization Endpoint
 
-   * MUST use [IETF.PAR] to send the Authorization Request
+   * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
    * Wallet MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint. 
    * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. This mapping MUST be used when obtaining user consent.
-   * `scope` parameter MUST be communicated from the Issuer to the Wallet either in the Credential Offer, or Credential Issuer metadata
+   * `scope` parameter MUST be communicated from the Issuer to the Wallet either in the Credential Offer, or Credential Issuer metadata.
    * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client key attestation JWT. 
 
 ## Token Endpoint {#token-endpoint}
@@ -137,8 +137,8 @@ Section 3.1 of wallet attestation draft would define the basics, and this profil
 
    * As a way to invoke the Wallet, at least a custom URL scheme haip:// MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
-   * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [OIDF.OID4VP].
-   * Authorization Request MUST be sent using the `request_uri` parameter as defined in [IETF.RFC9101].
+   * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
+   * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san` or `verifier_attestation`. Wallet MUST support both. Verifier MUST support at least one. 
    * When the Client Identifier Scheme is `x509_san_uri`, the Client Identifier MUST be URI and match the `uniformResourceIdentifier` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate passed with the request. The request MUST be signed with the private key corresponding to the public key in the leaf X.509 certificate of the certificate chain added to the request in the `x5c` JOSE header [@!RFC7515] of the signed request object. The Wallet MUST validate the signature and the trust chain of the X.509 certificate. All Verifier metadata other than the public key MUST be obtained from the `client_metadata` parameter.
@@ -151,7 +151,7 @@ Section 3.1 of wallet attestation draft would define the basics, and this profil
 
 # User Authentication
 
-To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [OIDF.SIOPv2].
+To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [@!OIDF.SIOPv2].
 
    * `subject_syntax_types_supported` value MUST be `urn:ietf:params:oauth:jwk-thumbprint`
    * As a way to invoke the Wallet, at least a custom URL scheme haip:// MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
@@ -160,9 +160,9 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 As a credential format, the SD-JWT VC as defined in this section MUST be supported.
 
-All the requirements defined in [SD-JWT-VC] MUST be supported. In addition, this profile defines additional requirements outlined in this section.
+All the requirements defined in [@!I-D.ietf-oauth-selective-disclosure-jwt] MUST be supported. In addition, this profile defines additional requirements outlined in this section.
 
-* Both Compact serialization and JSON serialization MUST be supported as defined in [IETF.SD-JWT].
+* Both Compact serialization and JSON serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
 
 | | SD-JWT as issued by the Issuer | Normative Definition |
@@ -230,6 +230,60 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 Note: `iat` and `exp` claims express the validity period of both the signature and the claim values.
 
 {backmatter}
+
+<reference anchor="OIDF.OID4VCI" target="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+        <front>
+          <title>OpenID for Verifiable Credential Issuance</title>
+          <author initials="T." surname="Lodderstedt" fullname="Torsten Lodderstedt">
+            <organization>yes.com</organization>
+          </author>
+          <author initials="K." surname="Yasuda" fullname="Kristina Yasuda">
+            <organization>Microsoft</organization>
+          </author>
+          <author initials="T." surname="Looker" fullname="Tobias Looker">
+            <organization>Mattr</organization>
+          </author>
+          <date day="20" month="June" year="2022"/>
+        </front>
+</reference>
+
+<reference anchor="OIDF.OID4VP" target="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html">
+      <front>
+        <title>OpenID for Verifiable Presentations</title>
+        <author initials="O." surname="Terbu" fullname="Oliver Terbu">
+         <organization>Spruce Systems, Inc.</organization>
+        </author>
+        <author initials="T." surname="Lodderstedt" fullname="Torsten Lodderstedt">
+          <organization>yes.com</organization>
+        </author>
+        <author initials="K." surname="Yasuda" fullname="Kristina Yasuda">
+          <organization>Microsoft</organization>
+        </author>
+        <author initials="A." surname="Lemmon" fullname="Adam Lemmon">
+          <organization>Convergence.tech</organization>
+        </author>
+        <author initials="T." surname="Looker" fullname="Tobias Looker">
+          <organization>Mattr</organization>
+        </author>
+       <date day="20" month="June" year="2022"/>
+      </front>
+</reference>
+
+<reference anchor="OIDF.SIOPv2" target="https://openid.net/specs/openid-connect-self-issued-v2-1_0.html">
+  <front>
+    <title>Self-Issued OpenID Provider V2</title>
+    <author ullname="Kristina Yasuda">
+      <organization>Microsoft</organization>
+    </author>
+    <author fullname="Michael B. Jones">
+      <organization>Microsoft</organization>
+    </author>
+   <author initials="T." surname="Lodderstedt" fullname="Torsten Lodderstedt">
+      <organization>yes.com</organization>
+    </author>
+   <date day="18" month="December" year="2021"/>
+  </front>
+</reference>
 
 # Combined Issuance of SD-JWT VC and mdocs
 
