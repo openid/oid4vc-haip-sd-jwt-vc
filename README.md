@@ -1,10 +1,8 @@
-# SD-JWT-VC
+# High Assurance Profile of OpenID4VC with SD-JWT-VC
 
-This is the working area for the individual Internet-Draft, "SD-JWT-VC".
+This is the working area for the High Assurance Profile of OpenID4VC with SD-JWT-VC.
 
 * [Editor's Copy](https://vcstuff.github.io/draft-high-assurance-profile-oid4vc-sd-jwt-vc/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-high-assurance-profile-oid4vc-sd-jwt-vc)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-high-assurance-profile-oid4vc-sd-jwt-vc)
 * [Compare Editor's Copy to Individual Draft](https://vcstuff.github.io/draft-high-assurance-profile-oid4vc-sd-jwt-vc/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.diff)
 
 
