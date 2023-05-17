@@ -11,20 +11,20 @@ value = "draft-high-assurance-profile-oid4vc-sd-jwt-vc-latest"
 status = "standard"
 
 [[author]]
-initials="T."
-surname="Lodderstedt"
-fullname="Torsten Lodderstedt"
-organization="yes.com"
-    [author.address]
-    email = "torsten@lodderstedt.net"
-
-[[author]]
 initials="K."
 surname="Yasuda"
 fullname="Kristina Yasuda"
 organization="Microsoft"
-    [author.address]
-    email = "kristina.yasuda@microsoft.com"
+   [author.address]
+   email = "kristina.yasuda@microsoft.com"
+
+[[author]]
+initials="T."
+surname="Lodderstedt"
+fullname="Torsten Lodderstedt"
+organization="yes.com"
+   [author.address]
+   email = "torsten@lodderstedt.net"
 
 %%%
 
@@ -33,6 +33,7 @@ organization="Microsoft"
 This document defines a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. This profiled specifications include OpenID for Vefiriable Presentations, OpenID for Verifiable Credential Issuance, Self-Issued OpenID Provider v2, SD-JWT-VC.
 
 {mainmatter}
+
 
 # Introduction
 
@@ -167,10 +168,10 @@ All the requirements defined in [@!I-D.ietf-oauth-selective-disclosure-jwt] MUST
 
 | | SD-JWT as issued by the Issuer | Normative Definition |
 |:--- |:--- |:--- |
-|iss |	MUST |	RFC 7519, Section 4.1.1 |
-|iat | 	MUST |	RFC 7519, Section 4.1.6 |
-| exp | SHOULD (at the discretion of the issuer) | RFC 7519, Section 4.1.4 |
-|cnf|	MUST|	RFC 7800|
+|iss |MUST |[@!RFC7519], Section 4.1.1 |
+|iat |MUST |[@!RFC7519], Section 4.1.6 |
+| exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
+|cnf|	MUST|	[@!RFC7800]|
 |type|	MUST| draft-terbu-sd-jwt-vc|
 |status|SHOULD (at the discretion of the issuer)|	WIP|
 
@@ -181,11 +182,11 @@ All the requirements defined in [@!I-D.ietf-oauth-selective-disclosure-jwt] MUST
 * `status` claim MUST be present as defined in draft-terbu-sd-jwt-vc/draft-looker-jwt-cwt-status-list
 * For Cryptographic Holder Binding, HB-JWT MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
 
-Further claims, either registered or private JWT claims, can be added to the credential as required by the respective credential type, or determined by the Issuer or the Holder. All claims that are not understood by implementations MUST be ignored, as defined in section 4, RFC 7519.
+Further claims, either registered or private JWT claims, can be added to the credential as required by the respective credential type, or determined by the Issuer or the Holder. All claims that are not understood by implementations MUST be ignored, as defined in section 4, [@!RFC7519].
 
-Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by [OIDF.ida] SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
+Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by @!OIDF.ekyc-ida SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
 
-Note: If there is a requirement to provide Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [@!I-D.draft-terbu-sd-jwt-vc] for implementation considerations.
+Note: If there is a requirement to provide Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in @!I-D.draft-terbu-sd-jwt-vc for implementation considerations.
 
 Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: holder signature is required to bind presentation to a particular transaction and audience. This is planned to be expanded, once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
 
