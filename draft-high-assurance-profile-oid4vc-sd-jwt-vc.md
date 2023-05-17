@@ -52,19 +52,19 @@ ToDo: Mostly reference other specs.
 
 # Scope
 
-The following aspects are in scope of this interoperability profile: 
+The following aspects are in scope of this interoperability profile:
 * Protocol for issuance of the Credentials online (can be both remote and in-person)
 * Protocol for presentation of Credentials online (can be both remote and in-person)
 * User Authentication
 * Wallet Instance Attestation (during Credential issuance)
-* Credential Format 
+* Credential Format
 * Status Management of the Credentials, including revocation
 * Cryptographic Holder Binding
 * Issuer key resolution
 * Issuer identification (as prerequisite for trust management)
 * Crypto Suites
 
-Assumptions made are the following: 
+Assumptions made are the following:
 * The issuers and verifiers cannot pre-discover wallet’s capability
 * The issuer is talking to the wallet supporting the features defined in this profile (via wallet invocation mechanism)
 * There are mechanisms in place for the verifiers and issuers to discover each other’s capability
@@ -83,7 +83,7 @@ The following items are out of scope for the current version of this document, b
 
 ## Standards Requirements
 
-Unless explicitly stated, all normative requirements apply to all participating entities: Issuers, Wallets and Verifiers. 
+Unless explicitly stated, all normative requirements apply to all participating entities: Issuers, Wallets and Verifiers.
 
 | (as defined in this profile) | Issuer | Wallet | Verifier |
 |:--- |:--- |:--- |:--- |
@@ -109,10 +109,10 @@ Note: Authorization Code flow does not require Credential Offer from the Issuer 
 ## Authorization Endpoint
 
    * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
-   * Wallet MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint. 
+   * Wallet MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint.
    * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. This mapping MUST be used when obtaining user consent.
    * `scope` parameter MUST be communicated from the Issuer to the Wallet either in the Credential Offer, or Credential Issuer metadata.
-   * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client key attestation JWT. 
+   * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client key attestation JWT.
 
 ## Token Endpoint {#token-endpoint}
 
@@ -140,7 +140,7 @@ Section 3.1 of wallet attestation draft would define the basics, and this profil
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
-   * `client_id_scheme` value MUST be either `x509_san` or `verifier_attestation`. Wallet MUST support both. Verifier MUST support at least one. 
+   * `client_id_scheme` value MUST be either `x509_san` or `verifier_attestation`. Wallet MUST support both. Verifier MUST support at least one.
    * When the Client Identifier Scheme is `x509_san_uri`, the Client Identifier MUST be URI and match the `uniformResourceIdentifier` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate passed with the request. The request MUST be signed with the private key corresponding to the public key in the leaf X.509 certificate of the certificate chain added to the request in the `x5c` JOSE header [@!RFC7515] of the signed request object. The Wallet MUST validate the signature and the trust chain of the X.509 certificate. All Verifier metadata other than the public key MUST be obtained from the `client_metadata` parameter.
    * When the Client Identifier Scheme is `verifier_attestation`, the Client Identifier MUST equal `sub` claim value in the Verifier attestation JWT. The request MUST be signed with the private key corresponding to the public key in the `cnf` claim in the Verifier attestation JWT. The Verifier attestation VC MUST be added to a newly defined `verifier_attestation` JOSE Header of a request object. The Wallet MUST validate the signature on the Verifier attestation JWT by a trusted third party. Verifier metadata MUST be obtained from the Verifier attestation JWT. Schema of the verifier attestation VC is define in the Annex.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
@@ -179,13 +179,13 @@ All the requirements defined in [@!I-D.ietf-oauth-selective-disclosure-jwt] MUST
 * `iss` claim MUST be used to obtain Issuer’s signing key as defined in (#issuer-key-resolution). `iss` claim MUST be either an HTTPS URL or a Subject Alternative Name (SAN) from an X.509 certificate. Wallets and the Verifiers MUST support both options.
 * `type` JWT claim as defined in draft-terbu-sd-jwt-vc. For details on the `cnf` claim, see (#holder-key-resolution).
 * `status` claim MUST be present as defined in draft-terbu-sd-jwt-vc/draft-looker-jwt-cwt-status-list
-* For Cryptographic Holder Binding, HB-JWT MUST be supported as defined in [IETF.SD-JWT].
+* For Cryptographic Holder Binding, HB-JWT MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
 
 Further claims, either registered or private JWT claims, can be added to the credential as required by the respective credential type, or determined by the Issuer or the Holder. All claims that are not understood by implementations MUST be ignored, as defined in section 4, RFC 7519.
 
 Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by [OIDF.ida] SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
 
-Note: If there is a requirement to provide Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [draft-terbu-sd-jet-vc] for implementation considerations.
+Note: If there is a requirement to provide Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [@!I-D.draft-terbu-sd-jwt-vc] for implementation considerations.
 
 Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: holder signature is required to bind presentation to a particular transaction and audience. This is planned to be expanded, once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
 
@@ -200,15 +200,15 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 ## Holder key resolution {#holder-key-resolution}
 
-* The public key passed in the `cnf` claim [RFC7800] MUST be a JSON Web Key [IETF.JWK] contained in the `jwk` claim. `kid' MUST be included in the JWK in the `cnf` claim, since it will be used in the JOSE Header.
+* The public key passed in the `cnf` claim [@!RFC7800] MUST be a JSON Web Key [@!RFC7517] contained in the `jwk` claim. `kid' MUST be included in the JWK in the `cnf` claim, since it will be used in the JOSE Header.
 
 Note: this requirement might change when claim-based and biometrics-based holder binding become available.
 
-Note: Re-using the same Credential across Verifiers, or re-using the same JWK value across multiple Credentials gives colluding Verifiers a mechanism to correlate the User. There are currently two known ways to address this with SD-JWT VCs. First is to issue multiple instances of the same credentials with different JWK values, so that if each instance of the credential is used at only one Verifier, it can be reused multiple times. Another is to use each credential only once (ephemeral credentials). It is RECOMMENDED to adopt one of these mechanisms. 
+Note: Re-using the same Credential across Verifiers, or re-using the same JWK value across multiple Credentials gives colluding Verifiers a mechanism to correlate the User. There are currently two known ways to address this with SD-JWT VCs. First is to issue multiple instances of the same credentials with different JWK values, so that if each instance of the credential is used at only one Verifier, it can be reused multiple times. Another is to use each credential only once (ephemeral credentials). It is RECOMMENDED to adopt one of these mechanisms.
 
 ### Cryptographic Holder Binding between VC and VP
 
-* Holder Binding JWT MUST be supported as defined in [IETF.SD-JWT].
+* Holder Binding JWT MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
 
 # Crypto Suites
 
