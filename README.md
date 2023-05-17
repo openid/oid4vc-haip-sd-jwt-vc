@@ -5,7 +5,6 @@ This is the working area for the High Assurance Profile of OpenID4VC with SD-JWT
 * [Editor's Copy](https://vcstuff.github.io/draft-high-assurance-profile-oid4vc-sd-jwt-vc/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.html)
 * [Compare Editor's Copy to Individual Draft](https://vcstuff.github.io/draft-high-assurance-profile-oid4vc-sd-jwt-vc/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.diff)
 
-
 ## Contributing
 
 See the
@@ -13,7 +12,9 @@ See the
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
+
 ## Command Line Usage
+
 Formatted text and HTML versions of the draft can be built using `make`.
 ```sh
 $ make
