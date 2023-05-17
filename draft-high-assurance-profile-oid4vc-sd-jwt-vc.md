@@ -41,7 +41,7 @@ This document defines a set of requirements for the existing specifications to e
 
 This document is not a specification, but a profile. It outlines specifications required for implementations to interoperate among each other. It also clarifies the set of features to be mandatory, for the optionalities mentioned in the referenced specifications.
 
-The profile uses OpenID for Verifiable Credential Issuance (OID4VCI) and OpenID for Verifiable Presentations (OID4VP) as the base protocols for issuance and presentation of Credentials. Credential formats used in the profile are W3C Verifiable Credentials (VC Data Model v2.0) secured using Selective Disclosure for JWTs (SD-JWT), and ISO/IEC 18013-5 mdocs. A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements.
+The profile uses OpenID for Verifiable Credential Issuance (OID4VCI) and OpenID for Verifiable Presentations (OID4VP) as the base protocols for issuance and presentation of Credentials. Credential formats used in the profile are W3C Verifiable Credentials (VC Data Model v2.0) secured using Selective Disclosure for JWTs (SD-JWT). A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements.
 
 ## Audience Target audience/Usage
 
@@ -226,9 +226,9 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 # Implementations Considerations
 
-## Differences between sd-jwt-vc and mdoc
+## Validity Period of the Signature and the Claim Values
 
-Note: `iat` and `exp` claims express the validity period of both the signature and the claim values.
+`iat` and `exp` JWT claims express both the validity period of both the signature and the claims about the subject, unless there is a separate claim used to express the validity of the claims.
 
 {backmatter}
 
@@ -288,7 +288,7 @@ Note: `iat` and `exp` claims express the validity period of both the signature a
 
 # Combined Issuance of SD-JWT VC and mdocs
 
-   * If dual issuance is required, Batch Credential Endpoint MUST be supported.
+   * If combined issuance is required, Batch Credential Endpoint MUST be supported.
 
 # JSON Schema for the supported Presentation Definition properties {#presentation-definition-schema}
 
