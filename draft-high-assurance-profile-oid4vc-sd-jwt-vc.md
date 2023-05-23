@@ -41,7 +41,7 @@ This document defines a set of requirements for the existing specifications to e
 
 This document is not a specification, but a profile. It refers to specifications required for implementations to interoperate among each other and defines the set of features to be mandatory to implement, for the optionalities mentioned in the referenced specifications.
 
-The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used in the profile are W3C Verifiable Credentials secured using Selective Disclosure for JWTs (SD-JWT) according to the VC Data Model v2.0 [@VC-DATA], designated as VC-SD-JWTs. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both VC-SD-JWTs and ISO mdoc [@ISO.18013-5]. 
+The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used in the profile are W3C Verifiable Credentials secured using Selective Disclosure for JWTs (SD-JWT) according to the VC Data Model v2.0 [@VC-DATA], designated as VC-SD-JWTs. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both VC-SD-JWTs and ISO mdoc [@ISO.18013-5].
 
 A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements (reference).
 
@@ -118,9 +118,9 @@ Note: The Authorization Code flow does not require a Credential Offer from the I
 
    * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
    * Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint.
-   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. 
-   * The `scope` parameter MUST be communicated from the Issuer to the Wallet either in the Credential Offer, or Credential Issuer metadata. (to strong?)
-   * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client attestation JWT. 
+   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. (requires OID4VCI PR)
+   * The `scope` parameter MUST be communicated from the Issuer to the Wallet either in the Credential Offer, or Credential Issuer metadata. (too strong?)
+   * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client attestation JWT.
 
 ## Token Endpoint {#token-endpoint}
 
@@ -152,9 +152,9 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
    * When the Client Identifier Scheme is `verifier_attestation`, the Client Identifier MUST equal `sub` claim value in the Verifier attestation JWT. The request MUST be signed with the private key corresponding to the public key in the `cnf` claim in the Verifier attestation JWT. The Verifier attestation VC MUST be added to a newly defined `verifier_attestation` JOSE Header of a request object. The Wallet MUST validate the signature on the Verifier attestation JWT by a trusted third party. Verifier metadata MUST be obtained from the Verifier attestation JWT. Schema of the verifier attestation VC is define in the Annex.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in (#presentation-definition-schema):
-    
+
     * In the `presentation_definition` object, `id`, `input_descriptors` and `submission_requirements` properties MUST be supported.
-    * In the `input-descriptors` object, `id`, `name`, `purpose`, `group`, `format`, and `constraints` properties MUST be supported. In the `constraints` object, `limit_disclosure`, and `fields` properties MUST be supported. In the `fields` object, `path` and `filter` properties MUST be supported. A `path` MUST contain exactly one entry. A `filter` MUST only contain `type` elements of value `string` and `const` elements. 
+    * In the `input-descriptors` object, `id`, `name`, `purpose`, `group`, `format`, and `constraints` properties MUST be supported. In the `constraints` object, `limit_disclosure`, and `fields` properties MUST be supported. In the `fields` object, `path` and `filter` properties MUST be supported. A `path` MUST contain exactly one entry. A `filter` MUST only contain `type` elements of value `string` and `const` elements.
     * In the `submission_requirements` object, `name`, `rule (`pick` only)`, `count`, `from` properties MUST be supported.
 
 # Self-Issued OP v2
@@ -184,8 +184,8 @@ In addition, this profile defines the following additional requirements.
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
 * It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
-* The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution). 
-* The `type` JWT claim as defined in [!I-D.ietf-terbu-sd-jwt-vc]. 
+* The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
+* The `type` JWT claim as defined in [!I-D.ietf-terbu-sd-jwt-vc].
 * For details on the `cnf` claim, see (#holder-key-resolution).
 
 Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by @!OIDF.ekyc-ida SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
@@ -198,10 +198,10 @@ Note: In some credential types, it is not desirable to include an expiration dat
 
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
-This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT-VC, web-based key resolution and x.509 certificates. 
+This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT-VC, web-based key resolution and x.509 certificates.
 
 * Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the VC-SD_JWT issuer's metadata as defined in Section 5 of draft-terbu-sd-jwt-vc. The JOSE header `kid` MUST be used to identify the respective key.
-* x.509 certificates: the VC-SD-JWT contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate. 
+* x.509 certificates: the VC-SD-JWT contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
 
 Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.
 
