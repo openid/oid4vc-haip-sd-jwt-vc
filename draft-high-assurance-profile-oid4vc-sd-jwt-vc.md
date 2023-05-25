@@ -143,7 +143,7 @@ Section 3.1 of wallet attestation draft would define the basics, and this profil
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san` or `verifier_attestation`. Wallet MUST support both. Verifier MUST support at least one.
    * When the Client Identifier Scheme is `x509_san_uri`, the Client Identifier MUST be URI and match the `uniformResourceIdentifier` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate passed with the request. The request MUST be signed with the private key corresponding to the public key in the leaf X.509 certificate of the certificate chain added to the request in the `x5c` JOSE header [@!RFC7515] of the signed request object. The Wallet MUST validate the signature and the trust chain of the X.509 certificate. All Verifier metadata other than the public key MUST be obtained from the `client_metadata` parameter.
-   * When the Client Identifier Scheme is `verifier_attestation`, the Client Identifier MUST equal `sub` claim value in the Verifier attestation JWT. The request MUST be signed with the private key corresponding to the public key in the `cnf` claim in the Verifier attestation JWT. The Verifier attestation VC MUST be added to a newly defined `verifier_attestation` JOSE Header of a request object. The Wallet MUST validate the signature on the Verifier attestation JWT by a trusted third party. Verifier metadata MUST be obtained from the Verifier attestation JWT. Schema of the verifier attestation VC is define in the Annex.
+   * When the Client Identifier Scheme is `verifier_attestation`, the Client Identifier MUST equal `sub` claim value in the Verifier attestation JWT. The request MUST be signed with the private key corresponding to the public key in the `cnf` claim in the Verifier attestation JWT. The Verifier attestation VC MUST be added to a newly defined `verifier_attestation` JOSE Header of a request object. The Wallet MUST validate the signature on the Verifier attestation JWT by a trusted third party. Verifier metadata MUST be obtained from the Verifier attestation JWT. Schema of the verifier attestation VC is defined in the Annex.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. JSON schema for the supported features is in (#presentation-definition-schema):
       * In the `presentation_definition` object, `id`, `input_descriptors` and `submission_requirements` properties MUST be supported.
@@ -155,7 +155,7 @@ Section 3.1 of wallet attestation draft would define the basics, and this profil
 To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [@!OIDF.SIOPv2].
 
    * `subject_syntax_types_supported` value MUST be `urn:ietf:params:oauth:jwk-thumbprint`
-   * As a way to invoke the Wallet, at least a custom URL scheme haip:// MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
+   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
 
 # SD-JWT VCs {#sd-jwt-vc}
 
@@ -195,13 +195,13 @@ Note: In some credential types, it is not desirable to include an expiration dat
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
 * When `iss` claim is an HTTPS URL, the key used to validate the Issuer’s signature on the SD-JWT VC MUST be hosted at the .well-known path as defined in draft-terbu-sd-jwt-vc. JOSE header `kid` MUST be used to obtain the key.
-* When the `iss’ identifier is a Subject Alternative Name (SAN), and the key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the `x5c` JOSE header.
+* When the `iss` identifier is a Subject Alternative Name (SAN), and the key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the `x5c` JOSE header.
 
 Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.
 
 ## Holder key resolution {#holder-key-resolution}
 
-* The public key passed in the `cnf` claim [@!RFC7800] MUST be a JSON Web Key [@!RFC7517] contained in the `jwk` claim. `kid' MUST be included in the JWK in the `cnf` claim, since it will be used in the JOSE Header.
+* The public key passed in the `cnf` claim [@!RFC7800] MUST be a JSON Web Key [@!RFC7517] contained in the `jwk` claim. `kid` MUST be included in the JWK in the `cnf` claim, since it will be used in the JOSE Header.
 
 Note: this requirement might change when claim-based and biometrics-based holder binding become available.
 
