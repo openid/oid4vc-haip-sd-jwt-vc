@@ -106,6 +106,8 @@ Implementations of this profile:
 * MUST support SD-JWT VC profile as defined in OID4VCI specification.
 * MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
 
+Both Wallet initiated and Issuer initiated issuance is supported.
+
 ## Credential Offer
 
 * Both Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [@!OIDF.OID4VCI]
