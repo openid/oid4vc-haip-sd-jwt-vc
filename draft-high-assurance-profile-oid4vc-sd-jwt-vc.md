@@ -167,7 +167,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [@!OIDF.SIOPv2].
 
-   * As a way to invoke the Wallet, at least a custom URL scheme `haip:// MUST` be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
+   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * `subject_syntax_types_supported` value MUST be `urn:ietf:params:oauth:jwk-thumbprint`
 
 # SD-JWT VCs {#sd-jwt-vc}
