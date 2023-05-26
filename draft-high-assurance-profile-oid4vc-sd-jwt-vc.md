@@ -172,7 +172,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-As credential format, VC-SD-JWT VC as defined in [!I-D.ietf-terbu-sd-jwt-vc] MUST be used.
+As credential format, VC-SD-JWT as defined in [!I-D.ietf-terbu-sd-jwt-vc] MUST be used.
 
 In addition, this profile defines the following additional requirements.
 
