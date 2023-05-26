@@ -146,7 +146,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ## Server Metadata
 
-The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value. 
+* The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.
 
 # OpenID for Verifiable Presentations
 
