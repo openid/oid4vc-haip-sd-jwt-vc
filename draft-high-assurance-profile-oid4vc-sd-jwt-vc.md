@@ -59,7 +59,7 @@ The following aspects are in scope of this interoperability profile:
 
 * Protocol for issuance of the Credentials online (can be both remote and in-person) (OID4VCI)
 * Protocol for presentation of Credentials online (can be both remote and in-person) (OID4VP)
-* Protocol for User Authentication with the Wallet at a Verifier (SIOP v2)
+* Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)
 * Wallet Attestation (during Credential issuance)
 * Credential Format
 * Status Management of the Credentials, including revocation
