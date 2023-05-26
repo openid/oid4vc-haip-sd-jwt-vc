@@ -128,9 +128,9 @@ Both sending Credential Offer same-device and cross-device is supported.
 ## Token Endpoint {#token-endpoint}
 
    * The Wallets MUST perform client authentication as defined in [!I-D.ietf-looker-key-attestation-client-authentication].
-   * Refresh tokens MUST be supported for credential refresh 
-   * Wallets MUST be able to process deferred authorization, i.e. processing of the Token error response parameters `authorization_pending` and `slow_down`, and the credential offer parameter `interval` MUST be supported.
-   * The wallet attestation JWT scheme is defined in (#wallet-attestation-schema)
+   * Refresh tokens MUST be supported for credential refresh.
+   * Wallets MUST support deferred authorization by being able to process the Token error response parameters `authorization_pending` and `slow_down`, and the credential offer parameter `interval`.
+   * The wallet attestation JWT scheme is defined in (#wallet-attestation-schema).
 
 Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.
 
