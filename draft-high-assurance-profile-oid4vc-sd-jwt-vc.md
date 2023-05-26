@@ -41,7 +41,7 @@ This document defines a set of requirements for the existing specifications to e
 
 This document is not a specification, but a profile. It refers to the specifications required for implementations to interoperate among each other and for the optionalities mentioned in the referenced specifications, defines the set of features to be mandatory to implement.
 
-The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used in the profile are W3C Verifiable Credentials secured using Selective Disclosure for JWTs (SD-JWT) according to the VC Data Model v2.0 [@VC-DATA], designated as VC-SD-JWTs. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both VC-SD-JWTs and ISO mdoc [@ISO.18013-5].
+The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used in the profile are W3C Verifiable Credentials secured using Selective Disclosure for JWTs (SD-JWT) according to the VC Data Model v2.0 [@VC-DATA], designated as VC-SD-JWTs. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both VC-SD-JWT and ISO mdoc [@ISO.18013-5] formats.
 
 A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements (reference).
 
