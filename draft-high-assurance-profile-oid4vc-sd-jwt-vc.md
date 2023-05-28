@@ -30,7 +30,7 @@ organization="yes.com"
 
 .# Abstract
 
-This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format VC-SD-JWT. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and VC-SD-JWT [!I-D.ietf-terbu-sd-jwt-vc].
+This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format VC-SD-JWT. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and VC-SD-JWT [@!I-D.terbu-sd-jwt-vc].
 
 {mainmatter}
 
@@ -172,7 +172,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-As credential format, VC-SD-JWT as defined in [!I-D.ietf-terbu-sd-jwt-vc] MUST be used.
+As credential format, VC-SD-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST be used.
 
 In addition, this profile defines the following additional requirements.
 
@@ -185,14 +185,14 @@ In addition, this profile defines the following additional requirements.
 |iat |MUST |[@!RFC7519], Section 4.1.6 |
 | exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |cnf|	MUST|	[@!RFC7800]|
-|type|	MUST| draft-terbu-sd-jwt-vc|
+|type|	MUST| [@!I-D.terbu-sd-jwt-vc]|
 |status|SHOULD (at the discretion of the issuer)|	WIP|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
 * It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
-* The `type` JWT claim as defined in [!I-D.ietf-terbu-sd-jwt-vc].
-* The `cnf` claim [@!RFC7800] MUST conform to the definition given in [!I-D.ietf-terbu-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
+* The `type` JWT claim as defined in [@!I-D.terbu-sd-jwt-vc].
+* The `cnf` claim [@!RFC7800] MUST conform to the definition given in [@!I-D.terbu-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
 Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
 
@@ -200,7 +200,7 @@ Note: Re-using the same Credential across Verifiers, or re-using the same JWK va
 
 Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by [@!OIDF.ekyc-ida] SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
 
-Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [!I-D.draft-terbu-sd-jwt-vc] for implementation considerations.
+Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [@!I-D.terbu-sd-jwt-vc] for implementation considerations.
 
 Note: In some credential types, it is not desirable to include an expiration date (eg: diploma attestation). Therefore, this profile leaves its inclusion to the Issuer, or the body defining the respective credential type.
 
@@ -208,14 +208,14 @@ Note: In some credential types, it is not desirable to include an expiration dat
 
 This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT-VC, web-based key resolution and x.509 certificates.
 
-* Web-based key resolution: The key used to validate the Issuer’s signature on the VC-SD-JWT MUST be obtained from the VC-SD-JWT issuer's metadata as defined in Section 5 of [!I-D.ietf-terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+* Web-based key resolution: The key used to validate the Issuer’s signature on the VC-SD-JWT MUST be obtained from the VC-SD-JWT issuer's metadata as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 * x.509 certificates: the VC-SD-JWT contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
 
 Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.
 
 ### Cryptographic Holder Binding between VC and VP
 
-* For Cryptographic Holder Binding, an HB-JWT as defined in [!I-D.ietf-terbu-sd-jwt-vc] MUST always be present when presenting a VC-SD-JWT.
+* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting a VC-SD-JWT.
 
 # Crypto Suites
 
