@@ -192,12 +192,9 @@ In addition, this profile defines the following additional requirements.
 * It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
 * The `type` JWT claim as defined in [!I-D.ietf-terbu-sd-jwt-vc].
+* The `cnf` claim [@!RFC7800] MUST conform to the definition given in [!I-D.ietf-terbu-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
-Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: holder signature is required to bind presentation to a particular transaction and audience. This is planned to be expanded, once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
-
-* The public key passed in the `cnf` claim [@!RFC7800] MUST be a JSON Web Key [@!RFC7517] contained in the `jwk` claim. `kid' MUST be included in the JWK in the `cnf` claim, since it will be used in the JOSE Header.
-
-Note: this requirement might change when claim-based and biometrics-based holder binding become available.
+Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
 
 Note: Re-using the same Credential across Verifiers, or re-using the same JWK value across multiple Credentials gives colluding Verifiers a mechanism to correlate the User. There are currently two known ways to address this with SD-JWT VCs. First is to issue multiple instances of the same credentials with different JWK values, so that if each instance of the credential is used at only one Verifier, it can be reused multiple times. Another is to use each credential only once (ephemeral credentials). It is RECOMMENDED to adopt one of these mechanisms.
 
@@ -292,6 +289,31 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
       <organization>yes.com</organization>
     </author>
    <date day="18" month="December" year="2021"/>
+  </front>
+</reference>
+
+<reference anchor="OIDF.ekyc-ida" target="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID4.html">
+  <front>
+    <title>OpenID Connect for Identity Assurance 1.0</title>
+    <author ullname="Torsten Lodderstedt ">
+      <organization>yes</organization>
+    </author>
+    <author fullname="Daniel Fett">
+      <organization>yes</organization>
+    </author>
+ <author fullname="Mark Haine">
+      <organization>Considrd.Consulting Ltd</organization>
+    </author>
+     <author fullname="Alberto Pulido">
+      <organization>Santander</organization>
+    </author>
+     <author fullname="Kai Lehmann">
+      <organization>1&amp;1 Mail &amp; Media Development &amp; Technology GmbH</organization>
+    </author>
+     <author fullname="Kosuke Koiwai">
+      <organization>KDDI Corporation</organization>
+    </author>
+   <date day="19" month="August" year="2022"/>
   </front>
 </reference>
 
