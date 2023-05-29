@@ -105,6 +105,7 @@ Implementations of this profile:
 * MUST support both pre-auth code flow and authorization code flow.
 * MUST support SD-JWT VC profile as defined in OID4VCI specification.
 * MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
+* MUST support [@!RFC7636] with `S256` as the code challenge method.
 
 Both Wallet initiated and Issuer initiated issuance is supported.
 
