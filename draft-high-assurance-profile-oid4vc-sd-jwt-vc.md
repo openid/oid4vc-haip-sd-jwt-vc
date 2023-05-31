@@ -111,7 +111,7 @@ Both Wallet initiated and Issuer initiated issuance is supported.
 
 ## Credential Offer
 
-* Both Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [@!OIDF.OID4VCI]
+* The Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [@!OIDF.OID4VCI]
 * For Grant Type `authorization_code`, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the `scope` Authorization parameter. For Grant Type `urn:ietf:params:oauth:grant-type:pre-authorized_code`, the pre-authorized code is used by the issuer to identify the credential type(s). (pending OID4VCI PR#519)
 * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
 
@@ -346,7 +346,7 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 # Combined Issuance of SD-JWT VC and mdocs
 
-   * If combined issuance is required, Batch Credential Endpoint MUST be supported.
+   * If combined issuance is required, the Batch Credential Endpoint MUST be supported.
 
 # JSON Schema for the supported Presentation Definition properties {#presentation-definition-schema}
 
