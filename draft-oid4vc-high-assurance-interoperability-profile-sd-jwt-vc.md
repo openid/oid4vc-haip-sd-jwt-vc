@@ -221,6 +221,7 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 # Crypto Suites
 
 Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:
+
 * SD-JWT-VC
 * Wallet Instance Attestation
 * DPoP
