@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
+<rfc version="3" ipr="none" docName="draft-oid4vc-high-assurance-interoperability-profile-sd-jwt-vc" submissionType="IETF" category="std" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true" consensus="true">
+
+<front>
+<title abbrev="draft-oid4vc-high-assurance-interoperability-profile-sd-jwt-vc">OpenID4VC High Assurance Interoperability Profile with SD-JWT VC</title><seriesInfo value="draft-oid4vc-high-assurance-interoperability-profile-sd-jwt-vc" status="standard" name="Internet-Draft"></seriesInfo>
+<author initials="K." surname="Yasuda" fullname="Kristina Yasuda"><organization>Microsoft</organization><address><postal><street></street>
+</postal><email>kristina.yasuda@microsoft.com</email>
+</address></author><author initials="T." surname="Lodderstedt" fullname="Torsten Lodderstedt"><organization>yes.com</organization><address><postal><street></street>
+</postal><email>torsten@lodderstedt.net</email>
+</address></author><date/>
+<area>Internet</area>
+<workgroup>OpenID Connect</workgroup>
+<keyword>security</keyword>
+<keyword>openid4vc</keyword>
+<keyword>sd-jwt</keyword>
+
+<abstract>
+<t>This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format SD-JWT VC. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance <xref target="OIDF.OID4VCI"></xref>, OpenID for Verifiable Presentations <xref target="OIDF.OID4VP"></xref>, Self-Issued OpenID Provider v2 <xref target="OIDF.SIOPv2"></xref>, and SD-JWT VC <xref target="I-D.terbu-sd-jwt-vc"></xref>.</t>
+</abstract>
+
+</front>
+
+<middle>
+
+<section anchor="introduction"><name>Introduction</name>
+<t>This document defines a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. This document is an interoperability profile that can be used by implementations in various contexts, be it a certain industry or a certain regulatory environment.</t>
+<t>This document is not a specification, but a profile. It refers to the specifications required for implementations to interoperate among each other and for the optionalities mentioned in the referenced specifications, defines the set of features to be mandatory to implement.</t>
+<t>The profile uses OpenID for Verifiable Credential Issuance <xref target="OIDF.OID4VCI"></xref> and OpenID for Verifiable Presentations <xref target="OIDF.OID4VP"></xref> as the base protocols for issuance and presentation of Credentials, respectively. The credential format used is SD-JWT VC as specified in <xref target="I-D.terbu-sd-jwt-vc"></xref>. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both SD-JWT VC and ISO mdoc <xref target="ISO.18013-5"></xref> formats.</t>
+<t>A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements (reference).</t>
+
+<section anchor="audience-target-audience-usage"><name>Audience Target audience/Usage</name>
+<t>The audience of the document is implementers that require a high level of security and privacy for their solutions. A non-exhaustive list of the interested parties includes eIDAS 2.0, California Department of Motor Vehicles, Open Wallet Foundation (OWF), IDunion, GAIN, and the Trusted Web project of the Japanese government, but is expected to grow to include other jurisdictions and private sector companies.</t>
+</section>
+</section>
+
+<section anchor="terminology"><name>Terminology</name>
+<t>This specification uses the terms &quot;Holder&quot;, &quot;Issuer&quot;, &quot;Verifier&quot;, and &quot;Verifiable Credential&quot; as defined in <xref target="I-D.terbu-sd-jwt-vc"></xref>.</t>
+</section>
+
+<section anchor="scope"><name>Scope</name>
+<t>The following aspects are in scope of this interoperability profile:</t>
+
+<ul spacing="compact">
+<li>Protocol for issuance of the Verifiable Credentials (can be both remote and in-person) (OID4VCI)</li>
+<li>Protocol for online presentation of Verifiable Credentials (can be both remote and in-person) (OID4VP)</li>
+<li>Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)</li>
+<li>Wallet Attestation (during Credential issuance)</li>
+<li>Credential Format (SD-JWT VC)</li>
+<li>Status Management of the Credentials, including revocation</li>
+<li>Cryptographic Holder Binding</li>
+<li>Issuer key resolution</li>
+<li>Issuer identification (as prerequisite for trust management)</li>
+<li>Crypto Suites</li>
+</ul>
+<t>Assumptions made are the following:</t>
+
+<ul spacing="compact">
+<li>The issuers and verifiers cannot pre-discover wallet’s capability</li>
+<li>The issuer is talking to the wallet supporting the features defined in this profile (via wallet invocation mechanism)</li>
+<li>There are mechanisms in place for the verifiers and issuers to discover each other’s capability</li>
+</ul>
+
+<section anchor="out-of-scope"><name>Out of Scope</name>
+<t>The following items are out of scope for the current version of this document, but might be added in future versions:</t>
+
+<ul spacing="compact">
+<li>Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.</li>
+<li>Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.</li>
+</ul>
+</section>
+
+<section anchor="scenarios-business-requirements"><name>Scenarios/Business Requirements</name>
+
+<ul spacing="compact">
+<li>Combined Issuance of SD-JWT VC and mdoc</li>
+<li>Both issuer-initiated and wallet-initiated issuance</li>
+<li>eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0</li>
+</ul>
+</section>
+
+<section anchor="standards-requirements"><name>Standards Requirements</name>
+<t>Unless explicitly stated, all normative requirements apply to all participating entities: Issuers, Wallets and Verifiers.</t>
+<table>
+<thead>
+<tr>
+<th align="left">(as defined in this profile)</th>
+<th align="left">Issuer</th>
+<th align="left">Wallet</th>
+<th align="left">Verifier</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">OID4VP</td>
+<td align="left">N/A</td>
+<td align="left">MUST</td>
+<td align="left">MUST</td>
+</tr>
+
+<tr>
+<td align="left">OID4VCI</td>
+<td align="left">MUST</td>
+<td align="left">MUST</td>
+<td align="left">N/A</td>
+</tr>
+
+<tr>
+<td align="left">SIOPv2</td>
+<td align="left">N/A</td>
+<td align="left">MUST</td>
+<td align="left">SHOULD</td>
+</tr>
+
+<tr>
+<td align="left">SD-JWT VC</td>
+<td align="left">MUST</td>
+<td align="left">MUST</td>
+<td align="left">MUST</td>
+</tr>
+</tbody>
+</table></section>
+</section>
+
+<section anchor="openid-for-verifiable-credential-issuance"><name>OpenID for Verifiable Credential Issuance</name>
+<t>Implementations of this profile:</t>
+
+<ul spacing="compact">
+<li>MUST support both pre-auth code flow and authorization code flow.</li>
+<li>MUST support SD-JWT VC profile as defined in OID4VCI specification.</li>
+<li>MUST support sender-constrained Tokens using a mechanism as defined in <xref target="I-D.ietf-oauth-dpop"></xref>.</li>
+<li>MUST support <xref target="RFC7636"></xref> with <tt>S256</tt> as the code challenge method.</li>
+</ul>
+<t>Both Wallet initiated and Issuer initiated issuance is supported.</t>
+
+<section anchor="credential-offer"><name>Credential Offer</name>
+
+<ul spacing="compact">
+<li>The Grant Types <tt>authorization_code</tt> and <tt>urn:ietf:params:oauth:grant-type:pre-authorized_code</tt> MUST be supported as defined in Section 4.1.1 in <xref target="OIDF.OID4VCI"></xref></li>
+<li>For Grant Type <tt>authorization_code</tt>, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the <tt>scope</tt> Authorization parameter. For Grant Type <tt>urn:ietf:params:oauth:grant-type:pre-authorized_code</tt>, the pre-authorized code is used by the issuer to identify the credential type(s). (pending OID4VCI PR#519)</li>
+<li>As a way to invoke the Wallet, at least a custom URL scheme <tt>haip://</tt> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.</li>
+</ul>
+<t>Note: The Authorization Code flow does not require a Credential Offer from the Issuer to the Wallet. However, it is included in the feature set of the Credential Offer because it might be easier to implement with existing libraries and on top of existing implementations than the pre-authorized code Grant Type.</t>
+<t>Both sending Credential Offer same-device and cross-device is supported.</t>
+</section>
+
+<section anchor="authorization-endpoint"><name>Authorization Endpoint</name>
+
+<ul spacing="compact">
+<li>MUST use Pushed Authorization Requests (PAR) <xref target="RFC9126"></xref> to send the Authorization Request.</li>
+<li>Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in <xref target="token-endpoint"></xref> for client authentication at the token endpoint.</li>
+<li>MUST use <tt>scope</tt> parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. (pending OID4VCI PR#520)</li>
+<li>The <tt>client_id</tt> value in the PAR request MUST be a string that the Wallet has used as the <tt>sub</tt> value in the client attestation JWT.</li>
+</ul>
+</section>
+
+<section anchor="token-endpoint"><name>Token Endpoint</name>
+
+<ul spacing="compact">
+<li>The Wallets MUST perform client authentication as defined in [!I-D.ietf-looker-key-attestation-client-authentication].</li>
+<li>Refresh tokens MUST be supported for credential refresh.</li>
+<li>Wallets MUST support deferred authorization by being able to process the Token error response parameters <tt>authorization_pending</tt> and <tt>slow_down</tt>, and the credential offer parameter <tt>interval</tt>.</li>
+<li>The wallet attestation JWT scheme is defined in <xref target="wallet-attestation-schema"></xref>.</li>
+</ul>
+<t>Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.</t>
+<t>Note: Issuers should be mindful of how long the usage of the refresh token is allowed to refresh a credential, as opposed to starting the issuance flow from the beginning. For example, if the User is trying to refresh a credential more than a year after its original issuance, the usage of the refresh tokens is NOT RECOMMENDED.</t>
+
+<section anchor="wallet-attestation-schema"><name>Wallet Attestation Schema</name>
+<t>[Section 3.1 of wallet attestation draft would define the basics, and this profile will define the details.]</t>
+</section>
+</section>
+
+<section anchor="credential-endpoint"><name>Credential Endpoint</name>
+
+<ul spacing="compact">
+<li>The <tt>JWT</tt> proof type MUST be supported.</li>
+</ul>
+</section>
+
+<section anchor="server-metadata"><name>Server Metadata</name>
+
+<ul spacing="compact">
+<li>The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.</li>
+</ul>
+</section>
+</section>
+
+<section anchor="openid-for-verifiable-presentations"><name>OpenID for Verifiable Presentations</name>
+
+<ul>
+<li>As a way to invoke the Wallet, at least a custom URL scheme <tt>haip://</tt> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.</li>
+<li>Response type MUST be <tt>vp_token</tt>.</li>
+<li>Response mode MUST be <tt>direct_post</tt> with <tt>redirect_uri</tt> as defined in Section 6.2 of <xref target="OIDF.OID4VP"></xref>.</li>
+<li>Authorization Request MUST be sent using the <tt>request_uri</tt> parameter as defined in JWT-Secured Authorization Request (JAR) <xref target="RFC9101"></xref>.</li>
+<li><tt>client_id_scheme</tt> parameter MUST be present in the Authorization Request.</li>
+<li><tt>client_id_scheme</tt> value MUST be either <tt>x509_san_dns</tt> or <tt>verifier_attestation</tt>. Wallet MUST support both. Verifier MUST support at least one. (pending OID4VCI PR #524 for verifier_attestation)</li>
+<li>Presentation Definition JSON object MUST be sent using a <tt>presentation_definition</tt> parameter.</li>
+<li><t>The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in <xref target="presentation-definition-schema"></xref>:</t>
+
+<ul spacing="compact">
+<li>In the <tt>presentation_definition</tt> object, <tt>id</tt>, <tt>input_descriptors</tt> and <tt>submission_requirements</tt> properties MUST be supported.</li>
+<li>In the <tt>input-descriptors</tt> object, <tt>id</tt>, <tt>name</tt>, <tt>purpose</tt>, <tt>group</tt>, <tt>format</tt>, and <tt>constraints</tt> properties MUST be supported. In the <tt>constraints</tt> object, <tt>limit_disclosure</tt>, and <tt>fields</tt> properties MUST be supported. In the <tt>fields</tt> object, <tt>path</tt> and <tt>filter</tt> properties MUST be supported. A <tt>path</tt> MUST contain exactly one entry with a static path to a certain claim. A <tt>filter</tt> MUST only contain <tt>type</tt> elements of value <tt>string</tt> and <tt>const</tt> elements.</li>
+<li>In the <tt>submission_requirements</tt> object, <tt>name</tt>, <tt>rule (</tt>pick<tt>only)</tt>, <tt>count</tt>, <tt>from</tt> properties MUST be supported.</li>
+</ul></li>
+</ul>
+</section>
+
+<section anchor="self-issued-op-v2"><name>Self-Issued OP v2</name>
+<t>To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in <xref target="OIDF.SIOPv2"></xref>.</t>
+
+<ul spacing="compact">
+<li>As a way to invoke the Wallet, at least a custom URL scheme <tt>haip://</tt> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.</li>
+<li><tt>subject_syntax_types_supported</tt> value MUST be <tt>urn:ietf:params:oauth:jwk-thumbprint</tt></li>
+</ul>
+</section>
+
+<section anchor="sd-jwt-vc"><name>SD-JWT VCs</name>
+<t>As credential format, SD-JWT VCs as defined in <xref target="I-D.terbu-sd-jwt-vc"></xref> MUST be used.</t>
+<t>In addition, this profile defines the following additional requirements.</t>
+
+<ul spacing="compact">
+<li>Both Compact serialization and JSON serialization MUST be supported as defined in <xref target="I-D.ietf-oauth-selective-disclosure-jwt"></xref>.</li>
+<li>The following JWT Claims MUST be supported Content (differentiate issuance &amp; presentation)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Claim</th>
+<th align="left">SD-JWT as issued by the Issuer</th>
+<th align="left">Normative Definition</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">iss</td>
+<td align="left">MUST</td>
+<td align="left"><xref target="RFC7519"></xref>, Section 4.1.1</td>
+</tr>
+
+<tr>
+<td align="left">iat</td>
+<td align="left">MUST</td>
+<td align="left"><xref target="RFC7519"></xref>, Section 4.1.6</td>
+</tr>
+
+<tr>
+<td align="left">exp</td>
+<td align="left">SHOULD (at the discretion of the issuer)</td>
+<td align="left"><xref target="RFC7519"></xref>, Section 4.1.4</td>
+</tr>
+
+<tr>
+<td align="left">cnf</td>
+<td align="left">	MUST</td>
+<td align="left">	<xref target="RFC7800"></xref></td>
+</tr>
+
+<tr>
+<td align="left">type</td>
+<td align="left">	MUST</td>
+<td align="left"><xref target="I-D.terbu-sd-jwt-vc"></xref></td>
+</tr>
+
+<tr>
+<td align="left">status</td>
+<td align="left">SHOULD (at the discretion of the issuer)</td>
+<td align="left">	WIP</td>
+</tr>
+</tbody>
+</table>
+<ul spacing="compact">
+<li>The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.</li>
+<li>It is at the discretion of the Issuer whether to use <tt>exp</tt> claim and/or a <tt>status</tt> claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.</li>
+<li>The <tt>iss</tt> claim MUST be an HTTPS URL. The <tt>iss</tt> value is used to obtain Issuer’s signing key as defined in <xref target="issuer-key-resolution"></xref>.</li>
+<li>The <tt>type</tt> JWT claim as defined in <xref target="I-D.terbu-sd-jwt-vc"></xref>.</li>
+<li>The <tt>cnf</tt> claim <xref target="RFC7800"></xref> MUST conform to the definition given in <xref target="I-D.terbu-sd-jwt-vc"></xref>. Implementations conforming to this profile MUST include the JSON Web Key <xref target="RFC7517"></xref> in the <tt>jwk</tt> sub claim.</li>
+</ul>
+<t>Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See <eref target="https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp">https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp</eref></t>
+<t>Note: Re-using the same Credential across Verifiers, or re-using the same JWK value across multiple Credentials gives colluding Verifiers a mechanism to correlate the User. There are currently two known ways to address this with SD-JWT VCs. First is to issue multiple instances of the same credentials with different JWK values, so that if each instance of the credential is used at only one Verifier, it can be reused multiple times. Another is to use each credential only once (ephemeral credentials). It is RECOMMENDED to adopt one of these mechanisms.</t>
+<t>Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by <xref target="OIDF.ekyc-ida"></xref> SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.</t>
+<t>Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, <tt>sub</tt> claim MAY be used. There is no requirement for a binding to exist between <tt>sub</tt> and <tt>cnf</tt> claims. See section X in <xref target="I-D.terbu-sd-jwt-vc"></xref> for implementation considerations.</t>
+<t>Note: In some credential types, it is not desirable to include an expiration date (eg: diploma attestation). Therefore, this profile leaves its inclusion to the Issuer, or the body defining the respective credential type.</t>
+
+<section anchor="issuer-key-resolution"><name>Issuer identification and key resolution to validate an issued Credential</name>
+<t>This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT VC, web PKI-based key resolution and x.509 certificates.</t>
+
+<ul spacing="compact">
+<li>Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of <xref target="I-D.terbu-sd-jwt-vc"></xref>. The JOSE header <tt>kid</tt> MUST be used to identify the respective key.</li>
+<li>x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the <tt>x5c</tt> JOSE header. In this case, the <tt>iss</tt> value MUST be an URL with a FQDN matching a <tt>dNSName</tt> Subject Alternative Name (SAN) <xref target="RFC5280"></xref> entry in the leaf certificate.</li>
+</ul>
+<t>Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.</t>
+
+<section anchor="cryptographic-holder-binding-between-vc-and-vp"><name>Cryptographic Holder Binding between VC and VP</name>
+
+<ul spacing="compact">
+<li>For Cryptographic Holder Binding, an HB-JWT as defined in <xref target="I-D.terbu-sd-jwt-vc"></xref> MUST always be present when presenting a SD-JWT VC.</li>
+</ul>
+</section>
+</section>
+</section>
+
+<section anchor="crypto-suites"><name>Crypto Suites</name>
+<t>Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:</t>
+
+<ul spacing="compact">
+<li>SD-JWT-VC</li>
+<li>Wallet Instance Attestation</li>
+<li>DPoP</li>
+<li>HB JWT</li>
+<li>Authorization request during presentation</li>
+</ul>
+<t>SHA256 MUST be supported by all the entities as the hash algorithm to generate and validate the digests in the SD-JWT VC.</t>
+<t>Note: When using this profile with other cryptosuites, it is recommended to be explicit about which entity is required to support which curve for signing and/or signature validation</t>
+</section>
+
+<section anchor="implementations-considerations"><name>Implementations Considerations</name>
+
+<section anchor="validity-period-of-the-signature-and-the-claim-values"><name>Validity Period of the Signature and the Claim Values</name>
+<t><tt>iat</tt> and <tt>exp</tt> JWT claims express both the validity period of both the signature and the claims about the subject, unless there is a separate claim used to express the validity of the claims.</t>
+</section>
+</section>
+
+</middle>
+
+<back>
+<references><name>Normative References</name>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-oauth-dpop.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-oauth-selective-disclosure-jwt.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml-ids/reference.I-D.terbu-sd-jwt-vc.xml"/>
+<reference anchor="OIDF.OID4VCI" target="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+  <front>
+    <title>OpenID for Verifiable Credential Issuance</title>
+    <author fullname="Torsten Lodderstedt" initials="T." surname="Lodderstedt">
+      <organization>yes.com</organization>
+    </author>
+    <author fullname="Kristina Yasuda" initials="K." surname="Yasuda">
+      <organization>Microsoft</organization>
+    </author>
+    <author fullname="Tobias Looker" initials="T." surname="Looker">
+      <organization>Mattr</organization>
+    </author>
+    <date year="2022" month="June" day="20"></date>
+  </front>
+</reference>
+<reference anchor="OIDF.OID4VP" target="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html">
+  <front>
+    <title>OpenID for Verifiable Presentations</title>
+    <author fullname="Oliver Terbu" initials="O." surname="Terbu">
+      <organization>Spruce Systems, Inc.</organization>
+    </author>
+    <author fullname="Torsten Lodderstedt" initials="T." surname="Lodderstedt">
+      <organization>yes.com</organization>
+    </author>
+    <author fullname="Kristina Yasuda" initials="K." surname="Yasuda">
+      <organization>Microsoft</organization>
+    </author>
+    <author fullname="Adam Lemmon" initials="A." surname="Lemmon">
+      <organization>Convergence.tech</organization>
+    </author>
+    <author fullname="Tobias Looker" initials="T." surname="Looker">
+      <organization>Mattr</organization>
+    </author>
+    <date year="2022" month="June" day="20"></date>
+  </front>
+</reference>
+<reference anchor="OIDF.SIOPv2" target="https://openid.net/specs/openid-connect-self-issued-v2-1_0.html">
+  <front>
+    <title>Self-Issued OpenID Provider V2</title>
+    <author>
+      <organization>Microsoft</organization>
+    </author>
+    <author fullname="Michael B. Jones">
+      <organization>Microsoft</organization>
+    </author>
+    <author fullname="Torsten Lodderstedt" initials="T." surname="Lodderstedt">
+      <organization>yes.com</organization>
+    </author>
+    <date year="2021" month="December" day="18"></date>
+  </front>
+</reference>
+<reference anchor="OIDF.ekyc-ida" target="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID4.html">
+  <front>
+    <title>OpenID Connect for Identity Assurance 1.0</title>
+    <author>
+      <organization>yes</organization>
+    </author>
+    <author fullname="Daniel Fett">
+      <organization>yes</organization>
+    </author>
+    <author fullname="Mark Haine">
+      <organization>Considrd.Consulting Ltd</organization>
+    </author>
+    <author fullname="Alberto Pulido">
+      <organization>Santander</organization>
+    </author>
+    <author fullname="Kai Lehmann">
+      <organization>1&amp;1 Mail &amp; Media Development &amp; Technology GmbH</organization>
+    </author>
+    <author fullname="Kosuke Koiwai">
+      <organization>KDDI Corporation</organization>
+    </author>
+    <date year="2022" month="August" day="19"></date>
+  </front>
+</reference>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5280.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7517.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7636.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7800.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9101.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
+</references>
+<references><name>Informative References</name>
+<reference anchor="ISO.18013-5" target="https://www.iso.org/standard/69084.html">
+  <front>
+    <title>ISO/IEC 18013-5:2021 Personal identification — ISO-compliant driving license — Part 5: Mobile driving license (mDL)  application</title>
+    <author>
+      <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
+    </author>
+    <date year="2021"></date>
+  </front>
+</reference>
+</references>
+
+<section anchor="combined-issuance-of-sd-jwt-vc-and-mdocs"><name>Combined Issuance of SD-JWT VC and mdocs</name>
+
+<ul spacing="compact">
+<li>If combined issuance is required, the Batch Credential Endpoint MUST be supported.</li>
+</ul>
+</section>
+
+<section anchor="presentation-definition-schema"><name>JSON Schema for the supported Presentation Definition properties</name>
+
+<sourcecode type="json">{
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;,
+    &quot;title&quot;: &quot;Presentation Definition for a High Assurance Profile&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+      &quot;presentation_definition&quot;: {
+        &quot;$ref&quot;: &quot;#/definitions/presentation_definition&quot;
+      }
+    },
+    &quot;definitions&quot;: {
+      &quot;presentation_definition&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;input_descriptors&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+              &quot;$ref&quot;: &quot;#/definitions/input_descriptor&quot;
+            }
+          },
+          &quot;submission_requirements&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+              &quot;$ref&quot;: &quot;#/definitions/submission_requirement&quot;
+            }
+          }
+        },
+        &quot;required&quot;: [
+          &quot;id&quot;,
+          &quot;input_descriptors&quot;
+        ],
+        &quot;additionalProperties&quot;: false
+      },
+      &quot;input_descriptor&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;additionalProperties&quot;: false,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;name&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;purpose&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;format&quot;: {
+            &quot;$ref&quot;: &quot;http://identity.foundation/claim-format-registry/schemas/presentation-definition-claim-format-designations.json&quot;
+          },
+          &quot;group&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+              &quot;type&quot;: &quot;string&quot;
+            }
+          },
+          &quot;constraints&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;additionalProperties&quot;: false,
+            &quot;properties&quot;: {
+              &quot;limit_disclosure&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;enum&quot;: [
+                  &quot;required&quot;,
+                  &quot;preferred&quot;
+                ]
+              },
+              &quot;fields&quot;: {
+                &quot;type&quot;: &quot;array&quot;,
+                &quot;items&quot;: {
+                  &quot;path&quot;: {
+                    &quot;type&quot;: &quot;array&quot;,
+                    &quot;items&quot;: {
+                      &quot;type&quot;: &quot;string&quot;
+                    }
+                  },
+                  &quot;filter&quot;: {
+                    &quot;$ref&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;
+                  }
+                }
+              }
+            }
+          }
+        },
+        &quot;required&quot;: [
+          &quot;id&quot;,
+          &quot;constraints&quot;
+        ]
+      },
+      &quot;submission_requirement&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;oneOf&quot;: [
+          {
+            &quot;properties&quot;: {
+              &quot;name&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+              },
+              &quot;rule&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;enum&quot;: [
+                  &quot;pick&quot;
+                ]
+              },
+              &quot;count&quot;: {
+                &quot;type&quot;: &quot;integer&quot;,
+                &quot;minimum&quot;: 1
+              },
+              &quot;from&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+              }
+            },
+            &quot;required&quot;: [
+              &quot;rule&quot;,
+              &quot;from&quot;
+            ],
+            &quot;additionalProperties&quot;: false
+          }
+        ]
+      }
+    }
+  }
+  
+</sourcecode>
+</section>
+
+</back>
+
+</rfc>

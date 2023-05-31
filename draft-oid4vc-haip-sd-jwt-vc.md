@@ -1,13 +1,13 @@
 %%%
 title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC"
-abbrev = "draft-oid4vc-high-assurance-interoperability-profile-sd-jwt-vc"
+abbrev = "draft-oid4vc-haip-sd-jwt-vc"
 ipr = "none"
 workgroup = "OpenID Connect"
 keyword = ["security", "openid4vc", "sd-jwt"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-oid4vc-high-assurance-interoperability-profile-sd-jwt-vc"
+value = "draft-oid4vc-haip-sd-jwt-vc"
 status = "standard"
 
 [[author]]
