@@ -30,7 +30,7 @@ organization="yes.com"
 
 .# Abstract
 
-This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format VC-SD-JWT. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and VC-SD-JWT [@!I-D.terbu-sd-jwt-vc].
+This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format SD-JWT VC. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and SD-JWT VC [@!I-D.terbu-sd-jwt-vc].
 
 {mainmatter}
 
@@ -96,7 +96,7 @@ Unless explicitly stated, all normative requirements apply to all participating 
 |OID4VP| N/A |MUST|MUST|
 |OID4VCI| MUST|MUST|N/A|
 |SIOPv2|N/A|MUST|SHOULD|
-|VC-SD-JWT|MUST|MUST|MUST|
+|SD-JWT VC|MUST|MUST|MUST|
 
 # OpenID for Verifiable Credential Issuance
 
@@ -173,7 +173,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-As credential format, VC-SD-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST be used.
+As credential format, SD-JWT VCs as defined in [@!I-D.terbu-sd-jwt-vc] MUST be used.
 
 In addition, this profile defines the following additional requirements.
 
@@ -207,16 +207,16 @@ Note: In some credential types, it is not desirable to include an expiration dat
 
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
-This profile supports two ways to represent and resolves the key required to validate the issuer signature of a VC-SD-JWT, web PKI-based key resolution and x.509 certificates.
+This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT VC, web PKI-based key resolution and x.509 certificates.
 
-* Web-based key resolution: The key used to validate the Issuer’s signature on the VC-SD-JWT MUST be obtained from the VC-SD-JWT issuer's metadata as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
-* x.509 certificates: the VC-SD-JWT contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
+* Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+* x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
 
 Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.
 
 ### Cryptographic Holder Binding between VC and VP
 
-* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting a VC-SD-JWT.
+* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting a SD-JWT VC.
 
 # Crypto Suites
 
