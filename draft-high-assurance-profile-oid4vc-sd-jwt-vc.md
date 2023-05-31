@@ -1,5 +1,5 @@
 %%%
-title = "High Assurance Profile of OpenID4VC with SD-JWT-VC"
+title = "High Assurance Profile of OpenID4VC with SD-JWT VC"
 abbrev = "draft-high-assurance-profile-oid4vc-sd-jwt-vc"
 ipr = "none"
 workgroup = "OpenID Connect"
@@ -41,7 +41,7 @@ This document defines a set of requirements for the existing specifications to e
 
 This document is not a specification, but a profile. It refers to the specifications required for implementations to interoperate among each other and for the optionalities mentioned in the referenced specifications, defines the set of features to be mandatory to implement.
 
-The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used in the profile are W3C Verifiable Credentials secured using Selective Disclosure for JWTs (SD-JWT) according to the VC Data Model v2.0 [@VC-DATA], designated as VC-SD-JWTs. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both VC-SD-JWT and ISO mdoc [@ISO.18013-5] formats.
+The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used is SD-JWT VC as specified in [@!I-D.terbu-sd-jwt-vc]. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both SD-JWT VC and ISO mdoc [@ISO.18013-5] formats.
 
 A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements (reference).
 
@@ -51,17 +51,17 @@ The audience of the document is implementers that require a high level of securi
 
 # Terminology
 
-ToDo: Mostly reference other specs.
+This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiable Credential" as defined in [@!I-D.terbu-sd-jwt-vc].
 
 # Scope
 
 The following aspects are in scope of this interoperability profile:
 
-* Protocol for issuance of the Credentials online (can be both remote and in-person) (OID4VCI)
-* Protocol for presentation of Credentials online (can be both remote and in-person) (OID4VP)
+* Protocol for issuance of the Verifiable Credentials (can be both remote and in-person) (OID4VCI)
+* Protocol for online presentation of Verifiable Credentials (can be both remote and in-person) (OID4VP)
 * Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)
 * Wallet Attestation (during Credential issuance)
-* Credential Format
+* Credential Format (SD-JWT VC)
 * Status Management of the Credentials, including revocation
 * Cryptographic Holder Binding
 * Issuer key resolution
@@ -79,13 +79,13 @@ Assumptions made are the following:
 The following items are out of scope for the current version of this document, but might be added in future versions:
 
 * Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.
-* Protocol for presentation of Credentials over BLE for offline use-cases.
+* Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.
 
 ## Scenarios/Business Requirements
 
-* Combined Issuance of SD-JWT and mdoc
+* Combined Issuance of SD-JWT VC and mdoc
 * Both issuer-initiated and wallet-initiated issuance
-* eIDAS credentials as defined in ARF 1.0
+* eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0
 
 ## Standards Requirements
 
