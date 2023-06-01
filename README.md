@@ -1,6 +1,6 @@
 # OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
 
-This is the working area for the High Assurance Profile of OpenID4VC with SD-JWT VC.
+This is the working area for the High Assurance Interoperability Profile of OpenID4VC with SD-JWT VC.
 
 * [Editor's Copy](https://vcstuff.github.io/high-assurance-profile/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.html)
 * [Compare Editor's Copy to Individual Draft](https://vcstuff.github.io/high-assurance-profile/#go.draft-high-assurance-profile-oid4vc-sd-jwt-vc.diff)
