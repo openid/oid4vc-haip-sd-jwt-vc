@@ -177,8 +177,10 @@ As credential format, SD-JWT VCs as defined in [@!I-D.terbu-sd-jwt-vc] MUST be u
 
 In addition, this profile defines the following additional requirements.
 
-* Both Compact serialization and JSON serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
+* Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
+
+JSON serialization MAY be supported if required by the jurisdiction.
 
 | Claim | SD-JWT as issued by the Issuer | Normative Definition |
 |:--- |:--- |:--- |
