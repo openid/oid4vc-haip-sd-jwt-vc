@@ -139,7 +139,42 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ### Wallet Attestation Schema {#wallet-attestation-schema}
 
-[Section 3.1 of wallet attestation draft would define the basics, and this profile will define the details.]
+Wallets MUST use attestations following the definition given in [!I-D.ietf-looker-key-attestation-client-authentication].
+
+In addition, the Wallet Attestation MUST contain the following claims: 
+
+* `key_type`: this claim asserts the security mechanism the wallet can use to manage private keys. This capability is based on the capabilities of the execution environent of the wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud wallet). This specification defines the following values for `key_type`: `STRONGBOX`, `TEE`, `SecureEnclave`, `Software`.
+* `user_authentication`: this claim asserts the security mechanism the wallet can use to authenticate access to private keys. This specification defines the following values for `user_authentication`: `APP_PIN_6_DIGITS`, ...
+
+These additional claims inform the issuer about the security capabilities of the wallet and allows the issuer to refuse credential issuance if the achievble security level of a certain wallet does not fulfil the issuer's requirements. 
+
+Wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+
+This is an example of a wallet attestation:
+
+```json
+{
+  "typ": "wallet-attestation+jwt",
+  "alg": "ES256",
+  "kid": "1"
+}
+.
+{
+  "iss": "https://wallet.example.com",
+  "sub": "https://wallet.example.com",
+  "exp": 1516247022,
+  "key_type": "STRONGBOX",
+  "user_authentication": "APP_PIN_6_DIGITS",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+    }
+  }
+}
+```
 
 ## Credential Endpoint
 
