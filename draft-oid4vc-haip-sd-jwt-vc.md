@@ -123,7 +123,7 @@ Both sending Credential Offer same-device and cross-device is supported.
 
    * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
    * Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint.
-   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. (pending OID4VCI PR#520)
+   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.
    * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client attestation JWT.
 
 ## Token Endpoint {#token-endpoint}
