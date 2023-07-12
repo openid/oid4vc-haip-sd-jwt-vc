@@ -218,6 +218,73 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 * For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting a SD-JWT VC.
 
+## OpenID4VC SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
+
+This section specifies how SD-JWT VCs are used in conjunction with OpenID 4 VCs. 
+### Format Identifier
+
+The Credential format identifier is `vc+sd-jwt`.
+
+### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
+
+The following additional Credential Issuer metadata are defined for this Credential format. 
+
+* `type`: REQUIRED. JSON string designating the type a certain credential type supports as defined in [@!I-D.terbu-sd-jwt-vc], Section 4.2.2.1.
+* `claims`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. The value is a JSON object detailing the specifics about the support for the claim with a following non-exhaustive list of parameters that MAY be included:
+    * `mandatory`: OPTIONAL. Boolean which when set to `true` indicates the claim MUST be present in the issued Credential. If the `mandatory` property is omitted its default should be assumed to be `false`.
+    * `value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image).
+    * `display`: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:
+        * `name`: OPTIONAL. String value of a display name for the claim.
+        * `locale`: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 [@!RFC5646]. There MUST be only one object with the same language identifier.
+* `order`: OPTIONAL. An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.
+
+The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
+
+<{{examples/credential_metadata_sd_jwt_vc.json}}
+
+### Credential Offer
+
+The following additional claims are defined for this Credential format. 
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
+  * `type`: REQUIRED. JSON string as defined in (#server_metadata_vc_sd-jwt). This claim contains the type value the Wallet shall request in the subsequent Credential Request.
+
+The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
+
+<{{examples/credential_offer_sd_jwt_vc.json}}
+
+### Authorization Details {#authorization_vc_sd-jwt}
+
+The following additional claims are defined for authorization details of type `openid_credential` and this Credential format.
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
+  * `type`: REQUIRED. JSON string as defined in (#server_metadata_vc_sd-jwt). This claim contains the type value the Wallet requests authorization for at the issuer.
+  * `credentialSubject`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. This object indicates the claims the Wallet would like to turn up in the credential to be issued. 
+
+The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
+
+<{{examples/authorization_details_sd_jwt_vc.json}}
+
+### Credential Request
+
+The following additional parameters are defined for Credential Requests and this Credential format.  
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
+  * `type`: REQUIRED. JSON string as defined in (#authorization_vc_sd-jwt). The credential issued by the issuer MUST be of the type defined in this claim. 
+  * `credentialSubject`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the optional claims to be added to the credential to be issued. 
+
+The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
+
+<{{examples/credential_request_sd_jwt_vc.json}}
+
+### Credential Response {#credential_response_jwt_vc_json}
+
+The value of the `credential` claim in the Credential Response MUST be a SD-JWT VC. Credentials of this format are already a sequence of base64url-encoded values separated by period characters and MUST NOT be re-encoded. 
+
+The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
+
+<{{examples/credential_response_sd_jwt_vc.txt}}
+
 # Crypto Suites
 
 Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:
