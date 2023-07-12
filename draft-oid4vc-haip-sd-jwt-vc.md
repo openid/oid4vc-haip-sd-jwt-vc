@@ -141,10 +141,10 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 Wallets MUST use attestations following the definition given in [!I-D.ietf-looker-key-attestation-client-authentication].
 
-In addition, the Wallet Attestation MUST contain the following claims:
+In addition to the claims, the Wallet Attestation MUST contain the following claims:
 
 * `key_type`: this claim asserts the security mechanism the wallet can use to manage private keys. This capability is based on the capabilities of the execution environent of the wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud wallet). This specification defines the following values for `key_type`: `Software`, `TEE`, `Strongbox`, `Secure Enclave`, and `Secure Element`.
-* `user_authentication`: this claim asserts the security mechanism the wallet can use to authenticate access to private keys. This specification defines the following values for `user_authentication`: `System-Biometry`, `System-PIN`, `Internal-Biometry`, `Internal-PIN`, and `SecureElement-PIN`. 
+* `user_authentication`: this claim asserts the security mechanism the wallet can use to authenticate access to private keys. This specification defines the following values for `user_authentication`: `System-Biometry`, `System-PIN`, `Internal-Biometry`, `Internal-PIN`, and `SecureElement-PIN`.
 
 These additional claims inform the issuer about the security capabilities of the wallet and allows the issuer to refuse credential issuance if the achievble security level of a certain wallet does not fulfil the issuer's requirements.
 
