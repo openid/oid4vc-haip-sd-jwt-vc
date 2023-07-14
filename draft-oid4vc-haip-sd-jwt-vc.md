@@ -207,7 +207,7 @@ Note: In some credential types, it is not desirable to include an expiration dat
 
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
-This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT VC, web PKI-based key resolution and x.509 certificates.
+This profile supports two ways to represent and resolves the key required to validate the issuer signature of an SD-JWT VC, web PKI-based key resolution and x.509 certificates.
 
 * Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 * x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
@@ -216,7 +216,7 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 ### Cryptographic Holder Binding between VC and VP
 
-* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting a SD-JWT VC.
+* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting an SD-JWT VC.
 
 ## OpenID4VC SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
 
@@ -259,7 +259,7 @@ The following additional claims are defined for authorization details of type `o
 
 * `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
   * `type`: REQUIRED. JSON string as defined in (#server_metadata_vc_sd-jwt). This claim contains the type value the Wallet requests authorization for at the issuer.
-  * `credentialSubject`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. This object indicates the claims the Wallet would like to turn up in the credential to be issued.
+  * `claims`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. This object indicates the claims the Wallet would like to turn up in the credential to be issued.
 
 The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
 
@@ -271,7 +271,7 @@ The following additional parameters are defined for Credential Requests and this
 
 * `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
   * `type`: REQUIRED. JSON string as defined in (#authorization_vc_sd-jwt). The credential issued by the issuer MUST be of the type defined in this claim.
-  * `credentialSubject`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the optional claims to be added to the credential to be issued.
+  * `claims`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the optional claims to be added to the credential to be issued.
 
 The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
 
@@ -279,7 +279,7 @@ The following is a non-normative example of a Credential Request with Credential
 
 ### Credential Response {#credential_response_jwt_vc_json}
 
-The value of the `credential` claim in the Credential Response MUST be a SD-JWT VC. Credentials of this format are already a sequence of base64url-encoded values separated by period characters and MUST NOT be re-encoded.
+The value of the `credential` claim in the Credential Response MUST be an SD-JWT VC. Credentials of this format are already suitable for transfer and, therefore, they need not and MUST NOT be re-encoded.
 
 The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
 
