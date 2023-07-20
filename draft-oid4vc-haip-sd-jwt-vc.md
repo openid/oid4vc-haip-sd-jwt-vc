@@ -139,7 +139,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ### Wallet Attestation Schema {#wallet-attestation-schema}
 
-Wallets MUST use attestations following the definition given in [!I-D.ietf-looker-key-attestation-client-authentication].
+Wallets MUST use attestations following the definition given in [@!I-D.looker-oauth-attestation-based-client-auth].
 
 In addition to the claims, the Wallet Attestation MUST contain the following claims:
 
