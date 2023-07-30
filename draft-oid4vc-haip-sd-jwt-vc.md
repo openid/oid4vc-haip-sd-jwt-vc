@@ -229,7 +229,7 @@ The Credential format identifier is `vc+sd-jwt`.
 
 The following additional Credential Issuer metadata are defined for this Credential format.
 
-* `type`: REQUIRED. JSON string designating the type a certain credential type supports as defined in [@!I-D.terbu-sd-jwt-vc], Section 4.2.2.1.
+* `type`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.terbu-sd-jwt-vc], Section 4.2.2.1.
 * `claims`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. The value is a JSON object detailing the specifics about the support for the claim with a following non-exhaustive list of parameters that MAY be included:
     * `mandatory`: OPTIONAL. Boolean which when set to `true` indicates the claim MUST be present in the issued Credential. If the `mandatory` property is omitted its default should be assumed to be `false`.
     * `value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image).
