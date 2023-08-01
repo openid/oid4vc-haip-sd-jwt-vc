@@ -220,7 +220,7 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 ## OpenID4VC SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
 
-This section specifies how SD-JWT VCs as defined in [@!I-D.terbu-sd-jwt-vc] are used in conjunction with OpenID4VCs.
+This section specifies how SD-JWT VCs as defined in [@!I-D.terbu-sd-jwt-vc] are used in conjunction with OpenID4VC specifications.
 
 ### Format Identifier
 
