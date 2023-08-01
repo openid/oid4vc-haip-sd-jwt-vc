@@ -228,7 +228,7 @@ The Credential format identifier is `vc+sd-jwt`.
 
 ### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
 
-The following additional Credential Issuer metadata are defined for this Credential format.
+The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of [@!OpenID4VCI].
 
 * `type`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.terbu-sd-jwt-vc], Section 4.2.2.1.
 * `claims`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. The value is a JSON object detailing the specifics about the support for the claim with a following non-exhaustive list of parameters that MAY be included:
