@@ -128,7 +128,7 @@ Both sending Credential Offer same-device and cross-device is supported.
 
 ## Token Endpoint {#token-endpoint}
 
-   * The Wallets MUST perform client authentication as defined in [@!I-D.looker-oauth-attestation-based-client-auth].
+   * The Wallets MUST perform client authentication as defined in [@!I-D.ietf-oauth-attestation-based-client-auth].
    * Refresh tokens MUST be supported for credential refresh.
    * Wallets MUST support deferred authorization by being able to process the Token error response parameters `authorization_pending` and `slow_down`, and the credential offer parameter `interval`.
    * The wallet attestation JWT scheme is defined in (#wallet-attestation-schema).
@@ -139,7 +139,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ### Wallet Attestation Schema {#wallet-attestation-schema}
 
-Wallets MUST use attestations following the definition given in [@!I-D.looker-oauth-attestation-based-client-auth].
+Wallets MUST use attestations following the definition given in [@!I-D.ietf-oauth-attestation-based-client-auth].
 
 In addition to this definition, the Wallet Attestation MAY contain the following claims in the `cnf` element:
 
@@ -169,8 +169,8 @@ This is an example of a wallet attestation:
 }
 .
 {
-  "iss": "https://attester.example.com",
-  "sub": "https://client.example.com",
+  "iss": "<identifier of the issuer of this wallet attestation>",
+  "sub": "<`client_id` of the OAuth client>",
   "iat": 1516247022,
   "exp": 1541493724,
   "aal" : "https://trust-list.eu/aal/high",
