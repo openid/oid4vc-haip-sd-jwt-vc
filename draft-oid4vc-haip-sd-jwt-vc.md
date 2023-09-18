@@ -224,7 +224,7 @@ This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc]
 
 ### Format Identifier
 
-The Credential format identifier is `vc+sd-jwt`. This format identifier is used in issuance and presentation requests. 
+The Credential format identifier is `vc+sd-jwt`. This format identifier is used in issuance and presentation requests.
 
 ### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
 
@@ -289,11 +289,11 @@ The following is a non-normative example of a Credential Response with Credentia
 
 ### Presentation Definition
 
-The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. 
+The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`.
 
 `vc+sd-jwt` consists of the following elements:
 
-* `sd-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values. 
+* `sd-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values.
 * `kb-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
 
 The following is a non-normative example of a presentation definition for a SD-JWT VC.
