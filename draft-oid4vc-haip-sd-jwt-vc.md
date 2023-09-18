@@ -216,7 +216,7 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 ### Cryptographic Holder Binding between VC and VP
 
-* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting an SD-JWT VC.
+* For Cryptographic Holder Binding, a KB-JWT as defined in [@!I-D.terbu-sd-jwt-vc] MUST always be present when presenting an SD-JWT VC.
 
 ## OpenID4VC SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
 
