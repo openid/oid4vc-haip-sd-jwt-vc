@@ -224,7 +224,7 @@ This section specifies how SD-JWT VCs as defined in [@!I-D.terbu-sd-jwt-vc] are 
 
 ### Format Identifier
 
-The Credential format identifier is `vc+sd-jwt`.
+The Credential format identifier is `vc+sd-jwt`. This format identifier is used in issuance and presentation requests. 
 
 ### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
 
@@ -286,6 +286,19 @@ The value of the `credential` claim in the Credential Response MUST be an SD-JWT
 The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
 
 <{{examples/credential_response_sd_jwt_vc.txt}}
+
+### Presentation Definition
+
+The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. 
+
+`vc+sd-jwt` consists of the following elements:
+
+* `sd-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values. 
+* `kb-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
+
+The following is a non-normative example of a presentation definition for a SD-JWT VC.
+
+<{{examples/presentation_definition_sd_jwt_vc.json}}
 
 # Crypto Suites
 
