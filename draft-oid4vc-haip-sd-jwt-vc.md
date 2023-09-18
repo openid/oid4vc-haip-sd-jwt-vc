@@ -228,7 +228,7 @@ The Credential format identifier is `vc+sd-jwt`. This format identifier is used 
 
 ### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
 
-The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of [@!OpenID4VCI].
+The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of [@!OIDF.OID4VCI].
 
 * `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following two sub claims:
   * `type`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.ietf-oauth-sd-jwt-vc], Section 4.2.2.1.
