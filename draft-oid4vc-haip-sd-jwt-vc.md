@@ -141,12 +141,14 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 Wallets MUST use attestations following the definition given in [@!I-D.looker-oauth-attestation-based-client-auth].
 
-In addition to the claims, the Wallet Attestation MUST contain the following claims:
+In addition to this definition, the Wallet Attestation MAY contain the following claims in the `cnf` element:
 
-* `key_type`: this claim asserts the security mechanism the wallet can use to manage private keys. This capability is based on the capabilities of the execution environent of the wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud wallet). This specification defines the following values for `key_type`: `Software`, `TEE`, `Strongbox`, `Secure Enclave`, `Secure Element` and `External-HSM`.
-* `user_authentication`: this claim asserts the security mechanism the wallet can use to authenticate access to private keys. This specification defines the following values for `user_authentication`: `System-Biometry`, `System-PIN`, `Internal-Biometry`, `Internal-PIN`, and `SecureElement-PIN`.
+* `key_type`: OPTIONAL. JSON String that asserts the security mechanism the wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud wallet). This specification defines the following values for `key_type`: `Software`, `TEE`, `Strongbox`, `Secure Enclave`, `Secure Element` and `External-HSM`.
+* `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the wallet uses to authenticate access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`: `System-Biometry`, `System-PIN`, `Internal-Biometry`, `Internal-PIN`, and `SecureElement-PIN`.
 
-These additional claims inform the issuer about the security capabilities of the wallet and allows the issuer to refuse credential issuance if the achievble security level of a certain wallet does not fulfil the issuer's requirements.
+The Wallet Attestation MAY also contain the following claim: 
+
+* `aal`: OPTIONAL. JSON String asserting the authentication level of the wallet and the key as asserted in the `cnf` claim. 
 
 To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 
@@ -160,18 +162,20 @@ This is an example of a wallet attestation:
 }
 .
 {
-  "iss": "https://wallet.example.com",
-  "sub": "https://wallet.example.com",
-  "exp": 1516247022,
-  "key_type": "STRONGBOX",
-  "user_authentication": "APP_PIN_6_DIGITS",
+  "iss": "https://attester.example.com",
+  "sub": "https://client.example.com",
+  "iat": 1516247022,
+  "exp": 1541493724,
+  "aal" : "https://trust-list.eu/aal/high",
   "cnf": {
     "jwk": {
       "kty": "EC",
       "crv": "P-256",
       "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
       "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-    }
+    },
+    "key_type": "STRONGBOX", 
+    "user_authentication": "SYSTEM_PIN", 
   }
 }
 ```
