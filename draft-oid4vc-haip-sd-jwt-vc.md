@@ -272,7 +272,7 @@ The following additional parameters are defined for Credential Requests and this
 
 * `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
   * `type`: REQUIRED. JSON string as defined in (#authorization_vc_sd-jwt). The credential issued by the issuer MUST be of the type defined in this claim.
-  * `claims`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the optional claims to be added to the credential to be issued.
+  * `claims`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the subset of authorized claims to be added to the credential to be issued.
 
 The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
 
