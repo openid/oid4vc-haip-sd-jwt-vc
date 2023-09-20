@@ -145,11 +145,11 @@ In addition to this definition, the Wallet Attestation MAY contain the following
 
 * `key_type`: OPTIONAL. JSON String that asserts the security mechanism the wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud wallet). This specification defines the following values for `key_type`:
   * `software`: It MUST be used when the wallet uses software-based key management.
-  * `hardware`: It MUST be used when the wallet uses software-based key management.
+  * `hardware`: It MUST be used when the wallet uses hardware-based key management.
   * `tee`: It SHOULD be used when the wallet uses the Trusted Execution Environment for key management.
   * `secure_enclave`: It SHOULD be used when the Wallet uses the Secure Enclave for key management.
   * `strong_box`: It SHOULD be used when the Wallet uses the Strongbox for key management.
-  * `secure_element`: It SHOULD be used when the Wallet uses the Trusted Execution Environment for key management.
+  * `secure_element`: It SHOULD be used when the Wallet uses a Secure Element for key management.
   * `hsm`: It SHOULD be used when the wallet uses Hardware Security Module (HSM).
 * `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the wallet uses to authenticate access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`: `System-Biometry`, `System-PIN`, `Internal-Biometry`, `Internal-PIN`, and `SecureElement-PIN`.
 
