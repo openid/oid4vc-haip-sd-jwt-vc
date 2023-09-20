@@ -1,0 +1,14 @@
+{
+    "vp_formats_supported": {
+        "vc+sd-jwt": {
+            "sd-jwt-alg": [
+                "ES256",
+                "ES384"
+            ],
+            "kb-jwt-alg": [
+                "ES256",
+                "ES384"
+            ]
+        }
+    }
+}

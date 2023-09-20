@@ -218,7 +218,7 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 * For Cryptographic Holder Binding, a KB-JWT as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST always be present when presenting an SD-JWT VC.
 
-## OpenID4VC SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
+## SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
 
 This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used in conjunction with OpenID4VC specifications.
 
@@ -287,14 +287,20 @@ The following is a non-normative example of a Credential Response with Credentia
 
 <{{examples/credential_response_sd_jwt_vc.txt}}
 
-### Presentation Definition
+### Verifier Metadata
 
-The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`.
-
-`vc+sd-jwt` consists of the following elements:
+The Verifier SHOULD add a `vp_formats_supported` element to its metadata (e.g. in the `client_metadata` authorization request parameter) to let the wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key ``vc+sd-jwt`, the value is an objec consisting of the following elements:
 
 * `sd-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values.
 * `kb-jwt-alg`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
+
+The following is a non-normative example of `client_metadata` request parameter value in a request to present a SD-JWT VC.
+
+<{{examples/client_metadata_sd_jwt_vc.json}}
+
+### Presentation Definition
+
+The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. The object is empty. 
 
 The following is a non-normative example of a presentation definition for a SD-JWT VC.
 

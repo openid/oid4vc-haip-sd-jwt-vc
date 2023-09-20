@@ -4,14 +4,7 @@
         {
             "id": "IdentityCredential",
             "format": {
-                "vc+sd-jwt": {
-                    "sd-jwt-alg": [
-                        "ES256"
-                    ],
-                    "kb-jwt-alg": [
-                        "ES256"
-                    ]
-                }
+                "vc+sd-jwt": {}
             },
             "constraints": {
                 "limit_disclosure": "required",
