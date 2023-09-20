@@ -300,7 +300,7 @@ The following is a non-normative example of `client_metadata` request parameter 
 
 ### Presentation Definition
 
-The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. The object is empty. 
+The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. The object is empty.
 
 The following is a non-normative example of a presentation definition for a SD-JWT VC.
 
