@@ -276,7 +276,7 @@ The following is a non-normative example of a Credential Request with Credential
 
 ### Credential Response {#credential_response_jwt_vc_json}
 
-The value of the `credential` claim in the Credential Response MUST be an SD-JWT VC. Credentials of this format are already suitable for transfer and, therefore, they need not and MUST NOT be re-encoded.
+The value of the `credential` claim in the Credential Response MUST be a JSON string that is an SD-JWT VC. Credentials of this format are already suitable for transfer and, therefore, they need not and MUST NOT be re-encoded.
 
 The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
 
