@@ -248,8 +248,7 @@ The following is a non-normative example of an object comprising `credentials_su
 
 The following additional claims are defined for this Credential format.
 
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
-  * `type`: REQUIRED. JSON string as defined in (#server_metadata_vc_sd-jwt). This claim contains the type value the Wallet shall request in the subsequent Credential Request.
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `type` property as defined in (#server_metadata_vc_sd-jwt).
 
 The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
 
