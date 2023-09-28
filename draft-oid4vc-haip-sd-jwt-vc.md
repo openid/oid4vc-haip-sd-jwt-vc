@@ -258,9 +258,7 @@ The following is a non-normative example of an object comprising `credentials_su
 
 The following additional claims are defined for authorization details of type `openid_credential` and this Credential format.
 
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
-  * `type`: REQUIRED. JSON string as defined in (#server_metadata_vc_sd-jwt). This claim contains the type value the Wallet requests authorization for at the issuer.
-  * `claims`: OPTIONAL. A JSON object containing a list of key value pairs, where the key identifies the claim offered in the Credential. The value MAY be a dictionary, which allows to represent the full (potentially deeply nested) structure of the verifiable credential to be issued. This object indicates the claims the Wallet would like to turn up in the credential to be issued.
+* `credential_definition`: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least `type` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
 
 The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
 
