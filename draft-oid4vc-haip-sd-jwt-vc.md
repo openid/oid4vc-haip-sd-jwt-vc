@@ -103,7 +103,7 @@ Unless explicitly stated, all normative requirements apply to all participating 
 Implementations of this profile:
 
 * MUST support both pre-auth code flow and authorization code flow.
-* MUST support SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
+* MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (##vc_sd_jwt_profile). 
 * MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
 * MUST support [@!RFC7636] with `S256` as the code challenge method.
 
