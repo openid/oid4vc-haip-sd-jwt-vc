@@ -96,7 +96,7 @@ Unless explicitly stated, all normative requirements apply to all participating 
 |OID4VP| N/A |MUST|MUST|
 |OID4VCI| MUST|MUST|N/A|
 |SIOPv2|N/A|MUST|SHOULD|
-|SD-JWT VC|MUST|MUST|MUST|
+|SD-JWT VC profile as defined in (#sd-jwt-vc) |MUST|MUST|MUST|
 
 # OpenID for Verifiable Credential Issuance
 
