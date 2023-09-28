@@ -1,11 +1,11 @@
 {
-    "vp_formats_supported": {
+    "vp_formats": {
         "vc+sd-jwt": {
-            "sd-jwt-alg": [
+            "sd_jwt_alg": [
                 "ES256",
                 "ES384"
             ],
-            "kb-jwt-alg": [
+            "kb_jwt_alg": [
                 "ES256",
                 "ES384"
             ]
