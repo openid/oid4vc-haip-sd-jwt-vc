@@ -268,9 +268,7 @@ The following is a non-normative example of an authorization details object with
 
 The following additional parameters are defined for Credential Requests and this Credential format.
 
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following sub claims:
-  * `type`: REQUIRED. JSON string as defined in (#authorization_vc_sd-jwt). The credential issued by the issuer MUST be of the type defined in this claim.
-  * `claims`: OPTIONAL. A JSON object as defined in (#authorization_vc_sd-jwt). This object determines the subset of authorized claims to be added to the credential to be issued.
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `type` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
 
 The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
 
