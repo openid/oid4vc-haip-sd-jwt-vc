@@ -103,7 +103,7 @@ Unless explicitly stated, all normative requirements apply to all participating 
 Implementations of this profile:
 
 * MUST support both pre-auth code flow and authorization code flow.
-* MUST support SD-JWT VC profile as defined in this specification.
+* MUST support SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
 * MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
 * MUST support [@!RFC7636] with `S256` as the code challenge method.
 
@@ -151,6 +151,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 # OpenID for Verifiable Presentations
 
+   * MUST support the SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
@@ -218,9 +219,9 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 * For Cryptographic Holder Binding, a KB-JWT as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST always be present when presenting an SD-JWT VC.
 
-## SD-JWT VC Credential Format Profile {#vc_sd_jwt_profile}
+## OpenID4VC Credential Format Profile {#vc_sd_jwt_profile}
 
-This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used in conjunction with OpenID4VC specifications.
+This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used in conjunction with the OpenID4VC specifications.
 
 ### Format Identifier
 
