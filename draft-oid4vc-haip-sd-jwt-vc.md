@@ -201,7 +201,7 @@ Note: Re-using the same Credential across Verifiers, or re-using the same JWK va
 
 Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by [@!OIDF.ekyc-ida] SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
 
-Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [@!I-D.ietf-oauth-sd-jwt-vc] for implementation considerations.
+Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See Implementation Considerations section in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 Note: In some credential types, it is not desirable to include an expiration date (eg: diploma attestation). Therefore, this profile leaves its inclusion to the Issuer, or the body defining the respective credential type.
 
