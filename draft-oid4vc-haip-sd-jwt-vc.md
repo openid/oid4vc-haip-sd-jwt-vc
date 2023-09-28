@@ -151,7 +151,7 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 # OpenID for Verifiable Presentations
 
-   * MUST support the SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
+   * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (##vc_sd_jwt_profile). 
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
