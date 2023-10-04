@@ -103,7 +103,7 @@ Unless explicitly stated, all normative requirements apply to all participating 
 Implementations of this profile:
 
 * MUST support both pre-auth code flow and authorization code flow.
-* MUST support SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
+* MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (##vc_sd_jwt_profile). 
 * MUST support sender-constrained Tokens using a mechanism as defined in [@!I-D.ietf-oauth-dpop].
 * MUST support [@!RFC7636] with `S256` as the code challenge method.
 
@@ -123,7 +123,7 @@ Both sending Credential Offer same-device and cross-device is supported.
 
    * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
    * Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint.
-   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. (pending OID4VCI PR#520)
+   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.
    * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client attestation JWT.
 
 ## Token Endpoint {#token-endpoint}
@@ -151,13 +151,14 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 # OpenID for Verifiable Presentations
 
-   * MUST support the SD-JWT VC profile as defined in this specification (#sd-jwt-vc). 
+   * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (##vc_sd_jwt_profile). 
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. Wallet MUST support both. Verifier MUST support at least one. (pending OID4VCI PR #524 for verifier_attestation)
+   * To obtain the issuer's public key for verification, verifiers MUST support web-based key resolution as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in (#presentation-definition-schema):
 
@@ -178,7 +179,7 @@ As credential format, SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST
 
 In addition, this profile defines the following additional requirements.
 
-* Both Compact serialization and JSON serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
+* Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
 
 | Claim | SD-JWT as issued by the Issuer | Normative Definition |
