@@ -128,10 +128,10 @@ Both sending Credential Offer same-device and cross-device is supported.
 
 ## Token Endpoint {#token-endpoint}
 
-   * The Wallets MUST perform client authentication as defined in [@!I-D.looker-oauth-attestation-based-client-auth].
+   * The Wallets MUST perform client authentication as defined in [@!I-D.ietf-oauth-attestation-based-client-auth].
    * Refresh tokens MUST be supported for credential refresh.
    * Wallets MUST support deferred authorization by being able to process the Token error response parameters `authorization_pending` and `slow_down`, and the credential offer parameter `interval`.
-   * The wallet attestation JWT scheme is defined in (#wallet-attestation-schema).
+   * The Wallet Attestation JWT scheme is defined in (#wallet-attestation-schema).
 
 Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.
 
@@ -139,7 +139,58 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ### Wallet Attestation Schema {#wallet-attestation-schema}
 
-[Section 3.1 of wallet attestation draft would define the basics, and this profile will define the details.]
+Wallets MUST use attestations following the definition given in [@!I-D.ietf-oauth-attestation-based-client-auth].
+
+In addition to this definition, the Wallet Attestation MAY contain the following claims in the `cnf` element:
+
+* `key_type`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the Wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud Wallet). This specification defines the following values for `key_type`:
+  * `software`: It MUST be used when the Wallet uses software-based key management.
+  * `hardware`: It MUST be used when the wallet uses hardware-based key management.
+  * `tee`: It SHOULD be used when the Wallet uses the Trusted Execution Environment for key management.
+  * `secure_enclave`: It SHOULD be used when the Wallet uses the Secure Enclave for key management.
+  * `strong_box`: It SHOULD be used when the Wallet uses the Strongbox for key management.
+  * `secure_element`: It SHOULD be used when the Wallet uses a Secure Element for key management.
+  * `hsm`: It SHOULD be used when the Wallet uses Hardware Security Module (HSM).
+* `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to authenticate the user to authorize access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`:
+  * `system_biometry`: It MUST be used when the key usage is authorized by the mobile operating system using a biometric factor.
+  * `system_pin`: It MUST be used when the key usage is authorized by the mobile operating system using personal identification number (PIN).
+  * `internal_biometry`: It MUST be used when the key usage is authorized by the Wallet using a biometric factor.
+  * `internal_pin`: It MUST be used when the key usage is authorized by the Wallet using PIN.
+  * `secure_element_pin` It MUST be used when the key usage is authorized by the secure element managing the key itself using PIN.
+
+The Wallet Attestation MAY also contain the following claim:
+
+* `aal`: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the `cnf` claim.
+
+To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+
+This is an example of a Wallet Instance Attestation:
+
+```json
+{
+  "typ": "wallet-attestation+jwt",
+  "alg": "ES256",
+  "kid": "1"
+}
+.
+{
+  "iss": "<identifier of the issuer of this wallet attestation>",
+  "sub": "<`client_id` of the OAuth client>",
+  "iat": 1516247022,
+  "exp": 1541493724,
+  "aal" : "https://trust-list.eu/aal/high",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+    },
+    "key_type": "STRONGBOX",
+    "user_authentication": "SYSTEM_PIN",
+  }
+}
+```
 
 ## Credential Endpoint
 
