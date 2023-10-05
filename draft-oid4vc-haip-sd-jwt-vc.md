@@ -151,12 +151,12 @@ In addition to this definition, the Wallet Attestation MAY contain the following
   * `strong_box`: It SHOULD be used when the Wallet uses the Strongbox for key management.
   * `secure_element`: It SHOULD be used when the Wallet uses a Secure Element for key management.
   * `hsm`: It SHOULD be used when the Wallet uses Hardware Security Module (HSM).
-* `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to authenticate access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`:
-  * `system_biometry`: It MUST be used when the key usage is authorized through a biometric factor by the operating system.
-  * `system_pin`: It MUST be used when the key usage is authorized through a knowledge factor by the operating system.
-  * `internal_biometry`: It MUST be used when the key usage is authorized through a biometric factor by the Wallet itself.
-  * `internal_pin`: It MUST be used when the key usage is authorized through a knowledge factor by the Wallet itself.
-  * `secure_element_pin` It MUST be used when the key usage is authorized through a knowledge factor by the secure element that is managing the key itself.
+* `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to authenticate the user to authorize access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`:
+  * `system_biometry`: It MUST be used when the key usage is authorized by the mobile operating system using a biometric factor.
+  * `system_pin`: It MUST be used when the key usage is authorized by the mobile operating system using personal identification number (PIN).
+  * `internal_biometry`: It MUST be used when the key usage is authorized by the Wallet using a biometric factor.
+  * `internal_pin`: It MUST be used when the key usage is authorized by the Wallet using PIN.
+  * `secure_element_pin` It MUST be used when the key usage is authorized by the secure element managing the key itself using PIN.
 
 The Wallet Attestation MAY also contain the following claim:
 
