@@ -186,8 +186,8 @@ This is an example of a Wallet Instance Attestation:
       "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
       "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
     },
-    "key_type": "STRONGBOX",
-    "user_authentication": "SYSTEM_PIN",
+    "key_type": "strong_box",
+    "user_authentication": "system_pin",
   }
 }
 ```
