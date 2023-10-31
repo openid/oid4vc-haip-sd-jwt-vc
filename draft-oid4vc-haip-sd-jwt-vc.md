@@ -240,7 +240,7 @@ In addition, this profile defines the following additional requirements.
 | exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |cnf|	MUST|	[@!RFC7800]|
 |type|	MUST| [@!I-D.ietf-oauth-sd-jwt-vc]|
-|status|SHOULD (at the discretion of the issuer)| [@!I-D.looker-oauth-jwt-cwt-status-list]|
+|status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
 * It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
