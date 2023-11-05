@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-02T00:24:31.233338+00:00",
+  "timestamp": "2023-11-05T00:27:18.533274+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -5532,13 +5532,13 @@
       "labels": [],
       "body": "<!-- If this pull request closes an issue, please mention the issue number below -->\r\nCloses # <!-- Issue # here -->\r\n\r\n## \ud83d\udcd1 Description\r\nSome fixes and changes according to https://github.com/openid/OpenID4VCI/pull/86\r\n\r\n<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax\r\n- [ ] Not Completed\r\n- [x] Completed\r\n-->\r\n\r\n## Preview Link\r\n\r\n<!-- Update the link below to provide reviewers with a convenient link to view a rendered version of the PR-->\r\n<!-- In general the link should be of the form https://github.com/<repo-name>/<branch-name>/<draft-name>.html-->\r\n\r\n[click here for rendered preview of PR](https://github.com/<repo-name>/<branch-name>/<draft-name>.html)",
       "createdAt": "2023-10-24T12:31:04Z",
-      "updatedAt": "2023-10-31T13:55:21Z",
+      "updatedAt": "2023-11-03T12:03:35Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
       "headRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "headRefName": "pb/issuerMetadata",
-      "headRefOid": "a80caf4b04484c7baffa10272ad1e1f5f2803200",
+      "headRefOid": "e9f583b6859f861e6e3d25941ad2391e79ceb680",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
