@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-09T00:24:48.780933+00:00",
+  "timestamp": "2023-11-12T00:27:31.251720+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -5532,7 +5532,7 @@
       "labels": [],
       "body": "<!-- If this pull request closes an issue, please mention the issue number below -->\r\nCloses # <!-- Issue # here -->\r\n\r\n## \ud83d\udcd1 Description\r\nSome fixes and changes according to https://github.com/openid/OpenID4VCI/pull/86\r\n\r\n<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax\r\n- [ ] Not Completed\r\n- [x] Completed\r\n-->\r\n\r\n## Preview Link\r\n\r\n<!-- Update the link below to provide reviewers with a convenient link to view a rendered version of the PR-->\r\n<!-- In general the link should be of the form https://github.com/<repo-name>/<branch-name>/<draft-name>.html-->\r\n\r\n[click here for rendered preview of PR](https://github.com/<repo-name>/<branch-name>/<draft-name>.html)",
       "createdAt": "2023-10-24T12:31:04Z",
-      "updatedAt": "2023-11-03T12:03:35Z",
+      "updatedAt": "2023-11-09T10:26:40Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
@@ -5543,7 +5543,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Corresponding to this https://github.com/oauth-wg/oauth-sd-jwt-vc/issues/181 \r\nremove sd-jwt-vc display and metadata",
+          "createdAt": "2023-11-09T10:26:40Z",
+          "updatedAt": "2023-11-09T10:26:40Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOJcWsFs5ltTCt",
@@ -5562,6 +5570,26 @@
               "body": "is type really needed?",
               "createdAt": "2023-10-31T13:55:21Z",
               "updatedAt": "2023-10-31T13:55:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5mpsil",
+          "commit": {
+            "abbreviatedOid": "e9f583b"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-09T10:22:51Z",
+          "updatedAt": "2023-11-09T10:22:51Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "delete this id as its a key for credential_supported object",
+              "createdAt": "2023-11-09T10:22:51Z",
+              "updatedAt": "2023-11-09T10:23:00Z"
             }
           ]
         }
