@@ -6,7 +6,7 @@ OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
                                                                  yes.com
-                                                         12 October 2023
+                                                        14 November 2023
 
 
     OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
@@ -58,8 +58,9 @@ Table of Contents
    8.  Crypto Suites
    9.  Implementations Considerations
      9.1.  Validity Period of the Signature and the Claim Values
-   10. Normative References
-   11. Informative References
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Combined Issuance of SD-JWT VC and mdocs
    Appendix B.  JSON Schema for the supported Presentation Definition
            properties
@@ -112,34 +113,23 @@ Table of Contents
 
    *  Protocol for issuance of the Verifiable Credentials (can be both
       remote and in-person) (OID4VCI)
-
    *  Protocol for online presentation of Verifiable Credentials (can be
       both remote and in-person) (OID4VP)
-
    *  Protocol for User Authentication by the Wallet at a Verifier (SIOP
       v2)
-
    *  Wallet Attestation (during Credential issuance)
-
    *  Credential Format (SD-JWT VC)
-
    *  Status Management of the Credentials, including revocation
-
    *  Cryptographic Holder Binding
-
    *  Issuer key resolution
-
    *  Issuer identification (as prerequisite for trust management)
-
    *  Crypto Suites
 
    Assumptions made are the following:
 
    *  The issuers and verifiers cannot pre-discover wallet’s capability
-
    *  The issuer is talking to the wallet supporting the features
       defined in this profile (via wallet invocation mechanism)
-
    *  There are mechanisms in place for the verifiers and issuers to
       discover each other’s capability
 
@@ -152,16 +142,13 @@ Table of Contents
       types of credentials, authorization of the Wallet to be issued
       certain types of credentials, authorization of the Verifier to
       receive certain types of credentials.
-
    *  Protocol for presentation of Verifiable Credentials for offline
       use-cases, e.g. over BLE.
 
 3.2.  Scenarios/Business Requirements
 
    *  Combined Issuance of SD-JWT VC and mdoc
-
    *  Both issuer-initiated and wallet-initiated issuance
-
    *  eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0
 
 3.3.  Standards Requirements
@@ -189,13 +176,10 @@ Table of Contents
    Implementations of this profile:
 
    *  MUST support both pre-auth code flow and authorization code flow.
-
    *  MUST support protocol extensions for SD-JWT VC credential format
       profile as defined in this specification Section 7.2.
-
    *  MUST support sender-constrained Tokens using a mechanism as
       defined in [I-D.ietf-oauth-dpop].
-
    *  MUST support [RFC7636] with S256 as the code challenge method.
 
    Both Wallet initiated and Issuer initiated issuance is supported.
@@ -205,7 +189,6 @@ Table of Contents
    *  The Grant Types authorization_code and
       urn:ietf:params:oauth:grant-type:pre-authorized_code MUST be
       supported as defined in Section 4.1.1 in [OIDF.OID4VCI]
-
    *  For Grant Type authorization_code, the Issuer MUST include a scope
       value in order to allow the Wallet to identify the desired
       credential type.  The wallet MUST use that value in the scope
@@ -213,7 +196,6 @@ Table of Contents
       urn:ietf:params:oauth:grant-type:pre-authorized_code, the pre-
       authorized code is used by the issuer to identify the credential
       type(s). (pending OID4VCI PR#519)
-
    *  As a way to invoke the Wallet, at least a custom URL scheme
       haip:// MUST be supported.  Implementations MAY support other ways
       to invoke the wallets as agreed by trust frameworks/ecosystems/
@@ -232,16 +214,13 @@ Table of Contents
 
    *  MUST use Pushed Authorization Requests (PAR) [RFC9126] to send the
       Authorization Request.
-
    *  Wallets MUST authenticate itself at the PAR endpoint using the
       same rules as defined in Section 4.3 for client authentication at
       the token endpoint.
-
    *  MUST use scope parameter to communicate credential type(s) to be
       issued.  The scope value MUST map to a specific Credential type.
       The scope value may be pre-agreed, obtained from the Credential
       Offer, or the Credential Issuer Metadata.
-
    *  The client_id value in the PAR request MUST be a string that the
       Wallet has used as the sub value in the client attestation JWT.
 
@@ -249,13 +228,10 @@ Table of Contents
 
    *  The Wallets MUST perform client authentication as defined in
       [I-D.ietf-oauth-attestation-based-client-auth].
-
    *  Refresh tokens MUST be supported for credential refresh.
-
    *  Wallets MUST support deferred authorization by being able to
       process the Token error response parameters authorization_pending
       and slow_down, and the credential offer parameter interval.
-
    *  The Wallet Attestation JWT scheme is defined in Section 4.3.1.
 
    Note: It is RECOMMENDED to use ephemeral client attestation JWTs for
@@ -284,48 +260,35 @@ Table of Contents
       residing on a smartphone) or a Cloud-HSM (in case of a cloud
       Wallet).  This specification defines the following values for
       key_type:
-
       -  software: It MUST be used when the Wallet uses software-based
          key management.
-
       -  hardware: It MUST be used when the wallet uses hardware-based
          key management.
-
       -  tee: It SHOULD be used when the Wallet uses the Trusted
          Execution Environment for key management.
-
       -  secure_enclave: It SHOULD be used when the Wallet uses the
          Secure Enclave for key management.
-
       -  strong_box: It SHOULD be used when the Wallet uses the
          Strongbox for key management.
-
       -  secure_element: It SHOULD be used when the Wallet uses a Secure
          Element for key management.
-
       -  hsm: It SHOULD be used when the Wallet uses Hardware Security
          Module (HSM).
-
    *  user_authentication: OPTIONAL.  JSON String that asserts the
       security mechanism the Wallet uses to authenticate the user to
       authorize access to the private key associated with the public key
       given in the cnf claim.  This specification defines the following
       values for user_authentication:
-
       -  system_biometry: It MUST be used when the key usage is
          authorized by the mobile operating system using a biometric
          factor.
-
       -  system_pin: It MUST be used when the key usage is authorized by
          the mobile operating system using personal identification
          number (PIN).
-
       -  internal_biometry: It MUST be used when the key usage is
          authorized by the Wallet using a biometric factor.
-
       -  internal_pin: It MUST be used when the key usage is authorized
          by the Wallet using PIN.
-
       -  secure_element_pin It MUST be used when the key usage is
          authorized by the secure element managing the key itself using
          PIN.
@@ -415,7 +378,6 @@ Table of Contents
 
       -  In the presentation_definition object, id, input_descriptors
          and submission_requirements properties MUST be supported.
-
       -  In the input-descriptors object, id, name, purpose, group,
          format, and constraints properties MUST be supported.  In the
          constraints object, limit_disclosure, and fields properties
@@ -423,7 +385,6 @@ Table of Contents
          properties MUST be supported.  A path MUST contain exactly one
          entry with a static path to a certain claim.  A filter MUST
          only contain type elements of value string and const elements.
-
       -  In the submission_requirements object, name, rule (pickonly),
          count, from properties MUST be supported.
 
@@ -436,7 +397,6 @@ Table of Contents
       haip:// MUST be supported.  Implementations MAY support other ways
       to invoke the wallets as agreed by trust frameworks/ecosystems/
       jurisdictions, not limited to using other custom URL schemes.
-
    *  subject_syntax_types_supported value MUST be
       urn:ietf:params:oauth:jwk-thumbprint
 
@@ -451,7 +411,6 @@ Table of Contents
    *  Compact serialization MUST be supported as defined in
       [I-D.ietf-oauth-selective-disclosure-jwt].  JSON serialization MAY
       be supported.
-
    *  The following JWT Claims MUST be supported Content (differentiate
       issuance & presentation)
 
@@ -470,7 +429,7 @@ Table of Contents
    +--------+----------------+----------------------------------------+
    | cnf    | MUST           | [RFC7800]                              |
    +--------+----------------+----------------------------------------+
-   | type   | MUST           | [I-D.ietf-oauth-sd-jwt-vc]             |
+   | vct    | MUST           | [I-D.ietf-oauth-sd-jwt-vc]             |
    +--------+----------------+----------------------------------------+
    | status | SHOULD (at the | [I-D.looker-oauth-jwt-cwt-status-list] |
    |        | discretion of  |                                        |
@@ -482,16 +441,12 @@ Table of Contents
    *  The Issuer MUST NOT make any of the JWT Claims in the table above
       to be selectively disclosable, so that they are always present in
       the SD-JWT-VC presented by the Holder.
-
    *  It is at the discretion of the Issuer whether to use exp claim
       and/or a status claim to express the validity period of an SD-JWT-
       VC.  The wallet and the verifier MUST support both mechanisms.
-
    *  The iss claim MUST be an HTTPS URL.  The iss value is used to
       obtain Issuer’s signing key as defined in Section 7.1.
-
-   *  The type JWT claim as defined in [I-D.ietf-oauth-sd-jwt-vc].
-
+   *  The vct JWT claim as defined in [I-D.ietf-oauth-sd-jwt-vc].
    *  The cnf claim [RFC7800] MUST conform to the definition given in
       [I-D.ietf-oauth-sd-jwt-vc].  Implementations conforming to this
       profile MUST include the JSON Web Key [RFC7517] in the jwk sub
@@ -547,7 +502,6 @@ Table of Contents
       issuer's metadata as defined in Section 5 of
       [I-D.ietf-oauth-sd-jwt-vc].  The JOSE header kid MUST be used to
       identify the respective key.
-
    *  x.509 certificates: the SD-JWT VC contains the issuer's
       certificate along with a trust chain in the x5c JOSE header.  In
       this case, the iss value MUST be an URL with a FQDN matching a
@@ -583,12 +537,10 @@ Table of Contents
 
    *  credential_definition: REQUIRED.  JSON object containing the
       detailed description of the credential type.  It consists at least
-      of the following two sub elements:
-
-      -  type: REQUIRED.  JSON string designating the type of a
+      of the following three sub elements:
+      -  vct: REQUIRED.  JSON string designating the type of a
          credential as defined in [I-D.ietf-oauth-sd-jwt-vc],
          Section 4.2.2.1.
-
       -  claims: OPTIONAL.  A JSON object containing a list of name/
          value pairs, where each name identifies a claim offered in the
          Credential.  The value can be another such object (nested data
@@ -596,33 +548,28 @@ Table of Contents
          specifics about the claim, the most deeply nested value MAY be
          a JSON object that includes a following non-exhaustive list of
          parameters defined by this specification:
-
-      -  mandatory: OPTIONAL.  Boolean which when set to true indicates
-         the claim MUST be present in the issued Credential.  If the
-         mandatory property is omitted its default should be assumed to
-         be false.
-
-      -  value_type: OPTIONAL.  String value determining type of value
-         of the claim.  A non-exhaustive list of valid values defined by
-         this specification are string, number, and image media types
-         such as image/jpeg as defined in IANA media type registry for
-         images (https://www.iana.org/assignments/media-types/media-
-         types.xhtml#image (https://www.iana.org/assignments/media-
-         types/media-types.xhtml#image)).
-
-      -  display: OPTIONAL.  An array of objects, where each object
-         contains display properties of a certain claim in the
-         Credential for a certain language.  Below is a non-exhaustive
-         list of valid parameters that MAY be included:
-
-         o  name: OPTIONAL.  String value of a display name for the
-            claim.
-
-         o  locale: OPTIONAL.  String value that identifies language of
-            this object represented as language tag values defined in
-            BCP47 [RFC5646].  There MUST be only one object for each
-            language identifier.
-
+         o  mandatory: OPTIONAL.  Boolean which when set to true
+            indicates the claim MUST be present in the issued
+            Credential.  If the mandatory property is omitted its
+            default should be assumed to be false.
+         o  value_type: OPTIONAL.  String value determining type of
+            value of the claim.  A non-exhaustive list of valid values
+            defined by this specification are string, number, and image
+            media types such as image/jpeg as defined in IANA media type
+            registry for images (https://www.iana.org/assignments/media-
+            types/media-types.xhtml#image
+            (https://www.iana.org/assignments/media-types/media-
+            types.xhtml#image)).
+         o  display: OPTIONAL.  An array of objects, where each object
+            contains display properties of a certain claim in the
+            Credential for a certain language.  Below is a non-
+            exhaustive list of valid parameters that MAY be included:
+            +  name: OPTIONAL.  String value of a display name for the
+               claim.
+            +  locale: OPTIONAL.  String value that identifies language
+               of this object represented as language tag values defined
+               in BCP47 [RFC5646].  There MUST be only one object for
+               each language identifier.
    *  order: OPTIONAL.  An array of claims.display.name values that
       lists them in the order they should be displayed by the Wallet.
 
@@ -711,12 +658,7 @@ Table of Contents
    {
        "credential_issuer": "https://credential-issuer.example.com",
        "credentials": [
-           {
-               "format": "vc+sd-jwt",
-               "credential_definition": {
-                   "type": "IdentityCredential"
-               }
-           }
+           "IdentityCredential_SD-JWT-VC"
        ],
        "grants": {
            "authorization_code": {
@@ -755,7 +697,7 @@ Table of Contents
 
    *  credential_definition: REQUIRED.  JSON object containing the
       detailed description of the credential type.  It MUST contain at
-      least type property as defined in Section 7.2.2.  It MAY contain
+      least vct property as defined in Section 7.2.2.  It MAY contain
       claims property as defined in Section 7.2.2.
 
    The following is a non-normative example of a Credential Request with
@@ -799,7 +741,6 @@ Table of Contents
       of a SD-JWT.  If present, the alg JOSE header (as defined in
       [RFC7515]) of the presented SD-JWT MUST match one of the array
       values.
-
    *  kb-jwt_alg_values: OPTIONAL.  A JSON array containing identifiers
       of cryptographic algorithms the verifier supports for protection
       of a KB-JWT.  If present, the alg JOSE header (as defined in
@@ -876,13 +817,9 @@ Table of Contents
    validation whenever this profiles requires to do so:
 
    *  SD-JWT-VC
-
    *  Wallet Instance Attestation
-
    *  DPoP
-
    *  HB JWT
-
    *  Authorization request during presentation
 
    SHA256 MUST be supported by all the entities as the hash algorithm to
@@ -900,14 +837,16 @@ Table of Contents
    signature and the claims about the subject, unless there is a
    separate claim used to express the validity of the claims.
 
-10.  Normative References
+10.  References
+
+10.1.  Normative References
 
    [I-D.ietf-oauth-attestation-based-client-auth]
               Looker, T. and P. Bastian, "OAuth 2.0 Attestation-Based
               Client Authentication", Work in Progress, Internet-Draft,
-              draft-ietf-oauth-attestation-based-client-auth-00, 1
-              September 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-oauth-attestation-based-client-auth-00>.
+              draft-ietf-oauth-attestation-based-client-auth-01, 23
+              October 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-oauth-attestation-based-client-auth-01>.
 
    [I-D.ietf-oauth-dpop]
               Fett, D., Campbell, B., Bradley, J., Lodderstedt, T.,
@@ -920,16 +859,16 @@ Table of Contents
    [I-D.ietf-oauth-sd-jwt-vc]
               Terbu, O. and D. Fett, "SD-JWT-based Verifiable
               Credentials (SD-JWT VC)", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-sd-jwt-vc-00, 16 August 2023,
+              Draft, draft-ietf-oauth-sd-jwt-vc-01, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-oauth-
-              sd-jwt-vc-00>.
+              sd-jwt-vc-01>.
 
    [I-D.ietf-oauth-selective-disclosure-jwt]
               Fett, D., Yasuda, K., and B. Campbell, "Selective
               Disclosure for JWTs (SD-JWT)", Work in Progress, Internet-
-              Draft, draft-ietf-oauth-selective-disclosure-jwt-05, 30
-              June 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-oauth-selective-disclosure-jwt-05>.
+              Draft, draft-ietf-oauth-selective-disclosure-jwt-06, 23
+              October 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-oauth-selective-disclosure-jwt-06>.
 
    [I-D.looker-oauth-jwt-cwt-status-list]
               Looker, T. and P. Bastian, "JWT and CWT Status List", Work
@@ -1011,7 +950,7 @@ Table of Contents
               RFC 9126, DOI 10.17487/RFC9126, September 2021,
               <https://www.rfc-editor.org/info/rfc9126>.
 
-11.  Informative References
+10.2.  Informative References
 
    [ISO.18013-5]
               ISO/IEC JTC 1/SC 17 Cards and security devices for

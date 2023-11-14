@@ -10,14 +10,14 @@
 <meta content="
        This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format SD-JWT VC. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance  , OpenID for Verifiable Presentations  , Self-Issued OpenID Provider v2  , and SD-JWT VC  . 
     " name="description">
-<meta content="xml2rfc 3.18.1" name="generator">
+<meta content="xml2rfc 3.18.2" name="generator">
 <meta content="security" name="keyword">
 <meta content="openid4vc" name="keyword">
 <meta content="sd-jwt" name="keyword">
 <meta content="draft-oid4vc-haip-sd-jwt-vc-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.1
-    Python 3.11.5
+  xml2rfc 3.18.2
+    Python 3.11.6
     ConfigArgParse 1.5.3
     google-i18n-address 3.1.0
     intervaltree 3.1.0
@@ -29,7 +29,7 @@
     requests 2.31.0
     setuptools 67.7.2
     six 1.16.0
-    wcwidth 0.2.8
+    wcwidth 0.2.9
 -->
 <link href="draft-oid4vc-haip-sd-jwt-vc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1028,7 +1028,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left"></td>
 <td class="center">oid4vc-haip-sd-jwt-vc</td>
-<td class="right">October 2023</td>
+<td class="right">November 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yasuda &amp; Lodderstedt</td>
@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="workgroup">OpenID Connect</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-10-12" class="published">12 October 2023</time>
+<time datetime="2023-11-14" class="published">14 November 2023</time>
     </dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
@@ -1179,19 +1179,24 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-combined-issuance-of-sd-jwt" class="internal xref">Combined Issuance of SD-JWT VC and mdocs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-combined-issuance-of-sd-jwt" class="internal xref">Combined Issuance of SD-JWT VC and mdocs</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-json-schema-for-the-support" class="internal xref">JSON Schema for the supported Presentation Definition properties</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-json-schema-for-the-support" class="internal xref">JSON Schema for the supported Presentation Definition properties</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1230,35 +1235,35 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-scope" class="section-name selfRef">Scope</a>
       </h2>
 <p id="section-3-1">The following aspects are in scope of this interoperability profile:<a href="#section-3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3-2.1">Protocol for issuance of the Verifiable Credentials (can be both remote and in-person) (OID4VCI)<a href="#section-3-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3-2.1">Protocol for issuance of the Verifiable Credentials (can be both remote and in-person) (OID4VCI)<a href="#section-3-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.2">Protocol for online presentation of Verifiable Credentials (can be both remote and in-person) (OID4VP)<a href="#section-3-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.2">Protocol for online presentation of Verifiable Credentials (can be both remote and in-person) (OID4VP)<a href="#section-3-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.3">Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)<a href="#section-3-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.3">Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)<a href="#section-3-2.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.4">Wallet Attestation (during Credential issuance)<a href="#section-3-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.4">Wallet Attestation (during Credential issuance)<a href="#section-3-2.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.5">Credential Format (SD-JWT VC)<a href="#section-3-2.5" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.5">Credential Format (SD-JWT VC)<a href="#section-3-2.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.6">Status Management of the Credentials, including revocation<a href="#section-3-2.6" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.6">Status Management of the Credentials, including revocation<a href="#section-3-2.6" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.7">Cryptographic Holder Binding<a href="#section-3-2.7" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.7">Cryptographic Holder Binding<a href="#section-3-2.7" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.8">Issuer key resolution<a href="#section-3-2.8" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.8">Issuer key resolution<a href="#section-3-2.8" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.9">Issuer identification (as prerequisite for trust management)<a href="#section-3-2.9" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.9">Issuer identification (as prerequisite for trust management)<a href="#section-3-2.9" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-2.10">Crypto Suites<a href="#section-3-2.10" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-2.10">Crypto Suites<a href="#section-3-2.10" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-3-3">Assumptions made are the following:<a href="#section-3-3" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3-4.1">The issuers and verifiers cannot pre-discover wallet’s capability<a href="#section-3-4.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3-4.1">The issuers and verifiers cannot pre-discover wallet’s capability<a href="#section-3-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-4.2">The issuer is talking to the wallet supporting the features defined in this profile (via wallet invocation mechanism)<a href="#section-3-4.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-4.2">The issuer is talking to the wallet supporting the features defined in this profile (via wallet invocation mechanism)<a href="#section-3-4.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-4.3">There are mechanisms in place for the verifiers and issuers to discover each other’s capability<a href="#section-3-4.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-3-4.3">There are mechanisms in place for the verifiers and issuers to discover each other’s capability<a href="#section-3-4.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <div id="out-of-scope">
@@ -1267,10 +1272,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-out-of-scope" class="section-name selfRef">Out of Scope</a>
         </h3>
 <p id="section-3.1-1">The following items are out of scope for the current version of this document, but might be added in future versions:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1-2.1">Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.<a href="#section-3.1-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3.1-2.1">Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.<a href="#section-3.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-2.2">Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.<a href="#section-3.1-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.1-2.2">Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.<a href="#section-3.1-2.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1280,12 +1285,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-scenarios-business-requirem">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-scenarios-business-requirem" class="section-name selfRef">Scenarios/Business Requirements</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-3.2-1.1">Combined Issuance of SD-JWT VC and mdoc<a href="#section-3.2-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3.2-1.1">Combined Issuance of SD-JWT VC and mdoc<a href="#section-3.2-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-1.2">Both issuer-initiated and wallet-initiated issuance<a href="#section-3.2-1.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-1.2">Both issuer-initiated and wallet-initiated issuance<a href="#section-3.2-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-1.3">eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0<a href="#section-3.2-1.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-1.3">eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0<a href="#section-3.2-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1344,14 +1349,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-openid-for-verifiable-crede" class="section-name selfRef">OpenID for Verifiable Credential Issuance</a>
       </h2>
 <p id="section-4-1">Implementations of this profile:<a href="#section-4-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4-2.1">MUST support both pre-auth code flow and authorization code flow.<a href="#section-4-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4-2.1">MUST support both pre-auth code flow and authorization code flow.<a href="#section-4-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-4-2.2">MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification <a href="#vc_sd_jwt_profile" class="auto internal xref">Section 7.2</a>.<a href="#section-4-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-4-2.2">MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification <a href="#vc_sd_jwt_profile" class="auto internal xref">Section 7.2</a>.<a href="#section-4-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-4-2.3">MUST support sender-constrained Tokens using a mechanism as defined in <span>[<a href="#I-D.ietf-oauth-dpop" class="cite xref">I-D.ietf-oauth-dpop</a>]</span>.<a href="#section-4-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-4-2.3">MUST support sender-constrained Tokens using a mechanism as defined in <span>[<a href="#I-D.ietf-oauth-dpop" class="cite xref">I-D.ietf-oauth-dpop</a>]</span>.<a href="#section-4-2.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-4-2.4">MUST support <span>[<a href="#RFC7636" class="cite xref">RFC7636</a>]</span> with <code>S256</code> as the code challenge method.<a href="#section-4-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-4-2.4">MUST support <span>[<a href="#RFC7636" class="cite xref">RFC7636</a>]</span> with <code>S256</code> as the code challenge method.<a href="#section-4-2.4" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-4-3">Both Wallet initiated and Issuer initiated issuance is supported.<a href="#section-4-3" class="pilcrow">¶</a></p>
@@ -1360,12 +1365,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-credential-offer">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-credential-offer" class="section-name selfRef">Credential Offer</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-4.1-1.1">The Grant Types <code>authorization_code</code> and <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code> MUST be supported as defined in Section 4.1.1 in <span>[<a href="#OIDF.OID4VCI" class="cite xref">OIDF.OID4VCI</a>]</span><a href="#section-4.1-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4.1-1.1">The Grant Types <code>authorization_code</code> and <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code> MUST be supported as defined in Section 4.1.1 in <span>[<a href="#OIDF.OID4VCI" class="cite xref">OIDF.OID4VCI</a>]</span><a href="#section-4.1-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-1.2">For Grant Type <code>authorization_code</code>, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the <code>scope</code> Authorization parameter. For Grant Type <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code>, the pre-authorized code is used by the issuer to identify the credential type(s). (pending OID4VCI PR#519)<a href="#section-4.1-1.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.1-1.2">For Grant Type <code>authorization_code</code>, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the <code>scope</code> Authorization parameter. For Grant Type <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code>, the pre-authorized code is used by the issuer to identify the credential type(s). (pending OID4VCI PR#519)<a href="#section-4.1-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-1.3">As a way to invoke the Wallet, at least a custom URL scheme <code>haip://</code> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.<a href="#section-4.1-1.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.1-1.3">As a way to invoke the Wallet, at least a custom URL scheme <code>haip://</code> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.<a href="#section-4.1-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-4.1-2">Note: The Authorization Code flow does not require a Credential Offer from the Issuer to the Wallet. However, it is included in the feature set of the Credential Offer because it might be easier to implement with existing libraries and on top of existing implementations than the pre-authorized code Grant Type.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
@@ -1377,14 +1382,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-authorization-endpoint">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-authorization-endpoint" class="section-name selfRef">Authorization Endpoint</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-4.2-1.1">MUST use Pushed Authorization Requests (PAR) <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> to send the Authorization Request.<a href="#section-4.2-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4.2-1.1">MUST use Pushed Authorization Requests (PAR) <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> to send the Authorization Request.<a href="#section-4.2-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.2-1.2">Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in <a href="#token-endpoint" class="auto internal xref">Section 4.3</a> for client authentication at the token endpoint.<a href="#section-4.2-1.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-1.2">Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in <a href="#token-endpoint" class="auto internal xref">Section 4.3</a> for client authentication at the token endpoint.<a href="#section-4.2-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.2-1.3">MUST use <code>scope</code> parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.<a href="#section-4.2-1.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-1.3">MUST use <code>scope</code> parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.<a href="#section-4.2-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.2-1.4">The <code>client_id</code> value in the PAR request MUST be a string that the Wallet has used as the <code>sub</code> value in the client attestation JWT.<a href="#section-4.2-1.4" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-1.4">The <code>client_id</code> value in the PAR request MUST be a string that the Wallet has used as the <code>sub</code> value in the client attestation JWT.<a href="#section-4.2-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1394,14 +1399,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-token-endpoint">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-token-endpoint" class="section-name selfRef">Token Endpoint</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-4.3-1.1">The Wallets MUST perform client authentication as defined in <span>[<a href="#I-D.ietf-oauth-attestation-based-client-auth" class="cite xref">I-D.ietf-oauth-attestation-based-client-auth</a>]</span>.<a href="#section-4.3-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4.3-1.1">The Wallets MUST perform client authentication as defined in <span>[<a href="#I-D.ietf-oauth-attestation-based-client-auth" class="cite xref">I-D.ietf-oauth-attestation-based-client-auth</a>]</span>.<a href="#section-4.3-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.3-1.2">Refresh tokens MUST be supported for credential refresh.<a href="#section-4.3-1.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.3-1.2">Refresh tokens MUST be supported for credential refresh.<a href="#section-4.3-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.3-1.3">Wallets MUST support deferred authorization by being able to process the Token error response parameters <code>authorization_pending</code> and <code>slow_down</code>, and the credential offer parameter <code>interval</code>.<a href="#section-4.3-1.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.3-1.3">Wallets MUST support deferred authorization by being able to process the Token error response parameters <code>authorization_pending</code> and <code>slow_down</code>, and the credential offer parameter <code>interval</code>.<a href="#section-4.3-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.3-1.4">The Wallet Attestation JWT scheme is defined in <a href="#wallet-attestation-schema" class="auto internal xref">Section 4.3.1</a>.<a href="#section-4.3-1.4" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.3-1.4">The Wallet Attestation JWT scheme is defined in <a href="#wallet-attestation-schema" class="auto internal xref">Section 4.3.1</a>.<a href="#section-4.3-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-4.3-2">Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
@@ -1413,57 +1418,57 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </h4>
 <p id="section-4.3.1-1">Wallets MUST use attestations following the definition given in <span>[<a href="#I-D.ietf-oauth-attestation-based-client-auth" class="cite xref">I-D.ietf-oauth-attestation-based-client-auth</a>]</span>.<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.3.1-2">In addition to this definition, the Wallet Attestation MAY contain the following claims in the <code>cnf</code> element:<a href="#section-4.3.1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.3.1-3.1">
+<ul class="compact">
+<li class="compact" id="section-4.3.1-3.1">
               <p id="section-4.3.1-3.1.1"><code>key_type</code>: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to manage the private key associated with the public key given in the <code>cnf</code> claim. This mechanism is based on the capabilities of the execution environent of the Wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud Wallet). This specification defines the following values for <code>key_type</code>:<a href="#section-4.3.1-3.1.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.3.1-3.1.2.1">
+<ul class="compact">
+<li class="compact" id="section-4.3.1-3.1.2.1">
                   <code>software</code>: It MUST be used when the Wallet uses software-based key management.<a href="#section-4.3.1-3.1.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.2">
+                <li class="compact" id="section-4.3.1-3.1.2.2">
                   <code>hardware</code>: It MUST be used when the wallet uses hardware-based key management.<a href="#section-4.3.1-3.1.2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.3">
+                <li class="compact" id="section-4.3.1-3.1.2.3">
                   <code>tee</code>: It SHOULD be used when the Wallet uses the Trusted Execution Environment for key management.<a href="#section-4.3.1-3.1.2.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.4">
+                <li class="compact" id="section-4.3.1-3.1.2.4">
                   <code>secure_enclave</code>: It SHOULD be used when the Wallet uses the Secure Enclave for key management.<a href="#section-4.3.1-3.1.2.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.5">
+                <li class="compact" id="section-4.3.1-3.1.2.5">
                   <code>strong_box</code>: It SHOULD be used when the Wallet uses the Strongbox for key management.<a href="#section-4.3.1-3.1.2.5" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.6">
+                <li class="compact" id="section-4.3.1-3.1.2.6">
                   <code>secure_element</code>: It SHOULD be used when the Wallet uses a Secure Element for key management.<a href="#section-4.3.1-3.1.2.6" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.1.2.7">
+                <li class="compact" id="section-4.3.1-3.1.2.7">
                   <code>hsm</code>: It SHOULD be used when the Wallet uses Hardware Security Module (HSM).<a href="#section-4.3.1-3.1.2.7" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
-            <li class="normal" id="section-4.3.1-3.2">
+            <li class="compact" id="section-4.3.1-3.2">
               <p id="section-4.3.1-3.2.1"><code>user_authentication</code>: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to authenticate the user to authorize access to the private key associated with the public key given in the <code>cnf</code> claim. This specification defines the following values for <code>user_authentication</code>:<a href="#section-4.3.1-3.2.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.3.1-3.2.2.1">
+<ul class="compact">
+<li class="compact" id="section-4.3.1-3.2.2.1">
                   <code>system_biometry</code>: It MUST be used when the key usage is authorized by the mobile operating system using a biometric factor.<a href="#section-4.3.1-3.2.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.2.2.2">
+                <li class="compact" id="section-4.3.1-3.2.2.2">
                   <code>system_pin</code>: It MUST be used when the key usage is authorized by the mobile operating system using personal identification number (PIN).<a href="#section-4.3.1-3.2.2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.2.2.3">
+                <li class="compact" id="section-4.3.1-3.2.2.3">
                   <code>internal_biometry</code>: It MUST be used when the key usage is authorized by the Wallet using a biometric factor.<a href="#section-4.3.1-3.2.2.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.2.2.4">
+                <li class="compact" id="section-4.3.1-3.2.2.4">
                   <code>internal_pin</code>: It MUST be used when the key usage is authorized by the Wallet using PIN.<a href="#section-4.3.1-3.2.2.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-4.3.1-3.2.2.5">
+                <li class="compact" id="section-4.3.1-3.2.2.5">
                   <code>secure_element_pin</code> It MUST be used when the key usage is authorized by the secure element managing the key itself using PIN.<a href="#section-4.3.1-3.2.2.5" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
           </ul>
 <p id="section-4.3.1-4">The Wallet Attestation MAY also contain the following claim:<a href="#section-4.3.1-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.3.1-5.1">
+<ul class="compact">
+<li class="compact" id="section-4.3.1-5.1">
               <code>aal</code>: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the <code>cnf</code> claim.<a href="#section-4.3.1-5.1" class="pilcrow">¶</a>
 </li>
           </ul>
@@ -1493,6 +1498,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
     "user_authentication": "system_pin",
   }
 }
+
 </pre><a href="#section-4.3.1-8" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1504,8 +1510,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-credential-endpoint">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-credential-endpoint" class="section-name selfRef">Credential Endpoint</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-4.4-1.1">The <code>JWT</code> proof type MUST be supported.<a href="#section-4.4-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4.4-1.1">The <code>JWT</code> proof type MUST be supported.<a href="#section-4.4-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1515,8 +1521,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-server-metadata">
 <a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-server-metadata" class="section-name selfRef">Server Metadata</a>
         </h3>
-<ul class="normal">
-<li class="normal" id="section-4.5-1.1">The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.<a href="#section-4.5-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-4.5-1.1">The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.<a href="#section-4.5-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1551,12 +1557,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         <li class="normal" id="section-5-1.10">
           <p id="section-5-1.10.1">The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in <a href="#presentation-definition-schema" class="auto internal xref">Appendix B</a>:<a href="#section-5-1.10.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5-1.10.2.1">In the <code>presentation_definition</code> object, <code>id</code>, <code>input_descriptors</code> and <code>submission_requirements</code> properties MUST be supported.<a href="#section-5-1.10.2.1" class="pilcrow">¶</a>
+<ul class="compact normal">
+<li class="compact normal" id="section-5-1.10.2.1">In the <code>presentation_definition</code> object, <code>id</code>, <code>input_descriptors</code> and <code>submission_requirements</code> properties MUST be supported.<a href="#section-5-1.10.2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-5-1.10.2.2">In the <code>input-descriptors</code> object, <code>id</code>, <code>name</code>, <code>purpose</code>, <code>group</code>, <code>format</code>, and <code>constraints</code> properties MUST be supported. In the <code>constraints</code> object, <code>limit_disclosure</code>, and <code>fields</code> properties MUST be supported. In the <code>fields</code> object, <code>path</code> and <code>filter</code> properties MUST be supported. A <code>path</code> MUST contain exactly one entry with a static path to a certain claim. A <code>filter</code> MUST only contain <code>type</code> elements of value <code>string</code> and <code>const</code> elements.<a href="#section-5-1.10.2.2" class="pilcrow">¶</a>
+            <li class="compact normal" id="section-5-1.10.2.2">In the <code>input-descriptors</code> object, <code>id</code>, <code>name</code>, <code>purpose</code>, <code>group</code>, <code>format</code>, and <code>constraints</code> properties MUST be supported. In the <code>constraints</code> object, <code>limit_disclosure</code>, and <code>fields</code> properties MUST be supported. In the <code>fields</code> object, <code>path</code> and <code>filter</code> properties MUST be supported. A <code>path</code> MUST contain exactly one entry with a static path to a certain claim. A <code>filter</code> MUST only contain <code>type</code> elements of value <code>string</code> and <code>const</code> elements.<a href="#section-5-1.10.2.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-5-1.10.2.3">In the <code>submission_requirements</code> object, <code>name</code>, <code>rule (</code>pick<code>only)</code>, <code>count</code>, <code>from</code> properties MUST be supported.<a href="#section-5-1.10.2.3" class="pilcrow">¶</a>
+            <li class="compact normal" id="section-5-1.10.2.3">In the <code>submission_requirements</code> object, <code>name</code>, <code>rule (</code>pick<code>only)</code>, <code>count</code>, <code>from</code> properties MUST be supported.<a href="#section-5-1.10.2.3" class="pilcrow">¶</a>
 </li>
           </ul>
 </li>
@@ -1569,10 +1575,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-self-issued-op-v2" class="section-name selfRef">Self-Issued OP v2</a>
       </h2>
 <p id="section-6-1">To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in <span>[<a href="#OIDF.SIOPv2" class="cite xref">OIDF.SIOPv2</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-6-2.1">As a way to invoke the Wallet, at least a custom URL scheme <code>haip://</code> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.<a href="#section-6-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-6-2.1">As a way to invoke the Wallet, at least a custom URL scheme <code>haip://</code> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.<a href="#section-6-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-6-2.2">
+        <li class="compact" id="section-6-2.2">
           <code>subject_syntax_types_supported</code> value MUST be <code>urn:ietf:params:oauth:jwk-thumbprint</code><a href="#section-6-2.2" class="pilcrow">¶</a>
 </li>
       </ul>
@@ -1585,10 +1591,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-7-1">As credential format, SD-JWT VCs as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span> MUST be used.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">In addition, this profile defines the following additional requirements.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7-3.1">Compact serialization MUST be supported as defined in <span>[<a href="#I-D.ietf-oauth-selective-disclosure-jwt" class="cite xref">I-D.ietf-oauth-selective-disclosure-jwt</a>]</span>. JSON serialization MAY be supported.<a href="#section-7-3.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7-3.1">Compact serialization MUST be supported as defined in <span>[<a href="#I-D.ietf-oauth-selective-disclosure-jwt" class="cite xref">I-D.ietf-oauth-selective-disclosure-jwt</a>]</span>. JSON serialization MAY be supported.<a href="#section-7-3.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-7-3.2">The following JWT Claims MUST be supported Content (differentiate issuance &amp; presentation)<a href="#section-7-3.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-3.2">The following JWT Claims MUST be supported Content (differentiate issuance &amp; presentation)<a href="#section-7-3.2" class="pilcrow">¶</a>
 </li>
       </ul>
 <table class="center" id="table-2">
@@ -1627,7 +1633,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">type</td>
+            <td class="text-left" rowspan="1" colspan="1">vct</td>
             <td class="text-left" rowspan="1" colspan="1"> MUST</td>
             <td class="text-left" rowspan="1" colspan="1">
               <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>
@@ -1642,16 +1648,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </tr>
         </tbody>
       </table>
-<ul class="normal">
-<li class="normal" id="section-7-5.1">The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.<a href="#section-7-5.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7-5.1">The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.<a href="#section-7-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-7-5.2">It is at the discretion of the Issuer whether to use <code>exp</code> claim and/or a <code>status</code> claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.<a href="#section-7-5.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-5.2">It is at the discretion of the Issuer whether to use <code>exp</code> claim and/or a <code>status</code> claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.<a href="#section-7-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-7-5.3">The <code>iss</code> claim MUST be an HTTPS URL. The <code>iss</code> value is used to obtain Issuer’s signing key as defined in <a href="#issuer-key-resolution" class="auto internal xref">Section 7.1</a>.<a href="#section-7-5.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-5.3">The <code>iss</code> claim MUST be an HTTPS URL. The <code>iss</code> value is used to obtain Issuer’s signing key as defined in <a href="#issuer-key-resolution" class="auto internal xref">Section 7.1</a>.<a href="#section-7-5.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-7-5.4">The <code>type</code> JWT claim as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>.<a href="#section-7-5.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-5.4">The <code>vct</code> JWT claim as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>.<a href="#section-7-5.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-7-5.5">The <code>cnf</code> claim <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> MUST conform to the definition given in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. Implementations conforming to this profile MUST include the JSON Web Key <span>[<a href="#RFC7517" class="cite xref">RFC7517</a>]</span> in the <code>jwk</code> sub claim.<a href="#section-7-5.5" class="pilcrow">¶</a>
+        <li class="compact" id="section-7-5.5">The <code>cnf</code> claim <span>[<a href="#RFC7800" class="cite xref">RFC7800</a>]</span> MUST conform to the definition given in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. Implementations conforming to this profile MUST include the JSON Web Key <span>[<a href="#RFC7517" class="cite xref">RFC7517</a>]</span> in the <code>jwk</code> sub claim.<a href="#section-7-5.5" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-7-6">Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See <a href="https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp">https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp</a><a href="#section-7-6" class="pilcrow">¶</a></p>
@@ -1665,10 +1671,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-issuer-identification-and-k" class="section-name selfRef">Issuer identification and key resolution to validate an issued Credential</a>
         </h3>
 <p id="section-7.1-1">This profile supports two ways to represent and resolve the key required to validate the issuer signature of an SD-JWT VC, the web PKI-based key resolution and the x.509 certificates.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.1-2.1">Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. The JOSE header <code>kid</code> MUST be used to identify the respective key.<a href="#section-7.1-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7.1-2.1">Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. The JOSE header <code>kid</code> MUST be used to identify the respective key.<a href="#section-7.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-2.2">x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the <code>x5c</code> JOSE header. In this case, the <code>iss</code> value MUST be an URL with a FQDN matching a <code>dNSName</code> Subject Alternative Name (SAN) <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> entry in the leaf certificate.<a href="#section-7.1-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-7.1-2.2">x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the <code>x5c</code> JOSE header. In this case, the <code>iss</code> value MUST be an URL with a FQDN matching a <code>dNSName</code> Subject Alternative Name (SAN) <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> entry in the leaf certificate.<a href="#section-7.1-2.2" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-7.1-3">Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
@@ -1677,8 +1683,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <h4 id="name-cryptographic-holder-bindin">
 <a href="#section-7.1.1" class="section-number selfRef">7.1.1. </a><a href="#name-cryptographic-holder-bindin" class="section-name selfRef">Cryptographic Holder Binding between VC and VP</a>
           </h4>
-<ul class="normal">
-<li class="normal" id="section-7.1.1-1.1">For Cryptographic Holder Binding, a KB-JWT as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span> MUST always be present when presenting an SD-JWT VC.<a href="#section-7.1.1-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7.1.1-1.1">For Cryptographic Holder Binding, a KB-JWT as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span> MUST always be present when presenting an SD-JWT VC.<a href="#section-7.1.1-1.1" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -1705,36 +1711,38 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.2.2" class="section-number selfRef">7.2.2. </a><a href="#name-credential-issuer-metadata" class="section-name selfRef">Credential Issuer Metadata</a>
           </h4>
 <p id="section-7.2.2-1">The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of <span>[<a href="#OIDF.OID4VCI" class="cite xref">OIDF.OID4VCI</a>]</span>.<a href="#section-7.2.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.2-2.1">
-              <p id="section-7.2.2-2.1.1"><code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following two sub elements:<a href="#section-7.2.2-2.1.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.2-2.1.2.1">
-                  <code>type</code>: REQUIRED. JSON string designating the type of a credential as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>, Section 4.2.2.1.<a href="#section-7.2.2-2.1.2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7.2.2-2.1">
+              <p id="section-7.2.2-2.1.1"><code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following three sub elements:<a href="#section-7.2.2-2.1.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-7.2.2-2.1.2.1">
+                  <code>vct</code>: REQUIRED. JSON string designating the type of a credential as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>, Section 4.2.2.1.<a href="#section-7.2.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-7.2.2-2.1.2.2">
-                  <code>claims</code>: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:<a href="#section-7.2.2-2.1.2.2" class="pilcrow">¶</a>
+                <li class="compact" id="section-7.2.2-2.1.2.2">
+                  <p id="section-7.2.2-2.1.2.2.1"><code>claims</code>: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:<a href="#section-7.2.2-2.1.2.2.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-7.2.2-2.1.2.2.2.1">
+                      <code>mandatory</code>: OPTIONAL. Boolean which when set to <code>true</code> indicates the claim MUST be present in the issued Credential. If the <code>mandatory</code> property is omitted its default should be assumed to be <code>false</code>.<a href="#section-7.2.2-2.1.2.2.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-7.2.2-2.1.2.3">
-                  <code>mandatory</code>: OPTIONAL. Boolean which when set to <code>true</code> indicates the claim MUST be present in the issued Credential. If the <code>mandatory</code> property is omitted its default should be assumed to be <code>false</code>.<a href="#section-7.2.2-2.1.2.3" class="pilcrow">¶</a>
+                    <li class="compact" id="section-7.2.2-2.1.2.2.2.2">
+                      <code>value_type</code>: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are <code>string</code>, <code>number</code>, and image media types such as <code>image/jpeg</code> as defined in IANA media type registry for images (<a href="https://www.iana.org/assignments/media-types/media-types.xhtml#image">https://www.iana.org/assignments/media-types/media-types.xhtml#image</a>).<a href="#section-7.2.2-2.1.2.2.2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-7.2.2-2.1.2.4">
-                  <code>value_type</code>: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are <code>string</code>, <code>number</code>, and image media types such as <code>image/jpeg</code> as defined in IANA media type registry for images (<a href="https://www.iana.org/assignments/media-types/media-types.xhtml#image">https://www.iana.org/assignments/media-types/media-types.xhtml#image</a>).<a href="#section-7.2.2-2.1.2.4" class="pilcrow">¶</a>
+                    <li class="compact" id="section-7.2.2-2.1.2.2.2.3">
+                      <p id="section-7.2.2-2.1.2.2.2.3.1"><code>display</code>: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:<a href="#section-7.2.2-2.1.2.2.2.3.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-7.2.2-2.1.2.2.2.3.2.1">
+                          <code>name</code>: OPTIONAL. String value of a display name for the claim.<a href="#section-7.2.2-2.1.2.2.2.3.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-7.2.2-2.1.2.5">
-                  <p id="section-7.2.2-2.1.2.5.1"><code>display</code>: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:<a href="#section-7.2.2-2.1.2.5.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.2-2.1.2.5.2.1">
-                      <code>name</code>: OPTIONAL. String value of a display name for the claim.<a href="#section-7.2.2-2.1.2.5.2.1" class="pilcrow">¶</a>
+                        <li class="compact" id="section-7.2.2-2.1.2.2.2.3.2.2">
+                          <code>locale</code>: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 <span>[<a href="#RFC5646" class="cite xref">RFC5646</a>]</span>. There MUST be only one object for each language identifier.<a href="#section-7.2.2-2.1.2.2.2.3.2.2" class="pilcrow">¶</a>
 </li>
-                    <li class="normal" id="section-7.2.2-2.1.2.5.2.2">
-                      <code>locale</code>: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 <span>[<a href="#RFC5646" class="cite xref">RFC5646</a>]</span>. There MUST be only one object for each language identifier.<a href="#section-7.2.2-2.1.2.5.2.2" class="pilcrow">¶</a>
+                      </ul>
 </li>
                   </ul>
 </li>
               </ul>
 </li>
-            <li class="normal" id="section-7.2.2-2.2">
+            <li class="compact" id="section-7.2.2-2.2">
               <code>order</code>: OPTIONAL. An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.<a href="#section-7.2.2-2.2" class="pilcrow">¶</a>
 </li>
           </ul>
@@ -1806,6 +1814,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
     "given_name": "John",
     "family_name": "Doe",
 }
+
 </pre><a href="#section-7.2.2-4" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1816,8 +1825,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.2.3" class="section-number selfRef">7.2.3. </a><a href="#name-credential-offer-2" class="section-name selfRef">Credential Offer</a>
           </h4>
 <p id="section-7.2.3-1">The following additional claims are defined for this Credential format.<a href="#section-7.2.3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.3-2.1">
+<ul class="compact">
+<li class="compact" id="section-7.2.3-2.1">
               <code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least <code>type</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.3-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
@@ -1826,12 +1835,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <pre>{
     "credential_issuer": "https://credential-issuer.example.com",
     "credentials": [
-        {
-            "format": "vc+sd-jwt",
-            "credential_definition": {
-                "type": "IdentityCredential"
-            }
-        }
+        "IdentityCredential_SD-JWT-VC"
     ],
     "grants": {
         "authorization_code": {
@@ -1839,6 +1843,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         }
     }
 }
+
 </pre><a href="#section-7.2.3-4" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1849,8 +1854,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.2.4" class="section-number selfRef">7.2.4. </a><a href="#name-authorization-details" class="section-name selfRef">Authorization Details</a>
           </h4>
 <p id="section-7.2.4-1">The following additional claims are defined for authorization details of type <code>openid_credential</code> and this Credential format.<a href="#section-7.2.4-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.4-2.1">
+<ul class="compact">
+<li class="compact" id="section-7.2.4-2.1">
               <code>credential_definition</code>: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least <code>type</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>. It MAY contain <code>claims</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.4-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
@@ -1865,6 +1870,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         }
     }
 ]
+
 </pre><a href="#section-7.2.4-4" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1875,9 +1881,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.2.5" class="section-number selfRef">7.2.5. </a><a href="#name-credential-request" class="section-name selfRef">Credential Request</a>
           </h4>
 <p id="section-7.2.5-1">The following additional parameters are defined for Credential Requests and this Credential format.<a href="#section-7.2.5-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.5-2.1">
-              <code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least <code>type</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>. It MAY contain <code>claims</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.5-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-7.2.5-2.1">
+              <code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least <code>vct</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>. It MAY contain <code>claims</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.5-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-7.2.5-3">The following is a non-normative example of a Credential Request with Credential format <code>vc+sd-jwt</code>.<a href="#section-7.2.5-3" class="pilcrow">¶</a></p>
@@ -1895,6 +1901,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       NlIjoidFppZ25zbkZicCJ9.ewdkIkPV50iOeBUqMXCC_aZKPxgihac0aW9EkL1nOzM"
    }
 }
+
 </pre><a href="#section-7.2.5-4" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1914,11 +1921,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.2.7" class="section-number selfRef">7.2.7. </a><a href="#name-verifier-metadata" class="section-name selfRef">Verifier Metadata</a>
           </h4>
 <p id="section-7.2.7-1">The Verifier SHOULD add a <code>vp_formats_supported</code> element to its metadata (e.g. in the <code>client_metadata</code> authorization request parameter) to let the wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key <code>vc+sd-jwt</code>, the value is an object consisting of the following elements:<a href="#section-7.2.7-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2.7-2.1">
+<ul class="compact">
+<li class="compact" id="section-7.2.7-2.1">
               <code>sd-jwt_alg_values</code>: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the <code>alg</code> JOSE header (as defined in <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>) of the presented SD-JWT MUST match one of the array values.<a href="#section-7.2.7-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-7.2.7-2.2">
+            <li class="compact" id="section-7.2.7-2.2">
               <code>kb-jwt_alg_values</code>: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the <code>alg</code> JOSE header (as defined in <span>[<a href="#RFC7515" class="cite xref">RFC7515</a>]</span>) of the presented KB-JWT MUST match one of the array values.<a href="#section-7.2.7-2.2" class="pilcrow">¶</a>
 </li>
           </ul>
@@ -1938,6 +1945,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         }
     }
 }
+
 </pre><a href="#section-7.2.7-4" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1985,6 +1993,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         }
     ]
 }
+
 </pre><a href="#section-7.2.8-3" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1999,16 +2008,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-crypto-suites" class="section-name selfRef">Crypto Suites</a>
       </h2>
 <p id="section-8-1">Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:<a href="#section-8-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-8-2.1">SD-JWT-VC<a href="#section-8-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-8-2.1">SD-JWT-VC<a href="#section-8-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-8-2.2">Wallet Instance Attestation<a href="#section-8-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-8-2.2">Wallet Instance Attestation<a href="#section-8-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-8-2.3">DPoP<a href="#section-8-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-8-2.3">DPoP<a href="#section-8-2.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-8-2.4">HB JWT<a href="#section-8-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-8-2.4">HB JWT<a href="#section-8-2.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-8-2.5">Authorization request during presentation<a href="#section-8-2.5" class="pilcrow">¶</a>
+        <li class="compact" id="section-8-2.5">Authorization request during presentation<a href="#section-8-2.5" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-8-3">SHA256 MUST be supported by all the entities as the hash algorithm to generate and validate the digests in the SD-JWT VC.<a href="#section-8-3" class="pilcrow">¶</a></p>
@@ -2031,106 +2040,111 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </section>
 </div>
 <section id="section-10">
-      <h2 id="name-normative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<section id="section-10.1">
+        <h3 id="name-normative-references">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="I-D.ietf-oauth-attestation-based-client-auth">[I-D.ietf-oauth-attestation-based-client-auth]</dt>
-      <dd>
-<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">P. Bastian</span>, <span class="refTitle">"OAuth 2.0 Attestation-Based Client Authentication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-attestation-based-client-auth-00</span>, <time datetime="2023-09-01" class="refDate">1 September 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-00">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-00</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">P. Bastian</span>, <span class="refTitle">"OAuth 2.0 Attestation-Based Client Authentication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-attestation-based-client-auth-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-01">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-oauth-dpop">[I-D.ietf-oauth-dpop]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">D. Waite</span>, <span class="refTitle">"OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-dpop-16</span>, <time datetime="2023-04-13" class="refDate">13 April 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-16">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-16</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-oauth-sd-jwt-vc">[I-D.ietf-oauth-sd-jwt-vc]</dt>
-      <dd>
-<span class="refAuthor">Terbu, O.</span> and <span class="refAuthor">D. Fett</span>, <span class="refTitle">"SD-JWT-based Verifiable Credentials (SD-JWT VC)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-sd-jwt-vc-00</span>, <time datetime="2023-08-16" class="refDate">16 August 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-00">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-00</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Terbu, O.</span> and <span class="refAuthor">D. Fett</span>, <span class="refTitle">"SD-JWT-based Verifiable Credentials (SD-JWT VC)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-sd-jwt-vc-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-oauth-selective-disclosure-jwt">[I-D.ietf-oauth-selective-disclosure-jwt]</dt>
-      <dd>
-<span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Yasuda, K.</span>, and <span class="refAuthor">B. Campbell</span>, <span class="refTitle">"Selective Disclosure for JWTs (SD-JWT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-selective-disclosure-jwt-05</span>, <time datetime="2023-06-30" class="refDate">30 June 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-05">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-05</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Yasuda, K.</span>, and <span class="refAuthor">B. Campbell</span>, <span class="refTitle">"Selective Disclosure for JWTs (SD-JWT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-selective-disclosure-jwt-06</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-06">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.looker-oauth-jwt-cwt-status-list">[I-D.looker-oauth-jwt-cwt-status-list]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Looker, T.</span> and <span class="refAuthor">P. Bastian</span>, <span class="refTitle">"JWT and CWT Status List"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-looker-oauth-jwt-cwt-status-list-01</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-looker-oauth-jwt-cwt-status-list-01">https://datatracker.ietf.org/doc/html/draft-looker-oauth-jwt-cwt-status-list-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.terbu-sd-jwt-vc">[I-D.terbu-sd-jwt-vc]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Terbu, O.</span> and <span class="refAuthor">D. Fett</span>, <span class="refTitle">"SD-JWT-based Verifiable Credentials with JSON payloads (SD-JWT VC)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-terbu-sd-jwt-vc-02</span>, <time datetime="2023-05-26" class="refDate">26 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-terbu-sd-jwt-vc-02">https://datatracker.ietf.org/doc/html/draft-terbu-sd-jwt-vc-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OIDF.OID4VCI">[OIDF.OID4VCI]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Yasuda, K.</span>, and <span class="refAuthor">T. Looker</span>, <span class="refTitle">"OpenID for Verifiable Credential Issuance"</span>, <time datetime="2022-06-20" class="refDate">20 June 2022</time>, <span>&lt;<a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OIDF.OID4VP">[OIDF.OID4VP]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Terbu, O.</span>, <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Yasuda, K.</span>, <span class="refAuthor">Lemmon, A.</span>, and <span class="refAuthor">T. Looker</span>, <span class="refTitle">"OpenID for Verifiable Presentations"</span>, <time datetime="2022-06-20" class="refDate">20 June 2022</time>, <span>&lt;<a href="https://openid.net/specs/openid-4-verifiable-presentations-1_0.html">https://openid.net/specs/openid-4-verifiable-presentations-1_0.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OIDF.SIOPv2">[OIDF.SIOPv2]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Microsoft</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">T. Lodderstedt</span>, <span class="refTitle">"Self-Issued OpenID Provider V2"</span>, <time datetime="2021-12-18" class="refDate">18 December 2021</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-self-issued-v2-1_0.html">https://openid.net/specs/openid-connect-self-issued-v2-1_0.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OIDF.ekyc-ida">[OIDF.ekyc-ida]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">yes</span>, <span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Haine, M.</span>, <span class="refAuthor">Pulido, A.</span>, <span class="refAuthor">Lehmann, K.</span>, and <span class="refAuthor">K. Koiwai</span>, <span class="refTitle">"OpenID Connect for Identity Assurance 1.0"</span>, <time datetime="2022-08-19" class="refDate">19 August 2022</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID4.html">https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID4.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5280">[RFC5280]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Cooper, D.</span>, <span class="refAuthor">Santesson, S.</span>, <span class="refAuthor">Farrell, S.</span>, <span class="refAuthor">Boeyen, S.</span>, <span class="refAuthor">Housley, R.</span>, and <span class="refAuthor">W. Polk</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile"</span>, <span class="seriesInfo">RFC 5280</span>, <span class="seriesInfo">DOI 10.17487/RFC5280</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5280">https://www.rfc-editor.org/info/rfc5280</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5646">[RFC5646]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Phillips, A., Ed.</span> and <span class="refAuthor">M. Davis, Ed.</span>, <span class="refTitle">"Tags for Identifying Languages"</span>, <span class="seriesInfo">BCP 47</span>, <span class="seriesInfo">RFC 5646</span>, <span class="seriesInfo">DOI 10.17487/RFC5646</span>, <time datetime="2009-09" class="refDate">September 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5646">https://www.rfc-editor.org/info/rfc5646</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7515">[RFC7515]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Signature (JWS)"</span>, <span class="seriesInfo">RFC 7515</span>, <span class="seriesInfo">DOI 10.17487/RFC7515</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7515">https://www.rfc-editor.org/info/rfc7515</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7517">[RFC7517]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Key (JWK)"</span>, <span class="seriesInfo">RFC 7517</span>, <span class="seriesInfo">DOI 10.17487/RFC7517</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7517">https://www.rfc-editor.org/info/rfc7517</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7519">[RFC7519]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Sakimura</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span class="seriesInfo">RFC 7519</span>, <span class="seriesInfo">DOI 10.17487/RFC7519</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7519">https://www.rfc-editor.org/info/rfc7519</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7636">[RFC7636]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Sakimura, N., Ed.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">N. Agarwal</span>, <span class="refTitle">"Proof Key for Code Exchange by OAuth Public Clients"</span>, <span class="seriesInfo">RFC 7636</span>, <span class="seriesInfo">DOI 10.17487/RFC7636</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7636">https://www.rfc-editor.org/info/rfc7636</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7800">[RFC7800]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"Proof-of-Possession Key Semantics for JSON Web Tokens (JWTs)"</span>, <span class="seriesInfo">RFC 7800</span>, <span class="seriesInfo">DOI 10.17487/RFC7800</span>, <time datetime="2016-04" class="refDate">April 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7800">https://www.rfc-editor.org/info/rfc7800</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9101">[RFC9101]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)"</span>, <span class="seriesInfo">RFC 9101</span>, <span class="seriesInfo">DOI 10.17487/RFC9101</span>, <time datetime="2021-08" class="refDate">August 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9101">https://www.rfc-editor.org/info/rfc9101</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9126">[RFC9126]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Tonge, D.</span>, and <span class="refAuthor">F. Skokan</span>, <span class="refTitle">"OAuth 2.0 Pushed Authorization Requests"</span>, <span class="seriesInfo">RFC 9126</span>, <span class="seriesInfo">DOI 10.17487/RFC9126</span>, <time datetime="2021-09" class="refDate">September 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9126">https://www.rfc-editor.org/info/rfc9126</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-11">
-      <h2 id="name-informative-references">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
-      </h2>
+<section id="section-10.2">
+        <h3 id="name-informative-references">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
 <dl class="references">
 <dt id="ISO.18013-5">[ISO.18013-5]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</span>, <span class="refTitle">"ISO/IEC 18013-5:2021 Personal identification — ISO-compliant driving license — Part 5: Mobile driving license (mDL) application"</span>, <time datetime="2021" class="refDate">2021</time>, <span>&lt;<a href="https://www.iso.org/standard/69084.html">https://www.iso.org/standard/69084.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
 </section>
 <div id="combined-issuance-of-sd-jwt-vc-and-mdocs">
 <section id="appendix-A">
       <h2 id="name-combined-issuance-of-sd-jwt">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-combined-issuance-of-sd-jwt" class="section-name selfRef">Combined Issuance of SD-JWT VC and mdocs</a>
       </h2>
-<ul class="normal">
-<li class="normal" id="appendix-A-1.1">If combined issuance is required, the Batch Credential Endpoint MUST be supported.<a href="#appendix-A-1.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="appendix-A-1.1">If combined issuance is required, the Batch Credential Endpoint MUST be supported.<a href="#appendix-A-1.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
@@ -2263,6 +2277,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       }
     }
   }
+
 
 </pre><a href="#appendix-B-1" class="pilcrow">¶</a>
 </div>
