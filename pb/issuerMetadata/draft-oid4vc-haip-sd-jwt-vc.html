@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="workgroup">OpenID Connect</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-03" class="published">3 November 2023</time>
+<time datetime="2023-11-14" class="published">14 November 2023</time>
     </dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
@@ -1716,28 +1716,25 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <p id="section-7.2.2-2.1.1"><code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following three sub elements:<a href="#section-7.2.2-2.1.1" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-7.2.2-2.1.2.1">
-                  <code>id</code>: REQUIRED. JSON string designating the type of a credential as defined in <span>[<a href="#OIDF.OID4VCI" class="cite xref">OIDF.OID4VCI</a>]</span>.<a href="#section-7.2.2-2.1.2.1" class="pilcrow">¶</a>
+                  <code>vct</code>: REQUIRED. JSON string designating the type of a credential as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>, Section 4.2.2.1.<a href="#section-7.2.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
                 <li class="compact" id="section-7.2.2-2.1.2.2">
-                  <code>vct</code>: REQUIRED. JSON string designating the type of a credential as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>, Section 4.2.2.1.<a href="#section-7.2.2-2.1.2.2" class="pilcrow">¶</a>
-</li>
-                <li class="compact" id="section-7.2.2-2.1.2.3">
-                  <p id="section-7.2.2-2.1.2.3.1"><code>claims</code>: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:<a href="#section-7.2.2-2.1.2.3.1" class="pilcrow">¶</a></p>
+                  <p id="section-7.2.2-2.1.2.2.1"><code>claims</code>: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:<a href="#section-7.2.2-2.1.2.2.1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-7.2.2-2.1.2.3.2.1">
-                      <code>mandatory</code>: OPTIONAL. Boolean which when set to <code>true</code> indicates the claim MUST be present in the issued Credential. If the <code>mandatory</code> property is omitted its default should be assumed to be <code>false</code>.<a href="#section-7.2.2-2.1.2.3.2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-7.2.2-2.1.2.2.2.1">
+                      <code>mandatory</code>: OPTIONAL. Boolean which when set to <code>true</code> indicates the claim MUST be present in the issued Credential. If the <code>mandatory</code> property is omitted its default should be assumed to be <code>false</code>.<a href="#section-7.2.2-2.1.2.2.2.1" class="pilcrow">¶</a>
 </li>
-                    <li class="compact" id="section-7.2.2-2.1.2.3.2.2">
-                      <code>value_type</code>: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are <code>string</code>, <code>number</code>, and image media types such as <code>image/jpeg</code> as defined in IANA media type registry for images (<a href="https://www.iana.org/assignments/media-types/media-types.xhtml#image">https://www.iana.org/assignments/media-types/media-types.xhtml#image</a>).<a href="#section-7.2.2-2.1.2.3.2.2" class="pilcrow">¶</a>
+                    <li class="compact" id="section-7.2.2-2.1.2.2.2.2">
+                      <code>value_type</code>: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are <code>string</code>, <code>number</code>, and image media types such as <code>image/jpeg</code> as defined in IANA media type registry for images (<a href="https://www.iana.org/assignments/media-types/media-types.xhtml#image">https://www.iana.org/assignments/media-types/media-types.xhtml#image</a>).<a href="#section-7.2.2-2.1.2.2.2.2" class="pilcrow">¶</a>
 </li>
-                    <li class="compact" id="section-7.2.2-2.1.2.3.2.3">
-                      <p id="section-7.2.2-2.1.2.3.2.3.1"><code>display</code>: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:<a href="#section-7.2.2-2.1.2.3.2.3.1" class="pilcrow">¶</a></p>
+                    <li class="compact" id="section-7.2.2-2.1.2.2.2.3">
+                      <p id="section-7.2.2-2.1.2.2.2.3.1"><code>display</code>: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:<a href="#section-7.2.2-2.1.2.2.2.3.1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-7.2.2-2.1.2.3.2.3.2.1">
-                          <code>name</code>: OPTIONAL. String value of a display name for the claim.<a href="#section-7.2.2-2.1.2.3.2.3.2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-7.2.2-2.1.2.2.2.3.2.1">
+                          <code>name</code>: OPTIONAL. String value of a display name for the claim.<a href="#section-7.2.2-2.1.2.2.2.3.2.1" class="pilcrow">¶</a>
 </li>
-                        <li class="compact" id="section-7.2.2-2.1.2.3.2.3.2.2">
-                          <code>locale</code>: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 <span>[<a href="#RFC5646" class="cite xref">RFC5646</a>]</span>. There MUST be only one object for each language identifier.<a href="#section-7.2.2-2.1.2.3.2.3.2.2" class="pilcrow">¶</a>
+                        <li class="compact" id="section-7.2.2-2.1.2.2.2.3.2.2">
+                          <code>locale</code>: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 <span>[<a href="#RFC5646" class="cite xref">RFC5646</a>]</span>. There MUST be only one object for each language identifier.<a href="#section-7.2.2-2.1.2.2.2.3.2.2" class="pilcrow">¶</a>
 </li>
                       </ul>
 </li>
@@ -1752,7 +1749,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-7.2.2-3">The following is a non-normative example of an object comprising <code>credentials_supported</code> parameter of Credential format <code>vc+sd-jwt</code>.<a href="#section-7.2.2-3" class="pilcrow">¶</a></p>
 <div class="breakable lang-json sourcecode" id="section-7.2.2-4">
 <pre>{
-    "id" : "IdentityCredential_SD-JWT-VC",
     "format": "vc+sd-jwt",
     "scope": "IdentityCredential_SD-JWT-VC",
     "cryptographic_binding_methods_supported": [

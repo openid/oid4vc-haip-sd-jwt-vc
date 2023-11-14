@@ -6,7 +6,7 @@ OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
                                                                  yes.com
-                                                         3 November 2023
+                                                        14 November 2023
 
 
     OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
@@ -538,8 +538,6 @@ Table of Contents
    *  credential_definition: REQUIRED.  JSON object containing the
       detailed description of the credential type.  It consists at least
       of the following three sub elements:
-      -  id: REQUIRED.  JSON string designating the type of a credential
-         as defined in [OIDF.OID4VCI].
       -  vct: REQUIRED.  JSON string designating the type of a
          credential as defined in [I-D.ietf-oauth-sd-jwt-vc],
          Section 4.2.2.1.
@@ -579,7 +577,6 @@ Table of Contents
    credentials_supported parameter of Credential format vc+sd-jwt.
 
    {
-       "id" : "IdentityCredential_SD-JWT-VC",
        "format": "vc+sd-jwt",
        "scope": "IdentityCredential_SD-JWT-VC",
        "cryptographic_binding_methods_supported": [
