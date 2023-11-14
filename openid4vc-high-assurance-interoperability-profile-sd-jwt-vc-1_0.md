@@ -204,7 +204,7 @@ This is an example of a Wallet Instance Attestation:
    * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
-   * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
+   * Response mode MUST be `direct_post` with `response_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
