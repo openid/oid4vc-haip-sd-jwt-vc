@@ -301,7 +301,7 @@ The following is a non-normative example of an object comprising `credentials_su
 
 The following additional claims are defined for this Credential format.
 
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `type` property as defined in (#server_metadata_vc_sd-jwt).
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt).
 
 The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
 
@@ -311,7 +311,7 @@ The following is a non-normative example of an object comprising `credentials_su
 
 The following additional claims are defined for authorization details of type `openid_credential` and this Credential format.
 
-* `credential_definition`: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least `type` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
+* `credential_definition`: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
 
 The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
 
