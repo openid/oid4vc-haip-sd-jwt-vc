@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-14T00:25:11.354772+00:00",
+  "timestamp": "2023-11-16T00:26:02.008307+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1430,9 +1430,9 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
-      "body": "The HAIP specifies in Section 5 for OpenID4VP that:\r\n\r\n> Response mode MUST be direct_post with redirect_uri as defined in Section 6.2 of [[OIDF.OID4VP](https://vcstuff.github.io/oid4vc-haip-sd-jwt-vc/draft-oid4vc-haip-sd-jwt-vc.html#OIDF.OID4VP)].\r\n\r\nHowever, `redirect_uri` must not be present when the Response Mode is `direct_post` as described in the OpenID4VP specs in Section [6.2-7.2](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-7.2):\r\n\r\n> If the redirect_uri Authorization Request parameter is present when the Response Mode is direct_post, the Wallet MUST return an invalid_request Authorization Response error.\r\n\r\nTherefore, I assume that the HAIP should use `response_uri` instead of `redirect_uri` which would align with the OpenID4VP specs.",
+      "body": "The HAIP specifies in Section 5 for OpenID4VP that:\r\n\r\n> Response mode MUST be direct_post with redirect_uri as defined in Section 6.2 of [OID4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-response-mode-direct_post).\r\n\r\nHowever, `redirect_uri` must not be present when the Response Mode is `direct_post` as described in the OpenID4VP specs in Section [6.2-7.2](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-7.2):\r\n\r\n> If the redirect_uri Authorization Request parameter is present when the Response Mode is direct_post, the Wallet MUST return an invalid_request Authorization Response error.\r\n\r\nTherefore, I assume that the HAIP should use `response_uri` instead of `redirect_uri` which would align with the OpenID4VP specs.",
       "createdAt": "2023-11-01T16:15:22Z",
-      "updatedAt": "2023-11-01T16:39:06Z",
+      "updatedAt": "2023-11-14T13:34:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -5525,24 +5525,26 @@
       "id": "PR_kwDOJcWsFs5doqjZ",
       "title": "Issuer metadata",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/66",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "paulbastian",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "<!-- If this pull request closes an issue, please mention the issue number below -->\r\nCloses # <!-- Issue # here -->\r\n\r\n## \ud83d\udcd1 Description\r\nSome fixes and changes according to https://github.com/openid/OpenID4VCI/pull/86\r\n\r\n<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax\r\n- [ ] Not Completed\r\n- [x] Completed\r\n-->\r\n\r\n## Preview Link\r\n\r\n<!-- Update the link below to provide reviewers with a convenient link to view a rendered version of the PR-->\r\n<!-- In general the link should be of the form https://github.com/<repo-name>/<branch-name>/<draft-name>.html-->\r\n\r\n[click here for rendered preview of PR](https://github.com/<repo-name>/<branch-name>/<draft-name>.html)",
       "createdAt": "2023-10-24T12:31:04Z",
-      "updatedAt": "2023-11-09T10:26:40Z",
+      "updatedAt": "2023-11-14T17:12:31Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
       "headRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "headRefName": "pb/issuerMetadata",
-      "headRefOid": "e9f583b6859f861e6e3d25941ad2391e79ceb680",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "3eea57fac8350b3c6a07287fd8a10b156d750088",
+      "closedAt": "2023-11-14T17:12:31Z",
+      "mergedAt": "2023-11-14T17:12:31Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f"
+      },
       "comments": [
         {
           "author": "paulbastian",
@@ -5592,6 +5594,105 @@
               "updatedAt": "2023-11-09T10:23:00Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nGTXZ",
+          "commit": {
+            "abbreviatedOid": "e9f583b"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-14T13:14:40Z",
+          "updatedAt": "2023-11-14T13:14:40Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n    * `id`: REQUIRED. JSON string designating the type of a credential as defined in [@!OIDF.OID4VCI].\r\n```",
+              "createdAt": "2023-11-14T13:14:40Z",
+              "updatedAt": "2023-11-14T13:14:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nGXou",
+          "commit": {
+            "abbreviatedOid": "e9f583b"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-14T13:24:12Z",
+          "updatedAt": "2023-11-14T13:24:12Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2023-11-14T13:24:12Z",
+              "updatedAt": "2023-11-14T13:24:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nGX5r",
+          "commit": {
+            "abbreviatedOid": "e9f583b"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-14T13:24:48Z",
+          "updatedAt": "2023-11-14T13:24:48Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\n* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following three sub elements:\r\n    * `vct`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.ietf-oauth-sd-jwt-vc], Section 4.2.2.1.\r\n```",
+              "createdAt": "2023-11-14T13:24:48Z",
+              "updatedAt": "2023-11-14T13:24:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nGhLu",
+          "commit": {
+            "abbreviatedOid": "3eea57f"
+          },
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-14T13:43:57Z",
+          "updatedAt": "2023-11-14T13:43:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nHHMR",
+          "commit": {
+            "abbreviatedOid": "3eea57f"
+          },
+          "author": "c2bo",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-14T14:46:13Z",
+          "updatedAt": "2023-11-14T14:46:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nIfFp",
+          "commit": {
+            "abbreviatedOid": "3eea57f"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-14T17:12:25Z",
+          "updatedAt": "2023-11-14T17:12:25Z",
+          "comments": []
         }
       ]
     },
@@ -5660,6 +5761,46 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 73,
+      "id": "PR_kwDOJcWsFs5fbBQW",
+      "title": "Fix: Replace redirect_uri with response_uri for direct_post Response Mode",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/73",
+      "state": "OPEN",
+      "author": "cryptphil",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
+      "createdAt": "2023-11-14T15:16:22Z",
+      "updatedAt": "2023-11-14T15:32:06Z",
+      "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
+      "headRepository": "lissi-id/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "71-response-uri-fix",
+      "headRefOid": "cd0f1ac7841da24859f0d5a401f731e260e1809b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5nHjbn",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-14T15:32:06Z",
+          "updatedAt": "2023-11-14T15:32:06Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
