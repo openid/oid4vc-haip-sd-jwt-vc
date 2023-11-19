@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-16T00:26:02.008307+00:00",
+  "timestamp": "2023-11-19T00:28:35.195504+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -5708,7 +5708,7 @@
       "labels": [],
       "body": "Changes the reference to the adopted datatracker ID\r\n",
       "createdAt": "2023-10-31T14:16:41Z",
-      "updatedAt": "2023-10-31T14:29:24Z",
+      "updatedAt": "2023-11-16T10:34:43Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
@@ -5732,6 +5732,19 @@
           "body": "",
           "createdAt": "2023-10-31T14:29:24Z",
           "updatedAt": "2023-10-31T14:29:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5nW32c",
+          "commit": {
+            "abbreviatedOid": "0d1a4e4"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-16T10:34:43Z",
+          "updatedAt": "2023-11-16T10:34:43Z",
           "comments": []
         }
       ]
@@ -5801,6 +5814,72 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 74,
+      "id": "PR_kwDOJcWsFs5fm7du",
+      "title": "fix: update to vct",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/74",
+      "state": "OPEN",
+      "author": "TimoGlastra",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## \ud83d\udcd1 Description\r\n\r\nA few days ago a PR was merged that changes the `type` property to `vct`, however this was not reflected in all examples and parts of the spec",
+      "createdAt": "2023-11-16T09:42:00Z",
+      "updatedAt": "2023-11-16T17:00:14Z",
+      "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f",
+      "headRepository": "TimoGlastra/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "fix/typo",
+      "headRefOid": "6c2c8381af8cd3d77be0b2bbd5a5c9f35ca0ca3a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5nW5XV",
+          "commit": {
+            "abbreviatedOid": "6c2c838"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-16T10:36:49Z",
+          "updatedAt": "2023-11-16T10:36:49Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "id": "PR_kwDOJcWsFs5fp_PK",
+      "title": "changed my affiliation to sprind.org",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/75",
+      "state": "OPEN",
+      "author": "tlodderstedt",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "<!-- If this pull request closes an issue, please mention the issue number below -->\r\nCloses # <!-- Issue # here -->\r\n\r\n## \ud83d\udcd1 Description\r\n<!-- Add a brief description of the pr -->\r\n\r\n<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax\r\n- [ ] Not Completed\r\n- [x] Completed\r\n-->\r\n\r\n## Preview Link\r\n\r\n<!-- Update the link below to provide reviewers with a convenient link to view a rendered version of the PR-->\r\n<!-- In general the link should be of the form https://github.com/<repo-name>/<branch-name>/<draft-name>.html-->\r\n\r\n[click here for rendered preview of PR](https://github.com/<repo-name>/<branch-name>/<draft-name>.html)",
+      "createdAt": "2023-11-16T17:10:54Z",
+      "updatedAt": "2023-11-16T17:11:04Z",
+      "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f",
+      "headRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "tl/change_affiliation",
+      "headRefOid": "270177fac14863471a3b82c244491773884f43ba",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
