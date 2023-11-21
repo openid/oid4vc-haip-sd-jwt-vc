@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-19T00:28:35.195504+00:00",
+  "timestamp": "2023-11-21T00:26:25.931288+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1441,6 +1441,30 @@
           "body": "I think you are correct.\r\nTo complicate things, the 200 Response to this may again include a `redirect_uri` see: https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-18.2",
           "createdAt": "2023-11-01T16:39:06Z",
           "updatedAt": "2023-11-01T16:39:06Z"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "id": "I_kwDOJcWsFs53P_DK",
+      "title": "What does a presentation look like, and how should it be submitted as part of OID4VP?",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/issues/76",
+      "state": "OPEN",
+      "author": "TimoGlastra",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I'm currently implementing the vc+sd-jwt credential format profile for OID4VC and not fully sure how the process of a presentation works.\r\n\r\nAs I understand SD-JWT-VC spec, you make a presentation of an SD-JWT-VC, but there's not necessarily a custom Verifiable Presentation 'wrapper' as we're used to with W3C credentials.\r\n\r\nThe OpenID4VP spec mentions the following:\r\n> `vp_token` REQUIRED. JSON String or JSON object that MUST contain a single Verifiable Presentation or an array of JSON Strings and JSON objects each of them containing a Verifiable Presentations. Each Verifiable Presentation MUST be represented as a JSON string (that is a Base64url encoded value) or a JSON object depending on a format as defined in Annex E of [[OpenID.VCI](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#OpenID.VCI)]. When a single Verifiable Presentation is returned, the array syntax MUST NOT be used. If Appendix E of [[OpenID.VCI](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#OpenID.VCI)] defines a rule for encoding the respective Credential format in the Credential Response, this rules MUST also be followed when encoding Credentials of this format in the vp_token response parameter. Otherwise, this specification does not require any additional encoding when a Credential format is already represented as a JSON object or a JSON string.\r\n\r\nAnd\r\n> `presentation_submission`:\r\nREQUIRED. The presentation_submission element as defined in [[DIF.PresentationExchange](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#DIF.PresentationExchange)]. It contains mappings between the requested Verifiable Credentials and where to find them within the returned VP Token. This is expressed via elements in the descriptor_map array, known as Input Descriptor Mapping Objects. These objects contain a field called path, which, for this specification, MUST have the value $ (top level root path) when only one Verifiable Presentation is contained in the VP Token, and MUST have the value $[n] (indexed path from root) when there are multiple Verifiable Presentations, where n is the index to select. The path_nested object inside an Input Descriptor Mapping Object is used to describe how to find a returned Credential within a Verifiable Presentation, and the value of the path field in it will ultimately depend on the credential format. Non-normative examples can be found further in this section.\r\n\r\n- Is it correct that the SD-JWT VC presentation is the \"Verifiable Presentation\" as expected in the `vp_token` property, so no extra 'wrapper' is needed around the derived sd vc presentation?\r\n- The submission text describes: \"path_nested object inside an Input Descriptor Mapping Object is used to describe how to find a returned Credential within a Verifiable Presentation\", does this mean that `path_nested` is optional, and we can here omit the usage of `path_nested`?\r\n\r\n\r\nSo a presentation submission could look something like:\r\n\r\n```\r\n{\r\n    \"id\": \"a30e3b91-fb77-4d22-95fa-871689c322e2\",\r\n    \"definition_id\": \"32f54163-7166-48f1-93d8-ff217bdb0653\",\r\n    \"descriptor_map\": [\r\n      {\r\n        \"id\": \"banking_input_2\",\r\n        \"format\": \"vc+sd-jwt\", // same as issuance type for presentation?\r\n        \"path\": \"$\", // when only one vp_token (sd-jwt) is submitted\r\n      }\r\n    ]\r\n  }\r\n```\r\n\r\nMaybe we can add some example authorization response objects to this spec and examples directory?",
+      "createdAt": "2023-11-19T03:25:52Z",
+      "updatedAt": "2023-11-20T16:21:37Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Is it correct that the SD-JWT VC presentation is the \"Verifiable Presentation\" as expected in the vp_token property, so no extra 'wrapper' is needed around the derived sd vc presentation?\r\n\r\nyes.\r\n\r\n> The submission text describes: \"path_nested object inside an Input Descriptor Mapping Object is used to describe how to find a returned Credential within a Verifiable Presentation\", does this mean that path_nested is optional, and we can here omit the usage of path_nested?\r\n\r\nyes.\r\n\r\nWe need to modify the text in OID4VP as it was written at a time when every presentation was a wrapper of a VC.\r\n\r\nhttps://github.com/openid/OpenID4VP/issues/63 \r\n",
+          "createdAt": "2023-11-20T16:21:36Z",
+          "updatedAt": "2023-11-20T16:21:36Z"
         }
       ]
     }
