@@ -22,7 +22,7 @@ organization="Microsoft"
 initials="T."
 surname="Lodderstedt"
 fullname="Torsten Lodderstedt"
-organization="yes.com"
+organization="sprind.org"
    [author.address]
    email = "torsten@lodderstedt.net"
 
@@ -96,15 +96,15 @@ Unless explicitly stated, all normative requirements apply to all participating 
 |OID4VP| N/A |MUST|MUST|
 |OID4VCI| MUST|MUST|N/A|
 |SIOPv2|N/A|MUST|SHOULD|
-|SD-JWT VC|MUST|MUST|MUST|
+|SD-JWT VC profile as defined in (#sd-jwt-vc) |MUST|MUST|MUST|
 
 # OpenID for Verifiable Credential Issuance
 
 Implementations of this profile:
 
 * MUST support both pre-auth code flow and authorization code flow.
-* MUST support SD-JWT VC profile as defined in OID4VCI specification.
-* MUST support sender-constrained Tokens using the mechanism defined in [@!RFC9449].
+* MUST support protocol extensions for the SD-JWT VC credential format profile as defined in (#vc_sd_jwt_profile).
+* MUST support sender-constrained tokens using the mechanism defined in [@!RFC9449].
 * MUST support [@!RFC7636] with `S256` as the code challenge method.
 
 Both Wallet initiated and Issuer initiated issuance is supported.
@@ -123,7 +123,7 @@ Both sending Credential Offer same-device and cross-device is supported.
 
    * MUST use Pushed Authorization Requests (PAR) [@!RFC9126] to send the Authorization Request.
    * Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in (#token-endpoint) for client authentication at the token endpoint.
-   * MUST use `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type.
+   * MUST use the `scope` parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.
    * The `client_id` value in the PAR request MUST be a string that the Wallet has used as the `sub` value in the client attestation JWT.
 
 ## Token Endpoint {#token-endpoint}
@@ -131,7 +131,7 @@ Both sending Credential Offer same-device and cross-device is supported.
    * The Wallets MUST perform client authentication as defined in [@!I-D.ietf-oauth-attestation-based-client-auth].
    * Refresh tokens MUST be supported for credential refresh.
    * Wallets MUST support deferred authorization by being able to process the Token error response parameters `authorization_pending` and `slow_down`, and the credential offer parameter `interval`.
-   * The wallet attestation JWT scheme is defined in (#wallet-attestation-schema).
+   * The Wallet Attestation JWT scheme is defined in (#wallet-attestation-schema).
 
 Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.
 
@@ -139,7 +139,58 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 ### Wallet Attestation Schema {#wallet-attestation-schema}
 
-[@!I-D.ietf-oauth-attestation-based-client-auth] defines the wallet attestation format used by this profile. [This profile will define the details.]
+Wallets MUST use attestations following the definition given in [@!I-D.ietf-oauth-attestation-based-client-auth].
+
+In addition to this definition, the Wallet Attestation MAY contain the following claims in the `cnf` element:
+
+* `key_type`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the Wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud Wallet). This specification defines the following values for `key_type`:
+  * `software`: It MUST be used when the Wallet uses software-based key management.
+  * `hardware`: It MUST be used when the wallet uses hardware-based key management.
+  * `tee`: It SHOULD be used when the Wallet uses the Trusted Execution Environment for key management.
+  * `secure_enclave`: It SHOULD be used when the Wallet uses the Secure Enclave for key management.
+  * `strong_box`: It SHOULD be used when the Wallet uses the Strongbox for key management.
+  * `secure_element`: It SHOULD be used when the Wallet uses a Secure Element for key management.
+  * `hsm`: It SHOULD be used when the Wallet uses Hardware Security Module (HSM).
+* `user_authentication`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to authenticate the user to authorize access to the private key associated with the public key given in the `cnf` claim. This specification defines the following values for `user_authentication`:
+  * `system_biometry`: It MUST be used when the key usage is authorized by the mobile operating system using a biometric factor.
+  * `system_pin`: It MUST be used when the key usage is authorized by the mobile operating system using personal identification number (PIN).
+  * `internal_biometry`: It MUST be used when the key usage is authorized by the Wallet using a biometric factor.
+  * `internal_pin`: It MUST be used when the key usage is authorized by the Wallet using PIN.
+  * `secure_element_pin` It MUST be used when the key usage is authorized by the secure element managing the key itself using PIN.
+
+The Wallet Attestation MAY also contain the following claim:
+
+* `aal`: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the `cnf` claim.
+
+To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+
+This is an example of a Wallet Instance Attestation:
+
+```json
+{
+  "typ": "wallet-attestation+jwt",
+  "alg": "ES256",
+  "kid": "1"
+}
+.
+{
+  "iss": "<identifier of the issuer of this wallet attestation>",
+  "sub": "<`client_id` of the OAuth client>",
+  "iat": 1516247022,
+  "exp": 1541493724,
+  "aal" : "https://trust-list.eu/aal/high",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+    },
+    "key_type": "strong_box",
+    "user_authentication": "system_pin",
+  }
+}
+```
 
 ## Credential Endpoint
 
@@ -151,12 +202,14 @@ Note: Issuers should be mindful of how long the usage of the refresh token is al
 
 # OpenID for Verifiable Presentations
 
+   * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
+   * To obtain the issuer's public key for verification, verifiers MUST support Web-based key resolution, as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in (#presentation-definition-schema):
 
@@ -177,7 +230,7 @@ As credential format, SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST
 
 In addition, this profile defines the following additional requirements.
 
-* Both Compact serialization and JSON serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt].
+* Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
 
 | Claim | SD-JWT as issued by the Issuer | Normative Definition |
@@ -186,13 +239,13 @@ In addition, this profile defines the following additional requirements.
 |iat |MUST |[@!RFC7519], Section 4.1.6 |
 | exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |cnf|	MUST|	[@!RFC7800]|
-|type|	MUST| [@!I-D.ietf-oauth-sd-jwt-vc]|
-|status|SHOULD (at the discretion of the issuer)| [@!I-D.looker-oauth-jwt-cwt-status-list]|
+|vct|	MUST| [@!I-D.ietf-oauth-sd-jwt-vc]|
+|status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
 * It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
-* The `type` JWT claim as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
+* The `vct` JWT claim as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 * The `cnf` claim [@!RFC7800] MUST conform to the definition given in [@!I-D.ietf-oauth-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
 Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
@@ -201,13 +254,13 @@ Note: Re-using the same Credential across Verifiers, or re-using the same JWK va
 
 Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by [@!OIDF.ekyc-ida] SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.
 
-Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, `sub` claim MAY be used. There is no requirement for a binding to exist between `sub` and `cnf` claims. See section X in [@!I-D.ietf-oauth-sd-jwt-vc] for implementation considerations.
+Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, the `sub` claim MAY be used. There is no requirement for a binding to exist between the `sub` and `cnf` claims. See the Implementation Considerations section in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 Note: In some credential types, it is not desirable to include an expiration date (eg: diploma attestation). Therefore, this profile leaves its inclusion to the Issuer, or the body defining the respective credential type.
 
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
-This profile supports two ways to represent and resolves the key required to validate the issuer signature of a SD-JWT VC, web PKI-based key resolution and x.509 certificates.
+This profile supports two ways to represent and resolve the key required to validate the issuer signature of an SD-JWT VC, the web PKI-based key resolution and the x.509 certificates.
 
 * Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 * x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
@@ -216,7 +269,90 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 ### Cryptographic Holder Binding between VC and VP
 
-* For Cryptographic Holder Binding, an HB-JWT as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST always be present when presenting a SD-JWT VC.
+* For Cryptographic Holder Binding, a KB-JWT, as defined in [@!I-D.ietf-oauth-sd-jwt-vc], MUST always be present when presenting an SD-JWT VC.
+
+## OpenID4VC Credential Format Profile {#vc_sd_jwt_profile}
+
+This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used in conjunction with the OpenID4VC specifications.
+
+### Format Identifier
+
+The Credential format identifier is `vc+sd-jwt`. This format identifier is used in issuance and presentation requests.
+
+### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
+
+The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of [@!OIDF.OID4VCI].
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following three sub elements:
+    * `vct`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.ietf-oauth-sd-jwt-vc], Section 4.2.2.1.
+    * `claims`: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:
+        * `mandatory`: OPTIONAL. Boolean which when set to `true` indicates the claim MUST be present in the issued Credential. If the `mandatory` property is omitted its default should be assumed to be `false`.
+        * `value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image).
+        * `display`: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:
+            * `name`: OPTIONAL. String value of a display name for the claim.
+            * `locale`: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 [@!RFC5646]. There MUST be only one object for each language identifier.
+* `order`: OPTIONAL. An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.
+
+The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
+
+<{{examples/credential_metadata_sd_jwt_vc.json}}
+
+### Credential Offer
+
+The following additional claims are defined for this Credential format.
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt).
+
+The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
+
+<{{examples/credential_offer_sd_jwt_vc.json}}
+
+### Authorization Details {#authorization_vc_sd-jwt}
+
+The following additional claims are defined for authorization details of type `openid_credential` and this Credential format.
+
+* `credential_definition`: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
+
+The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
+
+<{{examples/authorization_details_sd_jwt_vc.json}}
+
+### Credential Request
+
+The following additional parameters are defined for Credential Requests and this Credential format.
+
+* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
+
+The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
+
+<{{examples/credential_request_sd_jwt_vc.json}}
+
+### Credential Response {#credential_response_jwt_vc_json}
+
+The value of the `credential` claim in the Credential Response MUST be a JSON string that is an SD-JWT VC. Credentials of this format are already suitable for transfer and, therefore, they need not and MUST NOT be re-encoded.
+
+The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
+
+<{{examples/credential_response_sd_jwt_vc.txt}}
+
+### Verifier Metadata
+
+The Verifier SHOULD add a `vp_formats` element to its metadata (e.g. in the `client_metadata` authorization request parameter) to let the wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key `vc+sd-jwt`, the value is an object consisting of the following elements:
+
+* `sd-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values.
+* `kb-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
+
+The following is a non-normative example of `client_metadata` request parameter value in a request to present a SD-JWT VC.
+
+<{{examples/client_metadata_sd_jwt_vc.json}}
+
+### Presentation Definition
+
+The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. The object is empty.
+
+The following is a non-normative example of a presentation definition for a SD-JWT VC.
+
+<{{examples/presentation_definition_sd_jwt_vc.json}}
 
 # Crypto Suites
 
