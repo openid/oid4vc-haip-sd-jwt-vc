@@ -11,7 +11,7 @@
                 "fields": [
                     {
                         "path": [
-                            "$.type"
+                            "$.vct"
                         ],
                         "filter": {
                             "type": "string",
