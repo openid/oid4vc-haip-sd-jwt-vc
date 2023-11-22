@@ -414,29 +414,28 @@ Table of Contents
    *  The following JWT Claims MUST be supported Content (differentiate
       issuance & presentation)
 
-   +========+================+========================================+
-   | Claim  | SD-JWT as      | Normative Definition                   |
-   |        | issued by the  |                                        |
-   |        | Issuer         |                                        |
-   +========+================+========================================+
-   | iss    | MUST           | [RFC7519], Section 4.1.1               |
-   +--------+----------------+----------------------------------------+
-   | iat    | MUST           | [RFC7519], Section 4.1.6               |
-   +--------+----------------+----------------------------------------+
-   | exp    | SHOULD (at the | [RFC7519], Section 4.1.4               |
-   |        | discretion of  |                                        |
-   |        | the issuer)    |                                        |
-   +--------+----------------+----------------------------------------+
-   | cnf    | MUST           | [RFC7800]                              |
-   +--------+----------------+----------------------------------------+
-   | vct    | MUST           | [I-D.ietf-oauth-sd-jwt-vc]             |
-   +--------+----------------+----------------------------------------+
-   | status | SHOULD (at the | [I-D.looker-oauth-jwt-cwt-status-list] |
-   |        | discretion of  |                                        |
-   |        | the issuer)    |                                        |
-   +--------+----------------+----------------------------------------+
+   +========+===========================+==============================+
+   | Claim  | SD-JWT as issued          | Normative Definition         |
+   |        | by the Issuer             |                              |
+   +========+===========================+==============================+
+   | iss    | MUST                      | [RFC7519], Section 4.1.1     |
+   +--------+---------------------------+------------------------------+
+   | iat    | MUST                      | [RFC7519], Section 4.1.6     |
+   +--------+---------------------------+------------------------------+
+   | exp    | SHOULD (at the            | [RFC7519], Section 4.1.4     |
+   |        | discretion of             |                              |
+   |        | the issuer)               |                              |
+   +--------+---------------------------+------------------------------+
+   | cnf    | MUST                      | [RFC7800]                    |
+   +--------+---------------------------+------------------------------+
+   | vct    | MUST                      | [I-D.ietf-oauth-sd-jwt-vc]   |
+   +--------+---------------------------+------------------------------+
+   | status | SHOULD (at the            | [I-D.ietf-oauth-status-list] |
+   |        | discretion of             |                              |
+   |        | the issuer)               |                              |
+   +--------+---------------------------+------------------------------+
 
-                                 Table 2
+                                  Table 2
 
    *  The Issuer MUST NOT make any of the JWT Claims in the table above
       to be selectively disclosable, so that they are always present in
@@ -869,12 +868,12 @@ Table of Contents
               October 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-oauth-selective-disclosure-jwt-06>.
 
-   [I-D.looker-oauth-jwt-cwt-status-list]
-              Looker, T. and P. Bastian, "JWT and CWT Status List", Work
-              in Progress, Internet-Draft, draft-looker-oauth-jwt-cwt-
-              status-list-01, 10 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-looker-oauth-
-              jwt-cwt-status-list-01>.
+   [I-D.ietf-oauth-status-list]
+              Looker, T., Bastian, P., and C. Bormann, "OAuth Status
+              List", Work in Progress, Internet-Draft, draft-ietf-oauth-
+              status-list-00, 23 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-oauth-
+              status-list-00>.
 
    [I-D.terbu-sd-jwt-vc]
               Terbu, O. and D. Fett, "SD-JWT-based Verifiable
