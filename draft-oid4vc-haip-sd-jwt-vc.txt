@@ -729,12 +729,11 @@ Table of Contents
 
 7.2.7.  Verifier Metadata
 
-   The Verifier SHOULD add a vp_formats_supported element to its
-   metadata (e.g. in the client_metadata authorization request
-   parameter) to let the wallet know what protection algorithms it
-   supports in conjunction with SD-JWT VCs.  The format element MUST
-   have the key vc+sd-jwt, the value is an object consisting of the
-   following elements:
+   The Verifier SHOULD add a vp_formats element to its metadata (e.g. in
+   the client_metadata authorization request parameter) to let the
+   wallet know what protection algorithms it supports in conjunction
+   with SD-JWT VCs.  The format element MUST have the key vc+sd-jwt, the
+   value is an object consisting of the following elements:
 
    *  sd-jwt_alg_values: OPTIONAL.  A JSON array containing identifiers
       of cryptographic algorithms the verifier supports for protection
