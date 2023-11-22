@@ -23,13 +23,13 @@
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 3.11.0
+    platformdirs 4.0.0
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.31.0
     setuptools 67.7.2
     six 1.16.0
-    wcwidth 0.2.9
+    wcwidth 0.2.10
 -->
 <link href="draft-oid4vc-haip-sd-jwt-vc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="workgroup">OpenID Connect</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-14" class="published">14 November 2023</time>
+<time datetime="2023-11-22" class="published">22 November 2023</time>
     </dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
@@ -1766,7 +1766,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         }
     ],
     "credential_definition": {
-        "type": "IdentityCredential",
+        "vct": "IdentityCredential",
         "claims": {
             "given_name": {
                 "display": [
@@ -1810,7 +1810,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 
 
 {
-    "type": "IdentityCredential",
+    "vct": "IdentityCredential",
     "given_name": "John",
     "family_name": "Doe",
 }
@@ -1827,7 +1827,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-7.2.3-1">The following additional claims are defined for this Credential format.<a href="#section-7.2.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-7.2.3-2.1">
-              <code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least <code>type</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.3-2.1" class="pilcrow">¶</a>
+              <code>credential_definition</code>: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least <code>vct</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.3-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-7.2.3-3">The following is a non-normative example of an object comprising <code>credentials_supported</code> parameter of Credential format <code>vc+sd-jwt</code>.<a href="#section-7.2.3-3" class="pilcrow">¶</a></p>
@@ -1856,7 +1856,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-7.2.4-1">The following additional claims are defined for authorization details of type <code>openid_credential</code> and this Credential format.<a href="#section-7.2.4-1" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-7.2.4-2.1">
-              <code>credential_definition</code>: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least <code>type</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>. It MAY contain <code>claims</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.4-2.1" class="pilcrow">¶</a>
+              <code>credential_definition</code>: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least <code>vct</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>. It MAY contain <code>claims</code> property as defined in <a href="#server_metadata_vc_sd-jwt" class="auto internal xref">Section 7.2.2</a>.<a href="#section-7.2.4-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-7.2.4-3">The following is a non-normative example of an authorization details object with Credential format <code>vc+sd-jwt</code>.<a href="#section-7.2.4-3" class="pilcrow">¶</a></p>
@@ -1866,7 +1866,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         "type": "openid_credential",
         "format": "vc+sd-jwt",
         "credential_definition": {
-            "type": "IdentityCredential"
+            "vct": "IdentityCredential"
         }
     }
 ]
@@ -1891,7 +1891,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <pre>{
    "format": "vc+sd-jwt",
    "credential_definition": {
-      "type": "IdentityCredential"
+      "vct": "IdentityCredential"
    },
    "proof": {
       "proof_type": "jwt",
@@ -1971,7 +1971,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 "fields": [
                     {
                         "path": [
-                            "$.type"
+                            "$.vct"
                         ],
                         "filter": {
                             "type": "string",

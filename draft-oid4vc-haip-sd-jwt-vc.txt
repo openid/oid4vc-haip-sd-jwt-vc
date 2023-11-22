@@ -6,7 +6,7 @@ OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
                                                                  yes.com
-                                                        14 November 2023
+                                                        22 November 2023
 
 
     OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
@@ -594,7 +594,7 @@ Table of Contents
            }
        ],
        "credential_definition": {
-           "type": "IdentityCredential",
+           "vct": "IdentityCredential",
            "claims": {
                "given_name": {
                    "display": [
@@ -638,7 +638,7 @@ Table of Contents
 
 
    {
-       "type": "IdentityCredential",
+       "vct": "IdentityCredential",
        "given_name": "John",
        "family_name": "Doe",
    }
@@ -650,7 +650,7 @@ Table of Contents
 
    *  credential_definition: REQUIRED.  JSON object containing the
       detailed description of the credential type.  It MUST contain at
-      least type property as defined in Section 7.2.2.
+      least vct property as defined in Section 7.2.2.
 
    The following is a non-normative example of an object comprising
    credentials_supported parameter of Credential format vc+sd-jwt.
@@ -674,7 +674,7 @@ Table of Contents
 
    *  credential_definition: REQUIRED.  JSON object containing the
       detailed description of the credential type.  It MUST contain at
-      least type property as defined in Section 7.2.2.  It MAY contain
+      least vct property as defined in Section 7.2.2.  It MAY contain
       claims property as defined in Section 7.2.2.
 
    The following is a non-normative example of an authorization details
@@ -685,7 +685,7 @@ Table of Contents
            "type": "openid_credential",
            "format": "vc+sd-jwt",
            "credential_definition": {
-               "type": "IdentityCredential"
+               "vct": "IdentityCredential"
            }
        }
    ]
@@ -706,7 +706,7 @@ Table of Contents
    {
       "format": "vc+sd-jwt",
       "credential_definition": {
-         "type": "IdentityCredential"
+         "vct": "IdentityCredential"
       },
       "proof": {
          "proof_type": "jwt",
@@ -787,7 +787,7 @@ Table of Contents
                    "fields": [
                        {
                            "path": [
-                               "$.type"
+                               "$.vct"
                            ],
                            "filter": {
                                "type": "string",
