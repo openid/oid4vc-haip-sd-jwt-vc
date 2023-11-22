@@ -5,7 +5,7 @@
 OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
-                                                                 yes.com
+                                                              sprind.org
                                                         22 November 2023
 
 
@@ -1098,5 +1098,5 @@ Authors' Addresses
 
 
    Torsten Lodderstedt
-   yes.com
+   sprind.org
    Email: torsten@lodderstedt.net
