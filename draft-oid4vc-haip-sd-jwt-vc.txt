@@ -6,7 +6,7 @@ OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
                                                               sprind.org
-                                                        22 November 2023
+                                                        23 November 2023
 
 
     OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
@@ -176,10 +176,10 @@ Table of Contents
    Implementations of this profile:
 
    *  MUST support both pre-auth code flow and authorization code flow.
-   *  MUST support protocol extensions for SD-JWT VC credential format
-      profile as defined in this specification Section 7.2.
-   *  MUST support sender-constrained Tokens using a mechanism as
-      defined in [I-D.ietf-oauth-dpop].
+   *  MUST support protocol extensions for the SD-JWT VC credential
+      format profile as defined in Section 7.2.
+   *  MUST support sender-constrained tokens using the mechanism defined
+      in [RFC9449].
    *  MUST support [RFC7636] with S256 as the code challenge method.
 
    Both Wallet initiated and Issuer initiated issuance is supported.
@@ -195,7 +195,7 @@ Table of Contents
       Authorization parameter.  For Grant Type
       urn:ietf:params:oauth:grant-type:pre-authorized_code, the pre-
       authorized code is used by the issuer to identify the credential
-      type(s). (pending OID4VCI PR#519)
+      type(s).
    *  As a way to invoke the Wallet, at least a custom URL scheme
       haip:// MUST be supported.  Implementations MAY support other ways
       to invoke the wallets as agreed by trust frameworks/ecosystems/
@@ -217,10 +217,10 @@ Table of Contents
    *  Wallets MUST authenticate itself at the PAR endpoint using the
       same rules as defined in Section 4.3 for client authentication at
       the token endpoint.
-   *  MUST use scope parameter to communicate credential type(s) to be
-      issued.  The scope value MUST map to a specific Credential type.
-      The scope value may be pre-agreed, obtained from the Credential
-      Offer, or the Credential Issuer Metadata.
+   *  MUST use the scope parameter to communicate credential type(s) to
+      be issued.  The scope value MUST map to a specific Credential
+      type.  The scope value may be pre-agreed, obtained from the
+      Credential Offer, or the Credential Issuer Metadata.
    *  The client_id value in the PAR request MUST be a string that the
       Wallet has used as the sub value in the client attestation JWT.
 
@@ -360,12 +360,11 @@ Table of Contents
       Request.
 
    *  client_id_scheme value MUST be either x509_san_dns or
-      verifier_attestation.  Wallet MUST support both.  Verifier MUST
-      support at least one. (pending OID4VCI PR #524 for
-      verifier_attestation)
+      verifier_attestation.  The Wallet MUST support both.  The Verifier
+      MUST support at least one.
 
    *  To obtain the issuer's public key for verification, verifiers MUST
-      support web-based key resolution as defined in Section 5 of
+      support Web-based key resolution, as defined in Section 5 of
       [I-D.ietf-oauth-sd-jwt-vc].  The JOSE header kid MUST be used to
       identify the respective key.
 
@@ -479,9 +478,9 @@ Table of Contents
    the implementers of this profile.
 
    Note: If there is a requirement to provide the Subject’s identifier
-   assigned and maintained by the Issuer, sub claim MAY be used.  There
-   is no requirement for a binding to exist between sub and cnf claims.
-   See Implementation Considerations section in
+   assigned and maintained by the Issuer, the sub claim MAY be used.
+   There is no requirement for a binding to exist between the sub and
+   cnf claims.  See the Implementation Considerations section in
    [I-D.ietf-oauth-sd-jwt-vc].
 
    Note: In some credential types, it is not desirable to include an
@@ -513,8 +512,8 @@ Table of Contents
 
 7.1.1.  Cryptographic Holder Binding between VC and VP
 
-   *  For Cryptographic Holder Binding, a KB-JWT as defined in
-      [I-D.ietf-oauth-sd-jwt-vc] MUST always be present when presenting
+   *  For Cryptographic Holder Binding, a KB-JWT, as defined in
+      [I-D.ietf-oauth-sd-jwt-vc], MUST always be present when presenting
       an SD-JWT VC.
 
 7.2.  OpenID4VC Credential Format Profile
@@ -846,14 +845,6 @@ Table of Contents
               October 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-oauth-attestation-based-client-auth-01>.
 
-   [I-D.ietf-oauth-dpop]
-              Fett, D., Campbell, B., Bradley, J., Lodderstedt, T.,
-              Jones, M. B., and D. Waite, "OAuth 2.0 Demonstrating
-              Proof-of-Possession at the Application Layer (DPoP)", Work
-              in Progress, Internet-Draft, draft-ietf-oauth-dpop-16, 13
-              April 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-oauth-dpop-16>.
-
    [I-D.ietf-oauth-sd-jwt-vc]
               Terbu, O. and D. Fett, "SD-JWT-based Verifiable
               Credentials (SD-JWT VC)", Work in Progress, Internet-
@@ -947,6 +938,11 @@ Table of Contents
               and F. Skokan, "OAuth 2.0 Pushed Authorization Requests",
               RFC 9126, DOI 10.17487/RFC9126, September 2021,
               <https://www.rfc-editor.org/info/rfc9126>.
+
+   [RFC9449]  Fett, D., Campbell, B., Bradley, J., Lodderstedt, T.,
+              Jones, M., and D. Waite, "OAuth 2.0 Demonstrating Proof of
+              Possession (DPoP)", RFC 9449, DOI 10.17487/RFC9449,
+              September 2023, <https://www.rfc-editor.org/info/rfc9449>.
 
 10.2.  Informative References
 

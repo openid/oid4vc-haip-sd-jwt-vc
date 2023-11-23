@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="workgroup">OpenID Connect</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-22" class="published">22 November 2023</time>
+<time datetime="2023-11-23" class="published">23 November 2023</time>
     </dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
@@ -1352,9 +1352,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="compact">
 <li class="compact" id="section-4-2.1">MUST support both pre-auth code flow and authorization code flow.<a href="#section-4-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-4-2.2">MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification <a href="#vc_sd_jwt_profile" class="auto internal xref">Section 7.2</a>.<a href="#section-4-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-4-2.2">MUST support protocol extensions for the SD-JWT VC credential format profile as defined in <a href="#vc_sd_jwt_profile" class="auto internal xref">Section 7.2</a>.<a href="#section-4-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-4-2.3">MUST support sender-constrained Tokens using a mechanism as defined in <span>[<a href="#I-D.ietf-oauth-dpop" class="cite xref">I-D.ietf-oauth-dpop</a>]</span>.<a href="#section-4-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-4-2.3">MUST support sender-constrained tokens using the mechanism defined in <span>[<a href="#RFC9449" class="cite xref">RFC9449</a>]</span>.<a href="#section-4-2.3" class="pilcrow">¶</a>
 </li>
         <li class="compact" id="section-4-2.4">MUST support <span>[<a href="#RFC7636" class="cite xref">RFC7636</a>]</span> with <code>S256</code> as the code challenge method.<a href="#section-4-2.4" class="pilcrow">¶</a>
 </li>
@@ -1368,7 +1368,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="compact">
 <li class="compact" id="section-4.1-1.1">The Grant Types <code>authorization_code</code> and <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code> MUST be supported as defined in Section 4.1.1 in <span>[<a href="#OIDF.OID4VCI" class="cite xref">OIDF.OID4VCI</a>]</span><a href="#section-4.1-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-4.1-1.2">For Grant Type <code>authorization_code</code>, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the <code>scope</code> Authorization parameter. For Grant Type <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code>, the pre-authorized code is used by the issuer to identify the credential type(s). (pending OID4VCI PR#519)<a href="#section-4.1-1.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.1-1.2">For Grant Type <code>authorization_code</code>, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the <code>scope</code> Authorization parameter. For Grant Type <code>urn:ietf:params:oauth:grant-type:pre-authorized_code</code>, the pre-authorized code is used by the issuer to identify the credential type(s).<a href="#section-4.1-1.2" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-4.1-1.3">As a way to invoke the Wallet, at least a custom URL scheme <code>haip://</code> MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.<a href="#section-4.1-1.3" class="pilcrow">¶</a>
 </li>
@@ -1387,7 +1387,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact" id="section-4.2-1.2">Wallets MUST authenticate itself at the PAR endpoint using the same rules as defined in <a href="#token-endpoint" class="auto internal xref">Section 4.3</a> for client authentication at the token endpoint.<a href="#section-4.2-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-4.2-1.3">MUST use <code>scope</code> parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.<a href="#section-4.2-1.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-1.3">MUST use the <code>scope</code> parameter to communicate credential type(s) to be issued. The scope value MUST map to a specific Credential type. The scope value may be pre-agreed, obtained from the Credential Offer, or the Credential Issuer Metadata.<a href="#section-4.2-1.3" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-4.2-1.4">The <code>client_id</code> value in the PAR request MUST be a string that the Wallet has used as the <code>sub</code> value in the client attestation JWT.<a href="#section-4.2-1.4" class="pilcrow">¶</a>
 </li>
@@ -1549,9 +1549,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <code>client_id_scheme</code> parameter MUST be present in the Authorization Request.<a href="#section-5-1.6" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-5-1.7">
-          <code>client_id_scheme</code> value MUST be either <code>x509_san_dns</code> or <code>verifier_attestation</code>. Wallet MUST support both. Verifier MUST support at least one. (pending OID4VCI PR #524 for verifier_attestation)<a href="#section-5-1.7" class="pilcrow">¶</a>
+          <code>client_id_scheme</code> value MUST be either <code>x509_san_dns</code> or <code>verifier_attestation</code>. The Wallet MUST support both. The Verifier MUST support at least one.<a href="#section-5-1.7" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-1.8">To obtain the issuer's public key for verification, verifiers MUST support web-based key resolution as defined in Section 5 of <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. The JOSE header <code>kid</code> MUST be used to identify the respective key.<a href="#section-5-1.8" class="pilcrow">¶</a>
+        <li class="normal" id="section-5-1.8">To obtain the issuer's public key for verification, verifiers MUST support Web-based key resolution, as defined in Section 5 of <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>. The JOSE header <code>kid</code> MUST be used to identify the respective key.<a href="#section-5-1.8" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-5-1.9">Presentation Definition JSON object MUST be sent using a <code>presentation_definition</code> parameter.<a href="#section-5-1.9" class="pilcrow">¶</a>
 </li>
@@ -1663,7 +1663,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-7-6">Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See <a href="https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp">https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp</a><a href="#section-7-6" class="pilcrow">¶</a></p>
 <p id="section-7-7">Note: Re-using the same Credential across Verifiers, or re-using the same JWK value across multiple Credentials gives colluding Verifiers a mechanism to correlate the User. There are currently two known ways to address this with SD-JWT VCs. First is to issue multiple instances of the same credentials with different JWK values, so that if each instance of the credential is used at only one Verifier, it can be reused multiple times. Another is to use each credential only once (ephemeral credentials). It is RECOMMENDED to adopt one of these mechanisms.<a href="#section-7-7" class="pilcrow">¶</a></p>
 <p id="section-7-8">Note: If there is a requirement to communicate information about the verification status and identity assurance data of the claims about the subject, the syntax defined by <span>[<a href="#OIDF.ekyc-ida" class="cite xref">OIDF.ekyc-ida</a>]</span> SHOULD be used. It is up to each jurisdiction and ecosystem, whether to require it to the implementers of this profile.<a href="#section-7-8" class="pilcrow">¶</a></p>
-<p id="section-7-9">Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, <code>sub</code> claim MAY be used. There is no requirement for a binding to exist between <code>sub</code> and <code>cnf</code> claims. See Implementation Considerations section in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>.<a href="#section-7-9" class="pilcrow">¶</a></p>
+<p id="section-7-9">Note: If there is a requirement to provide the Subject’s identifier assigned and maintained by the Issuer, the <code>sub</code> claim MAY be used. There is no requirement for a binding to exist between the <code>sub</code> and <code>cnf</code> claims. See the Implementation Considerations section in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>.<a href="#section-7-9" class="pilcrow">¶</a></p>
 <p id="section-7-10">Note: In some credential types, it is not desirable to include an expiration date (eg: diploma attestation). Therefore, this profile leaves its inclusion to the Issuer, or the body defining the respective credential type.<a href="#section-7-10" class="pilcrow">¶</a></p>
 <div id="issuer-key-resolution">
 <section id="section-7.1">
@@ -1684,7 +1684,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-7.1.1" class="section-number selfRef">7.1.1. </a><a href="#name-cryptographic-holder-bindin" class="section-name selfRef">Cryptographic Holder Binding between VC and VP</a>
           </h4>
 <ul class="compact">
-<li class="compact" id="section-7.1.1-1.1">For Cryptographic Holder Binding, a KB-JWT as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span> MUST always be present when presenting an SD-JWT VC.<a href="#section-7.1.1-1.1" class="pilcrow">¶</a>
+<li class="compact" id="section-7.1.1-1.1">For Cryptographic Holder Binding, a KB-JWT, as defined in <span>[<a href="#I-D.ietf-oauth-sd-jwt-vc" class="cite xref">I-D.ietf-oauth-sd-jwt-vc</a>]</span>, MUST always be present when presenting an SD-JWT VC.<a href="#section-7.1.1-1.1" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -2052,10 +2052,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Looker, T.</span> and <span class="refAuthor">P. Bastian</span>, <span class="refTitle">"OAuth 2.0 Attestation-Based Client Authentication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-attestation-based-client-auth-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-01">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-attestation-based-client-auth-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-oauth-dpop">[I-D.ietf-oauth-dpop]</dt>
-        <dd>
-<span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Jones, M. B.</span>, and <span class="refAuthor">D. Waite</span>, <span class="refTitle">"OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-dpop-16</span>, <time datetime="2023-04-13" class="refDate">13 April 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-16">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-16</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-oauth-sd-jwt-vc">[I-D.ietf-oauth-sd-jwt-vc]</dt>
         <dd>
 <span class="refAuthor">Terbu, O.</span> and <span class="refAuthor">D. Fett</span>, <span class="refTitle">"SD-JWT-based Verifiable Credentials (SD-JWT VC)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-sd-jwt-vc-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01</a>&gt;</span>. </dd>
@@ -2121,8 +2117,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, and <span class="refAuthor">M. Jones</span>, <span class="refTitle">"The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)"</span>, <span class="seriesInfo">RFC 9101</span>, <span class="seriesInfo">DOI 10.17487/RFC9101</span>, <time datetime="2021-08" class="refDate">August 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9101">https://www.rfc-editor.org/info/rfc9101</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9126">[RFC9126]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Tonge, D.</span>, and <span class="refAuthor">F. Skokan</span>, <span class="refTitle">"OAuth 2.0 Pushed Authorization Requests"</span>, <span class="seriesInfo">RFC 9126</span>, <span class="seriesInfo">DOI 10.17487/RFC9126</span>, <time datetime="2021-09" class="refDate">September 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9126">https://www.rfc-editor.org/info/rfc9126</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9449">[RFC9449]</dt>
+      <dd>
+<span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Campbell, B.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Jones, M.</span>, and <span class="refAuthor">D. Waite</span>, <span class="refTitle">"OAuth 2.0 Demonstrating Proof of Possession (DPoP)"</span>, <span class="seriesInfo">RFC 9449</span>, <span class="seriesInfo">DOI 10.17487/RFC9449</span>, <time datetime="2023-09" class="refDate">September 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9449">https://www.rfc-editor.org/info/rfc9449</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
