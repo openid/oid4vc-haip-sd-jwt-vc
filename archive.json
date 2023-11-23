@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-21T00:26:25.931288+00:00",
+  "timestamp": "2023-11-23T00:26:14.922735+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1363,7 +1363,7 @@
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/issues/65",
       "state": "OPEN",
       "author": "c2bo",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Section 7.1. defines supported key resolution mechanisms to validate issued credentials. We do not define a mechanism to validate the status list with currently.\r\n\r\nImho, we should re-use the same key resolution mechanism that is used by the issuer - makes things easier to manage and implement. If people agree with this, I will create a PR to add a small text stating to re-use the same mechanism for status list validation.",
@@ -1432,7 +1432,7 @@
       "labels": [],
       "body": "The HAIP specifies in Section 5 for OpenID4VP that:\r\n\r\n> Response mode MUST be direct_post with redirect_uri as defined in Section 6.2 of [OID4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-response-mode-direct_post).\r\n\r\nHowever, `redirect_uri` must not be present when the Response Mode is `direct_post` as described in the OpenID4VP specs in Section [6.2-7.2](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-7.2):\r\n\r\n> If the redirect_uri Authorization Request parameter is present when the Response Mode is direct_post, the Wallet MUST return an invalid_request Authorization Response error.\r\n\r\nTherefore, I assume that the HAIP should use `response_uri` instead of `redirect_uri` which would align with the OpenID4VP specs.",
       "createdAt": "2023-11-01T16:15:22Z",
-      "updatedAt": "2023-11-14T13:34:12Z",
+      "updatedAt": "2023-11-22T17:21:28Z",
       "closedAt": null,
       "comments": [
         {
@@ -1441,6 +1441,20 @@
           "body": "I think you are correct.\r\nTo complicate things, the 200 Response to this may again include a `redirect_uri` see: https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-18.2",
           "createdAt": "2023-11-01T16:39:06Z",
           "updatedAt": "2023-11-01T16:39:06Z"
+        },
+        {
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> I think you are correct. To complicate things, the 200 Response to this may again include a `redirect_uri` see: https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-18.2\r\n\r\nStumbled over this today as well - is my understanding correct that this is necessary to prevent the session fixation attack described in 12.2. If so should we add this as a recommended/required step in this profile (mandating a redirect_uri as a response to the direct_post flow)?",
+          "createdAt": "2023-11-22T17:13:44Z",
+          "updatedAt": "2023-11-22T17:13:44Z"
+        },
+        {
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If we mandate redirect, we mandate the same device flow, correct?\nSo I'm unsure",
+          "createdAt": "2023-11-22T17:21:27Z",
+          "updatedAt": "2023-11-22T17:21:27Z"
         }
       ]
     },
@@ -2358,7 +2372,7 @@
             "abbreviatedOid": "d01f013"
           },
           "author": "c2bo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-09-18T20:06:53Z",
@@ -4074,7 +4088,7 @@
             "abbreviatedOid": "d8be09f"
           },
           "author": "c2bo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-07-10T15:02:47Z",
@@ -5522,13 +5536,13 @@
       "labels": [],
       "body": "Reference draft-ietf-oauth-attestation-based-client-auth and draft-ietf-oauth-sd-jwt-vc.\r\nDelete statements about PRs that have been merged.",
       "createdAt": "2023-09-14T10:13:16Z",
-      "updatedAt": "2023-09-18T17:39:00Z",
+      "updatedAt": "2023-11-22T22:14:27Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
-      "baseRefOid": "a4a34c3ede0367c90319685c5ff4b86a5767700e",
+      "baseRefOid": "66d51b31179b0f52a988bfd0852e38a8a1bf3496",
       "headRepository": "selfissued/oid4vc-haip-sd-jwt-vc",
       "headRefName": "mbj-initial-editorial",
-      "headRefOid": "7e7cee23f2a59672340f8d72dadea7c8d5e1510b",
+      "headRefOid": "bc2c4fc17ac4d397de83f699f492d71deb99e1de",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -5542,7 +5556,34 @@
           "updatedAt": "2023-09-18T17:39:00Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5oByH8",
+          "commit": {
+            "abbreviatedOid": "7e7cee2"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "please resolve the conflicts and we can merge.",
+          "createdAt": "2023-11-22T20:01:54Z",
+          "updatedAt": "2023-11-22T20:01:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oCX5Y",
+          "commit": {
+            "abbreviatedOid": "bc2c4fc"
+          },
+          "author": "tplooker",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T22:14:27Z",
+          "updatedAt": "2023-11-22T22:14:27Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 66,
@@ -5698,7 +5739,7 @@
             "abbreviatedOid": "3eea57f"
           },
           "author": "c2bo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-11-14T14:46:13Z",
@@ -5725,24 +5766,26 @@
       "id": "PR_kwDOJcWsFs5ePSCc",
       "title": "Update status list reference",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/70",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "c2bo",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Changes the reference to the adopted datatracker ID\r\n",
       "createdAt": "2023-10-31T14:16:41Z",
-      "updatedAt": "2023-11-16T10:34:43Z",
+      "updatedAt": "2023-11-22T19:20:46Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
-      "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
+      "baseRefOid": "c3861dd0876ad743f9b17d2f0ed2562b93420279",
       "headRepository": "c2bo/oid4vc-haip-sd-jwt-vc",
       "headRefName": "status-list-reference",
-      "headRefOid": "0d1a4e40b069c6107ab66e3fb18352c180bdf129",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "4c809769e90ca1b7cd76bf555036e97a459cf099",
+      "closedAt": "2023-11-22T19:20:46Z",
+      "mergedAt": "2023-11-22T19:20:46Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "66d51b31179b0f52a988bfd0852e38a8a1bf3496"
+      },
       "comments": [],
       "reviews": [
         {
@@ -5770,6 +5813,19 @@
           "createdAt": "2023-11-16T10:34:43Z",
           "updatedAt": "2023-11-16T10:34:43Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oBhYd",
+          "commit": {
+            "abbreviatedOid": "0d1a4e4"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T19:19:57Z",
+          "updatedAt": "2023-11-22T19:19:57Z",
+          "comments": []
         }
       ]
     },
@@ -5778,26 +5834,68 @@
       "id": "PR_kwDOJcWsFs5esPsC",
       "title": "fix: vp_formats for client metadata, not vp_formats_supported",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/72",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "peppelinux",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "According to:\r\n\r\n- [OpenID4VP Section-5.1-9 ](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-5.1-9)\r\n- the non-normative example reported below, \r\n\r\n`vp_formats_supported` belongs to the wallet metadata and not to the verifier metadata/request\r\n\r\n````\r\nThe following is a non-normative example of client_metadata request parameter value in a request to present a SD-JWT VC.\r\n\r\n{\r\n    \"vp_formats\": {\r\n        \"vc+sd-jwt\": {\r\n            \"sd-jwt_alg_values\": [\r\n                \"ES256\",\r\n                \"ES384\"\r\n            ],\r\n            \"kb-jwt_alg_values\": [\r\n                \"ES256\",\r\n                \"ES384\"\r\n            ]\r\n        }\r\n    }\r\n}\r\n````\r\n\r\nfor this reason this PR changed `vp_formats_supported` in `vp_formats` because it is related to verifier's metadata",
       "createdAt": "2023-11-06T13:47:39Z",
-      "updatedAt": "2023-11-06T13:47:39Z",
+      "updatedAt": "2023-11-22T19:19:40Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
       "headRepository": "peppelinux/high-assurance-profile",
       "headRefName": "patch-2",
       "headRefOid": "f2f63698ef68892234c4fc3b60177046aeee2b48",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-11-22T19:19:40Z",
+      "mergedAt": "2023-11-22T19:19:40Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "c3861dd0876ad743f9b17d2f0ed2562b93420279"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5n__9K",
+          "commit": {
+            "abbreviatedOid": "f2f6369"
+          },
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T16:08:54Z",
+          "updatedAt": "2023-11-22T16:08:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAEPx",
+          "commit": {
+            "abbreviatedOid": "f2f6369"
+          },
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T16:13:51Z",
+          "updatedAt": "2023-11-22T16:13:51Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oBgrX",
+          "commit": {
+            "abbreviatedOid": "f2f6369"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T19:19:32Z",
+          "updatedAt": "2023-11-22T19:19:32Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 73,
@@ -5811,7 +5909,7 @@
       "labels": [],
       "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
       "createdAt": "2023-11-14T15:16:22Z",
-      "updatedAt": "2023-11-14T15:32:06Z",
+      "updatedAt": "2023-11-22T19:16:54Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
@@ -5836,6 +5934,92 @@
           "createdAt": "2023-11-14T15:32:06Z",
           "updatedAt": "2023-11-14T15:32:06Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAa-X",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T17:03:08Z",
+          "updatedAt": "2023-11-22T17:03:08Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAbXJ",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "in response mode `direct_post`, after the wallet sends HTTP POST request to the verifier, there are two possibilities:\r\n1. the flow ends there\r\n2. the verifier returns redirect_uri and the wallet redirects the user to verifier front end\r\nthis sentence intends to mean option 2. ",
+          "createdAt": "2023-11-22T17:04:05Z",
+          "updatedAt": "2023-11-22T17:04:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAb8j",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-22T17:05:33Z",
+          "updatedAt": "2023-11-22T17:05:34Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n   * Response mode MUST be `direct_post` where the verifier returns `redirect_uri` in response to the HTTP POST request from the wallet, where the wallet redirects the user to, as defined in Section 6.2 of [@!OIDF.OID4VP].\r\n```",
+              "createdAt": "2023-11-22T17:05:33Z",
+              "updatedAt": "2023-11-22T17:05:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAkB2",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-22T17:18:57Z",
+          "updatedAt": "2023-11-22T17:18:57Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "You were faster than me (https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/issues/71#issuecomment-1823176043) \ud83d\udc4d . Definitely feels like something that should be part of this profile.\r\n\r\nShould we mention section 11.5 as this describes the whole flow (and is really helpful if you want to implement this)?",
+              "createdAt": "2023-11-22T17:18:57Z",
+              "updatedAt": "2023-11-22T17:18:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oBccl",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-22T19:16:53Z",
+          "updatedAt": "2023-11-22T19:16:54Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "yes, I think mentining section 11.5 would be helpful",
+              "createdAt": "2023-11-22T19:16:53Z",
+              "updatedAt": "2023-11-22T19:16:54Z"
+            }
+          ]
         }
       ]
     },
@@ -5844,24 +6028,26 @@
       "id": "PR_kwDOJcWsFs5fm7du",
       "title": "fix: update to vct",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/74",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "TimoGlastra",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "## \ud83d\udcd1 Description\r\n\r\nA few days ago a PR was merged that changes the `type` property to `vct`, however this was not reflected in all examples and parts of the spec",
       "createdAt": "2023-11-16T09:42:00Z",
-      "updatedAt": "2023-11-16T17:00:14Z",
+      "updatedAt": "2023-11-22T17:00:05Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f",
       "headRepository": "TimoGlastra/oid4vc-haip-sd-jwt-vc",
       "headRefName": "fix/typo",
       "headRefOid": "6c2c8381af8cd3d77be0b2bbd5a5c9f35ca0ca3a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-11-22T17:00:05Z",
+      "mergedAt": "2023-11-22T17:00:05Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "d75b627ff0cc7ddf1e783e7026518a4aedafe2ca"
+      },
       "comments": [],
       "reviews": [
         {
@@ -5876,6 +6062,32 @@
           "createdAt": "2023-11-16T10:36:49Z",
           "updatedAt": "2023-11-16T10:36:49Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAYe2",
+          "commit": {
+            "abbreviatedOid": "6c2c838"
+          },
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T16:57:19Z",
+          "updatedAt": "2023-11-22T16:57:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oAZml",
+          "commit": {
+            "abbreviatedOid": "6c2c838"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T16:59:57Z",
+          "updatedAt": "2023-11-22T16:59:57Z",
+          "comments": []
         }
       ]
     },
@@ -5884,25 +6096,82 @@
       "id": "PR_kwDOJcWsFs5fp_PK",
       "title": "changed my affiliation to sprind.org",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/75",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tlodderstedt",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "<!-- If this pull request closes an issue, please mention the issue number below -->\r\nCloses # <!-- Issue # here -->\r\n\r\n## \ud83d\udcd1 Description\r\n<!-- Add a brief description of the pr -->\r\n\r\n<!-- You can also choose to add a list of changes and if they have been completed or not by using the markdown to-do list syntax\r\n- [ ] Not Completed\r\n- [x] Completed\r\n-->\r\n\r\n## Preview Link\r\n\r\n<!-- Update the link below to provide reviewers with a convenient link to view a rendered version of the PR-->\r\n<!-- In general the link should be of the form https://github.com/<repo-name>/<branch-name>/<draft-name>.html-->\r\n\r\n[click here for rendered preview of PR](https://github.com/<repo-name>/<branch-name>/<draft-name>.html)",
       "createdAt": "2023-11-16T17:10:54Z",
-      "updatedAt": "2023-11-16T17:11:04Z",
+      "updatedAt": "2023-11-22T17:00:27Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f",
       "headRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "headRefName": "tl/change_affiliation",
       "headRefOid": "270177fac14863471a3b82c244491773884f43ba",
-      "closedAt": null,
+      "closedAt": "2023-11-22T17:00:27Z",
+      "mergedAt": "2023-11-22T17:00:27Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "0c9fff53e09b72a126459d22d1e2b9b7066ba917"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5oAZwu",
+          "commit": {
+            "abbreviatedOid": "270177f"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-11-22T17:00:20Z",
+          "updatedAt": "2023-11-22T17:00:20Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDOJcWsFs5gH7vy",
+      "title": "fix typo in verifier metadata",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/77",
+      "state": "CLOSED",
+      "author": "c2bo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There seems to be a typo in the verifier metadata section, where the text mentions `vp_formats_supported` but references the verifier (which would use `vp_formats` instead) and the examples also show `vp_formats`",
+      "createdAt": "2023-11-22T12:12:45Z",
+      "updatedAt": "2023-11-22T12:29:57Z",
+      "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "709ca679e467bb2943671dcf6e68f51b0b4f7b5f",
+      "headRepository": "c2bo/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "fix/typo",
+      "headRefOid": "5b1cecd14e054f1b4848e83922c114387aa87dcc",
+      "closedAt": "2023-11-22T12:29:56Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "TimoGlastra",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think PR https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/72 addresses the same issue",
+          "createdAt": "2023-11-22T12:23:29Z",
+          "updatedAt": "2023-11-22T12:23:29Z"
+        },
+        {
+          "author": "c2bo",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "you are correct, i only looked at open issues >.< - closing this one",
+          "createdAt": "2023-11-22T12:29:56Z",
+          "updatedAt": "2023-11-22T12:29:56Z"
+        }
+      ],
       "reviews": []
     }
   ]
