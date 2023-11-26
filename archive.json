@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-23T00:26:14.922735+00:00",
+  "timestamp": "2023-11-26T00:28:09.673851+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1481,6 +1481,22 @@
           "updatedAt": "2023-11-20T16:21:36Z"
         }
       ]
+    },
+    {
+      "number": 78,
+      "id": "I_kwDOJcWsFs53s2XE",
+      "title": "SD-JWT-VC Credential Offer leftovers",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/issues/78",
+      "state": "OPEN",
+      "author": "paulbastian",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-11-23T13:33:36Z",
+      "updatedAt": "2023-11-23T13:33:36Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -2346,7 +2362,7 @@
             "abbreviatedOid": "d01f013"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-09-14T10:51:34Z",
@@ -3190,7 +3206,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T12:42:11Z",
@@ -3210,7 +3226,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T12:43:04Z",
@@ -3838,7 +3854,7 @@
             "abbreviatedOid": "a74ee1b"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T13:24:33Z",
@@ -3858,7 +3874,7 @@
             "abbreviatedOid": "a74ee1b"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T13:26:12Z",
@@ -3878,7 +3894,7 @@
             "abbreviatedOid": "a74ee1b"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-09-14T13:26:33Z",
@@ -4013,7 +4029,7 @@
             "abbreviatedOid": "f33c13e"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T13:28:29Z",
@@ -4033,7 +4049,7 @@
             "abbreviatedOid": "f33c13e"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-09-14T13:28:54Z",
@@ -4544,7 +4560,7 @@
             "abbreviatedOid": "81905d7"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T13:30:35Z",
@@ -4624,7 +4640,7 @@
             "abbreviatedOid": "2d01591"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "CHANGES_REQUESTED",
           "body": "We discussed whether selecting credentials by algorithm using Presentation Changed is needed or not during the OSW unconference sessions on \"What does Presentation Exchange do and what parts of it do we actually need?\" (see https://self-issued.info/?p=2395).  Comments recorded from that discussion were:\r\nTable: HAIP doesn't use proof_type\r\nKristina: proof_type only makes sense for Linked Data Proofs\r\n\tAlgorithms are separate\r\nMike: In OpenID and OAuth, we tend to do algorithm negotiation in metadata\r\n\t*_signing_algs_supported, etc.\r\nBrian: The issuer's algorithm and the presentation algorithm are different\r\nBrian: Supported credential formats could be in metadata, rather than the query language\r\nKristina: You could also pre-agree to supported features and simply pass short feature set handles\r\n\r\nI personally believe that HAIP should not take a dependency on the Presentation Exchange algorithm negotiation functionality.  Rather, we should negotiate supported algorithms like we do in other OpenID and OAuth specs - with metadata.",
           "createdAt": "2023-09-18T15:55:13Z",
@@ -4664,7 +4680,7 @@
             "abbreviatedOid": "2d01591"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-19T18:39:35Z",
@@ -4977,7 +4993,7 @@
             "abbreviatedOid": "49fe756"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "CHANGES_REQUESTED",
           "body": "I'm ready to approve this after the identifier changes suggested are made.",
           "createdAt": "2023-09-28T17:32:58Z",
@@ -5300,7 +5316,7 @@
             "abbreviatedOid": "49fe756"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-28T20:33:53Z",
@@ -5340,7 +5356,7 @@
             "abbreviatedOid": "49fe756"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-28T20:46:02Z",
@@ -5460,7 +5476,7 @@
             "abbreviatedOid": "ba10db9"
           },
           "author": "selfissued",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "LGTM",
           "createdAt": "2023-10-04T16:04:27Z",
@@ -5529,24 +5545,26 @@
       "id": "PR_kwDOJcWsFs5aUzwA",
       "title": "Mike's First Editorial Suggestions",
       "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/61",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "selfissued",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Reference draft-ietf-oauth-attestation-based-client-auth and draft-ietf-oauth-sd-jwt-vc.\r\nDelete statements about PRs that have been merged.",
       "createdAt": "2023-09-14T10:13:16Z",
-      "updatedAt": "2023-11-22T22:14:27Z",
+      "updatedAt": "2023-11-23T02:34:05Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "66d51b31179b0f52a988bfd0852e38a8a1bf3496",
       "headRepository": "selfissued/oid4vc-haip-sd-jwt-vc",
       "headRefName": "mbj-initial-editorial",
       "headRefOid": "bc2c4fc17ac4d397de83f699f492d71deb99e1de",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-11-23T02:34:05Z",
+      "mergedAt": "2023-11-23T02:34:05Z",
+      "mergedBy": "Sakurann",
+      "mergeCommit": {
+        "oid": "11543aded76af894a0588aab45acaa54bd7564b4"
+      },
       "comments": [
         {
           "author": "tlodderstedt",
@@ -6173,6 +6191,59 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 79,
+      "id": "PR_kwDOJcWsFs5gOxQF",
+      "title": "Credential Offer leftovers",
+      "url": "https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/79",
+      "state": "OPEN",
+      "author": "paulbastian",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #78 ",
+      "createdAt": "2023-11-23T13:35:34Z",
+      "updatedAt": "2023-11-23T14:14:42Z",
+      "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "11543aded76af894a0588aab45acaa54bd7564b4",
+      "headRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "78-sd-jwt-vc-credential-offer-leftovers",
+      "headRefOid": "0c49cf25834ad6d387d5694a89060d174d7042c2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5oGZXS",
+          "commit": {
+            "abbreviatedOid": "0c49cf2"
+          },
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I suggest to drop the whole section. ",
+          "createdAt": "2023-11-23T13:49:08Z",
+          "updatedAt": "2023-11-23T13:49:08Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5oGkYi",
+          "commit": {
+            "abbreviatedOid": "0c49cf2"
+          },
+          "author": "TimoGlastra",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "This repo currently point to https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html, which currently hosts draft 11 of OID4VCI and still includes the credential offer objects.\r\n\r\nShould the draft at openid be updated, or can we point this spec specifically to a different version of the draft?",
+          "createdAt": "2023-11-23T14:14:42Z",
+          "updatedAt": "2023-11-23T14:14:42Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
