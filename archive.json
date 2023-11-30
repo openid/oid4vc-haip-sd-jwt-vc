@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-28T00:26:21.458039+00:00",
+  "timestamp": "2023-11-30T00:26:19.814815+00:00",
   "repo": "vcstuff/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1432,7 +1432,7 @@
       "labels": [],
       "body": "The HAIP specifies in Section 5 for OpenID4VP that:\r\n\r\n> Response mode MUST be direct_post with redirect_uri as defined in Section 6.2 of [OID4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#name-response-mode-direct_post).\r\n\r\nHowever, `redirect_uri` must not be present when the Response Mode is `direct_post` as described in the OpenID4VP specs in Section [6.2-7.2](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-6.2-7.2):\r\n\r\n> If the redirect_uri Authorization Request parameter is present when the Response Mode is direct_post, the Wallet MUST return an invalid_request Authorization Response error.\r\n\r\nTherefore, I assume that the HAIP should use `response_uri` instead of `redirect_uri` which would align with the OpenID4VP specs.",
       "createdAt": "2023-11-01T16:15:22Z",
-      "updatedAt": "2023-11-22T17:21:28Z",
+      "updatedAt": "2023-11-29T17:07:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -1455,6 +1455,13 @@
           "body": "If we mandate redirect, we mandate the same device flow, correct?\nSo I'm unsure",
           "createdAt": "2023-11-22T17:21:27Z",
           "updatedAt": "2023-11-22T17:21:27Z"
+        },
+        {
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "OID4VP currently does not limit the usage of redirects after direct_post to only same-device flows. even though the security benefit that this redirect gives for the same-device does not apply for cross-device flows. before we make any clarifications on this topic in HAIP, we should probably make it clearer in oid4vp itself. here is the issue :) \r\nhttps://github.com/openid/OpenID4VP/issues/25",
+          "createdAt": "2023-11-29T17:07:39Z",
+          "updatedAt": "2023-11-29T17:07:39Z"
         }
       ]
     },
@@ -5927,13 +5934,13 @@
       "labels": [],
       "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
       "createdAt": "2023-11-14T15:16:22Z",
-      "updatedAt": "2023-11-22T19:16:54Z",
+      "updatedAt": "2023-11-29T16:58:36Z",
       "baseRepository": "vcstuff/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
       "headRepository": "lissi-id/oid4vc-haip-sd-jwt-vc",
       "headRefName": "71-response-uri-fix",
-      "headRefOid": "cd0f1ac7841da24859f0d5a401f731e260e1809b",
+      "headRefOid": "a52fae5be7098ae4099f3d729a56ca893d5d7a12",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6038,6 +6045,79 @@
               "updatedAt": "2023-11-22T19:16:54Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5om4s4",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "cryptphil",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-29T11:17:20Z",
+          "updatedAt": "2023-11-29T11:17:21Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Ah okay thanks for the clarification, I will fix it.",
+              "createdAt": "2023-11-29T11:17:20Z",
+              "updatedAt": "2023-11-29T11:17:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5om-o9",
+          "commit": {
+            "abbreviatedOid": "cd0f1ac"
+          },
+          "author": "cryptphil",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-29T11:32:11Z",
+          "updatedAt": "2023-11-29T11:32:11Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I added your suggestion and also mentioned section 11.5 for the implementation details. Please have another look and let me know if it's okay.",
+              "createdAt": "2023-11-29T11:32:11Z",
+              "updatedAt": "2023-11-29T11:32:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5opxlS",
+          "commit": {
+            "abbreviatedOid": "a52fae5"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-11-29T16:55:37Z",
+          "updatedAt": "2023-11-29T16:55:38Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n   * Response mode MUST be `direct_post`. The verifier MUST return `redirect_uri` in response to the HTTP POST request from the wallet, where the wallet redirects the user to, as defined in Section 6.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post` are given in Section 11.5 of [@!OIDF.OID4VP].\r\n```\r\nsorry, original text i suggested was pretty awkward..",
+              "createdAt": "2023-11-29T16:55:37Z",
+              "updatedAt": "2023-11-29T16:55:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5opzCZ",
+          "commit": {
+            "abbreviatedOid": "a52fae5"
+          },
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "made some more suggestions since the original text i suggested was pretty awkward.. approving assuming something like my current suggestions would be accepted",
+          "createdAt": "2023-11-29T16:58:36Z",
+          "updatedAt": "2023-11-29T16:58:36Z",
+          "comments": []
         }
       ]
     },
