@@ -3,7 +3,7 @@ title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC"
 abbrev = "oid4vc-haip-sd-jwt-vc"
 ipr = "none"
 workgroup = "OpenID Connect"
-keyword = ["security", "openid4vc", "sd-jwt"]
+keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
 
 [seriesInfo]
 name = "Internet-Draft"
