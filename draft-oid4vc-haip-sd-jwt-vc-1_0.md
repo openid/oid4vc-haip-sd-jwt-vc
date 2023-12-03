@@ -1,6 +1,6 @@
 %%%
 title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 00"
-abbrev = "draft-oid4vc-haip-sd-jwt-vc"
+abbrev = "oid4vc-haip-sd-jwt-vc"
 ipr = "none"
 workgroup = "Digital Credentials Protocols"
 keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
