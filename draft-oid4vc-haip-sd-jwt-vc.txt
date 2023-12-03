@@ -6,7 +6,7 @@ OpenID Connect                                                 K. Yasuda
                                                                Microsoft
                                                           T. Lodderstedt
                                                               sprind.org
-                                                        23 November 2023
+                                                         3 December 2023
 
 
     OpenID4VC High Assurance Interoperability Profile with SD-JWT VC
