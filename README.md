@@ -2,12 +2,12 @@
 
 This is the working area for the High Assurance Interoperability Profile of OpenID4VC with SD-JWT VC.
 
-* [Editor's Copy](https://vcstuff.github.io/oid4vc-haip-sd-jwt-vc/#go.oid4vc-haip-sd-jwt-vc.html)
+* [Editor's Copy](https://openid.github.io/oid4vc-haip-sd-jwt-vc/#go.oid4vc-haip-sd-jwt-vc.html)
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/vcstuff/high-assurance-profile/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/openid/high-assurance-profile/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
