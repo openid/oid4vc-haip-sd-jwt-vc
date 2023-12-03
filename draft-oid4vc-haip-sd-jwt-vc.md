@@ -7,7 +7,7 @@ keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-oid4vc-haip-sd-jwt-vc-1_0-00"
+value = "draft-oid4vc-haip-sd-jwt-vc-latest"
 status = "standard"
 
 [[author]]
