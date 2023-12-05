@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-03T00:28:27.227016+00:00",
+  "timestamp": "2023-12-05T00:26:54.486272+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -6334,6 +6334,89 @@
           "body": "This repo currently point to https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html, which currently hosts draft 11 of OID4VCI and still includes the credential offer objects.\r\n\r\nShould the draft at openid be updated, or can we point this spec specifically to a different version of the draft?",
           "createdAt": "2023-11-23T14:14:42Z",
           "updatedAt": "2023-11-23T14:14:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDOJcWsFs5g_KIo",
+      "title": "changed draft name and added revision number",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/80",
+      "state": "OPEN",
+      "author": "tlodderstedt",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-03T15:21:49Z",
+      "updatedAt": "2023-12-03T18:28:20Z",
+      "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
+      "headRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "adopt-draft-naming",
+      "headRefOid": "bd71d8acc286f44e88479a466e397f647a24a2e6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Please add \" - draft 00\" to the title line so we can publish to openid.net/specs/ after adoption and add a History section with a history entry for 00. Thanks.\r\n\r\nit already has draft in the title",
+          "createdAt": "2023-12-03T16:59:12Z",
+          "updatedAt": "2023-12-03T16:59:12Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "body": "The title is currently \"OpenID4VC High Assurance Interoperability Profile with SD-JWT VC\".  Please change this to \"OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 00\".",
+          "createdAt": "2023-12-03T17:27:35Z",
+          "updatedAt": "2023-12-03T17:27:35Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "body": "Also, please add the \"Notices\" appendix like the one at https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-12.html#name-notices and an \"Acknowledgements\" appendix.",
+          "createdAt": "2023-12-03T17:33:05Z",
+          "updatedAt": "2023-12-03T17:33:05Z"
+        },
+        {
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> The title is currently \"OpenID4VC High Assurance Interoperability Profile with SD-JWT VC\". Please change this to \"OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 00\".\r\n\r\n<img width=\"721\" alt=\"image\" src=\"https://github.com/openid/oid4vc-haip-sd-jwt-vc/assets/328358/b19902c3-7689-43a3-91a6-9f3d040cde84\">\r\n",
+          "createdAt": "2023-12-03T17:34:18Z",
+          "updatedAt": "2023-12-03T17:34:18Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "body": "The checklist of OpenID spec contents is at https://openid.net/wg/resources/naming-and-contents-of-specifications/.\r\n",
+          "createdAt": "2023-12-03T17:36:42Z",
+          "updatedAt": "2023-12-03T17:36:42Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "body": "Finally, before we publish to openid.net/specs/, I propose that we update the pathname to align with other specs in the family.  The pathname is currently oid4vc-haip-sd-jwt-vc.  To me, the logical pathname would be openid-4-verifiable-credential-haip-sd-jwt-vc-1_0 or (shorter) openid-4-vc-haip-sd-jwt-vc-1_0.  Those are more like openid-4-verifiable-credential-issuance-1_0, for instance.  Thanks.\r\n\r\n(I particularly think that we need to change \"oid\", as OID means Object Identifier to most people in the identity space, as used in X.509, and doesn't incorporate the usual openid branding.)",
+          "createdAt": "2023-12-03T18:28:19Z",
+          "updatedAt": "2023-12-03T18:28:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5o-3Qm",
+          "commit": {
+            "abbreviatedOid": "e7cdab4"
+          },
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please add \" - draft 00\" to the title line so we can publish to openid.net/specs/ after adoption and add a History section with a history entry for 00.  Thanks.",
+          "createdAt": "2023-12-03T16:50:42Z",
+          "updatedAt": "2023-12-03T16:50:42Z",
           "comments": []
         }
       ]
