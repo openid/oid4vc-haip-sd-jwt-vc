@@ -374,12 +374,15 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 `iat` and `exp` JWT claims express both the validity period of both the signature and the claims about the subject, unless there is a separate claim used to express the validity of the claims.
 
+# Security Considerations
+
+TBD.
 
 ## Media Type Registration
 
-This section requests registration of the following media types [@!RFC2046] in
-the "Media Types" registry [@!IANA.MediaTypes] in the manner described
-in [@!RFC6838].
+This section requests registration of the following media types [@RFC2046] in
+the "Media Types" registry [@IANA.MediaTypes] in the manner described
+in [@RFC6838].
 
 To indicate that the content of a JWS is a Wallet Instance Attestation:
 
@@ -388,7 +391,7 @@ To indicate that the content of a JWS is a Wallet Instance Attestation:
   * Required parameters: n/a
   * Optional parameters: n/a
   * Encoding considerations: binary; A JWT-based Wallet Instance Attestation object is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
-  * Security considerations: See (#Security) of [[ this specification ]]
+  * Security considerations: See (#security-considerations) of [[ this specification ]]
   * Interoperability considerations: n/a
   * Published specification: [[ this specification ]]
   * Applications that use this media type: Applications using [[ this specification ]] for issuing and validating Wallet Instance Attestations.
