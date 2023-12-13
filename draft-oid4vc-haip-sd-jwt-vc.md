@@ -377,9 +377,9 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 ## Media Type Registration
 
-This section requests registration of the following media types [@RFC2046] in
-the "Media Types" registry [@IANA.MediaTypes] in the manner described
-in [@RFC6838].
+This section requests registration of the following media types [@!RFC2046] in
+the "Media Types" registry [@!IANA.MediaTypes] in the manner described
+in [@!RFC6838].
 
 To indicate that the content of a JWS is a Wallet Instance Attestation:
 
