@@ -86,7 +86,7 @@ The following items are out of scope for the current version of this document, b
 
 ## Scenarios/Business Requirements
 
-* Combined Issuance of SD-JWT VC and ISO mdoc 
+* Combined Issuance of SD-JWT VC and ISO mdoc
 * Both issuer-initiated and wallet-initiated issuance
 * eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0
 
@@ -368,20 +368,20 @@ The cryptographic features are required by the following operations:
 - Presentation using the cryptografic proof of possession of the Credentials.
 
 With the aim to ensure a secure interoperability model for all ecosystem participants,
-Issuers, Holders, and Verifiers MUST support P-256 (secp256r1) as a key type with the ES256 JWT algorithm [@!RFC7518] for the creation and the verification of the signatures, 
+Issuers, Holders, and Verifiers MUST support P-256 (secp256r1) as a key type with the ES256 JWT algorithm [@!RFC7518] for the creation and the verification of the signatures,
 This requirement is also in accordance with the following specifications, which complement the High Assurance Interoperability Profile:
 
 - SD-JWT-VC [@!I-D.ietf-oauth-sd-jwt-vc]
 - DPoP [@!RFC9449]
 - OAuth 2.0 Attestation-Based Client Authentication [@!I-D.looker-oauth-attestation-based-client-auth]
 
-When using this profile alongside other cryptosuites, each entity SHOULD explicit the supported algorithms and key types in its metadata for the processes of the signature operations. 
+When using this profile alongside other cryptosuites, each entity SHOULD explicit the supported algorithms and key types in its metadata for the processes of the signature operations.
 
 # Hash Algoritms
 
 The hash algorithm SHA256 MUST be supported by all the entities to generate and validate the digests in the SD-JWT VC and ISO mdoc.
 
-When using this profile alongside other hash algorithms, each entity SHOULD explicit the supported algorithms in its metadata. 
+When using this profile alongside other hash algorithms, each entity SHOULD explicit the supported algorithms in its metadata.
 
 # Implementations Considerations
 
