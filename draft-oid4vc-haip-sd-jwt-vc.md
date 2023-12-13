@@ -52,6 +52,7 @@ The audience of the document is implementers that require a high level of securi
 # Terminology
 
 This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiable Credential" as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
+In this document, the term "Holder" is also synonymous with "Wallet", indicating the entity that receives, stores, presents, and manages Verifiable Credentials.
 
 # Scope
 
@@ -70,8 +71,8 @@ The following aspects are in scope of this interoperability profile:
 
 Assumptions made are the following:
 
-* The issuers and verifiers cannot pre-discover wallet’s capability
-* The issuer is talking to the wallet supporting the features defined in this profile (via wallet invocation mechanism)
+* The issuers and verifiers cannot pre-discover Wallet’s capability
+* The issuer is talking to the Wallet supporting the features defined in this profile (via wallet invocation mechanism)
 * There are mechanisms in place for the verifiers and issuers to discover each other’s capability
 
 ## Out of Scope
@@ -112,8 +113,8 @@ Both Wallet initiated and Issuer initiated issuance is supported.
 ## Credential Offer
 
 * The Grant Types `authorization_code` and `urn:ietf:params:oauth:grant-type:pre-authorized_code` MUST be supported as defined in Section 4.1.1 in [@!OIDF.OID4VCI]
-* For Grant Type `authorization_code`, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The wallet MUST use that value in the `scope` Authorization parameter. For Grant Type `urn:ietf:params:oauth:grant-type:pre-authorized_code`, the pre-authorized code is used by the issuer to identify the credential type(s).
-* As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
+* For Grant Type `authorization_code`, the Issuer MUST include a scope value in order to allow the Wallet to identify the desired credential type. The Wallet MUST use that value in the `scope` Authorization parameter. For Grant Type `urn:ietf:params:oauth:grant-type:pre-authorized_code`, the pre-authorized code is used by the issuer to identify the credential type(s).
+* As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the Wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
 
 Note: The Authorization Code flow does not require a Credential Offer from the Issuer to the Wallet. However, it is included in the feature set of the Credential Offer because it might be easier to implement with existing libraries and on top of existing implementations than the pre-authorized code Grant Type.
 
@@ -143,9 +144,9 @@ Wallets MUST use attestations following the definition given in [@!I-D.ietf-oaut
 
 In addition to this definition, the Wallet Attestation MAY contain the following claims in the `cnf` element:
 
-* `key_type`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the Wallet, this might be a secure element (in case of a wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud Wallet). This specification defines the following values for `key_type`:
+* `key_type`: OPTIONAL. JSON String that asserts the security mechanism the Wallet uses to manage the private key associated with the public key given in the `cnf` claim. This mechanism is based on the capabilities of the execution environent of the Wallet, this might be a secure element (in case of a Wallet residing on a smartphone) or a Cloud-HSM (in case of a cloud Wallet). This specification defines the following values for `key_type`:
   * `software`: It MUST be used when the Wallet uses software-based key management.
-  * `hardware`: It MUST be used when the wallet uses hardware-based key management.
+  * `hardware`: It MUST be used when the Wallet uses hardware-based key management.
   * `tee`: It SHOULD be used when the Wallet uses the Trusted Execution Environment for key management.
   * `secure_enclave`: It SHOULD be used when the Wallet uses the Secure Enclave for key management.
   * `strong_box`: It SHOULD be used when the Wallet uses the Strongbox for key management.
@@ -162,7 +163,7 @@ The Wallet Attestation MAY also contain the following claim:
 
 * `aal`: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the `cnf` claim.
 
-To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+To obtain the issuer's Public key for verification, Wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 
 This is an example of a Wallet Instance Attestation:
 
@@ -174,7 +175,7 @@ This is an example of a Wallet Instance Attestation:
 }
 .
 {
-  "iss": "<identifier of the issuer of this wallet attestation>",
+  "iss": "<identifier of the issuer of this Wallet attestation>",
   "sub": "<`client_id` of the OAuth client>",
   "iat": 1516247022,
   "exp": 1541493724,
@@ -203,7 +204,7 @@ This is an example of a Wallet Instance Attestation:
 # OpenID for Verifiable Presentations
 
    * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
-   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
+   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the Wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
@@ -221,7 +222,7 @@ This is an example of a Wallet Instance Attestation:
 
 To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [@!OIDF.SIOPv2].
 
-   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
+   * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the Wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * `subject_syntax_types_supported` value MUST be `urn:ietf:params:oauth:jwk-thumbprint`
 
 # SD-JWT VCs {#sd-jwt-vc}
@@ -243,7 +244,7 @@ In addition, this profile defines the following additional requirements.
 |status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
-* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
+* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The Wallet and the verifier  MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
 * The `vct` JWT claim as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 * The `cnf` claim [@!RFC7800] MUST conform to the definition given in [@!I-D.ietf-oauth-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
@@ -337,7 +338,7 @@ The following is a non-normative example of a Credential Response with Credentia
 
 ### Verifier Metadata
 
-The Verifier SHOULD add a `vp_formats` element to its metadata (e.g. in the `client_metadata` authorization request parameter) to let the wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key `vc+sd-jwt`, the value is an object consisting of the following elements:
+The Verifier SHOULD add a `vp_formats` element to its metadata (e.g. in the `client_metadata` authorization request parameter) to let the Wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key `vc+sd-jwt`, the value is an object consisting of the following elements:
 
 * `sd-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values.
 * `kb-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
