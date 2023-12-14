@@ -359,7 +359,7 @@ The following is a non-normative example of a presentation definition for a SD-J
 
 # Crypto Suites
 
-The cryptographic features are required by the following operations:
+Cryptography is required by the following operations:
 
 - Attestation of trust with the entities of the ecosystem.
 - Issuance and presentation using the cryptografic proof of possession of the Wallet Instance Attestations.
