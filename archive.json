@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-12T00:26:52.123719+00:00",
+  "timestamp": "2023-12-14T00:26:07.018466+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -219,7 +219,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "If the goal of the x5c is the key attestation, this works fine.\r\n\r\nIf instead policies and additional information like metadata are required, x5c simply doesn't work unless it would be \"inflated\" with custom elements for carrying metadata and policies and grants. That from what can be said about x509, inflating it so much would be like making an 80-year-old man do bodybuilding!\r\n\r\nI suggest the inclusion of OIDC Federation Trust chain in this profile, that's both web attested key and chain of verifiable statements issued by more than a single party.\r\n\r\nthe key question is: what defines the level high? key attestations (as oidc core did for years) or a high level would bring also grants/policies, metadata and all the interop schema as high verifiable and assured?\r\n\r\nSince every issued VC or any kind of attestation should not be repudiable in the future, that's something pertaining the assurance level I think",
           "createdAt": "2023-05-20T20:29:33Z",
           "updatedAt": "2023-05-21T21:49:57Z"
@@ -233,7 +233,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I agreed, since federation only uses HTTPs but from Draft 29 there's the trust_chain JWS header claim that allows metadata, keys and policies attestation even in offline flows\r\n\r\nan https alone is not attestable in offline flows and x509 doesn't have metadata, policies and trust marks/additional-VCs in it related to the issuer\r\n\r\nfederation trust_chain has",
           "createdAt": "2023-05-22T20:42:19Z",
           "updatedAt": "2023-05-22T20:42:19Z"
@@ -247,7 +247,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "yes, I went quite out of the border\r\n\r\nThe question is there any interest to have different kind of issuer identifiers?\r\n\r\nI'm in favor of HTTP URLs, even if there may be some cases where a did resolution methods resolve to HTTPs URL as well, as discussed in the issue below:\r\nhttps://github.com/vcstuff/draft-terbu-sd-jwt-vc/issues/41#issuecomment-1546743042\r\n\r\nAnyway, if there are milestone in this project this question doesn' seem a priority since that this profile can satisfy its scope using HTTPs URL\r\n\r\nso accept my excuse for the noise, it was just for sharing\r\n\r\n",
           "createdAt": "2023-05-23T17:29:21Z",
           "updatedAt": "2023-05-23T17:29:21Z"
@@ -280,7 +280,7 @@
       "comments": [
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "since the revocation for x509 should be always attested with web retrieval mechanisms, and that x509 works for key attestation only and needs to be extended with custom attributes to satisfy the requirements for policies and metadata/capabilities retrieval\r\n\r\nI'm in favour of using federation trust_chain as the best way to go to satisfy all the requirements for a high assurance profile that attests also grants and capabilities and not just the identity of an entity\r\n\r\nthen the question would be, where are the requirements?\r\nIt is still a work in progress but in a way or another it is becoming part of our shared knowledge:\r\n\r\nhttps://docs.google.com/document/d/1Dk_8UmytCI4VhCx5VMnXmEzdXRvgJozGeq1GNHZOQik/edit#heading=h.jb7a7nddoxft",
           "createdAt": "2023-05-22T20:32:01Z",
           "updatedAt": "2023-05-22T20:32:01Z"
@@ -335,7 +335,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "The meaning of ephemeral is given by the value its owner give to it, and then how she uses the credential\r\n\r\nat the same time using this term \"ephemeral\" we assume that the credential is a one-time-credential, while another case is vc used for specific audiences and requested/issued/obtained just for that, since it will be used more than a single time (audience constrained)\r\n\r\nbut at the same time, these are not properties of the credential itself, but the usage/scope given to these by its owner\r\n\r\ninteresting anyway :-)\r\n\r\n",
           "createdAt": "2023-05-20T23:25:48Z",
           "updatedAt": "2023-05-20T23:26:17Z"
@@ -375,7 +375,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I suggest the jwk thumbprint value for the sub value (and consequently for the client_id in the issuance flow)\r\n\r\nthe sub will be always derived from the cnf.jwk, producing a privacy-preserving value since it would be like a kid\r\n\r\nthis proposal assumes that the wallet instance could only be tracked with its public key, considering that it should have/use more than a single key, the risk is mitigated",
           "createdAt": "2023-05-22T20:26:56Z",
           "updatedAt": "2023-05-22T20:26:56Z"
@@ -389,7 +389,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I'm not in favour of sub == iss since Wallet Provider and Wallet Instance are different subjects\r\n\r\nthe Wallet Provider (iss) issues the Wallet Instance Attestation to a Wallet Instance (sub), so these are definitively different\r\n\r\nif we admit that the only way to identify/trace a wallet instance is exploiting the public key (used in Holder binding) ad that the Wallet Instance should have more than a key and obtain fresh documents with a different key, we may assume that the subject identifier if the key, that's not unique, and that from this it could be derived the sub value",
           "createdAt": "2023-05-23T17:33:02Z",
           "updatedAt": "2023-05-23T17:33:02Z"
@@ -444,7 +444,7 @@
       "comments": [
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "this issue is related to the doubts on removing client_id from the token endpoint (issuance phase)\r\n\r\nI'm in favor to keep client_id since there's a legacy schema for the token endpoint that we are technically able to respect, so I'd not break an existing token endpoint, keeping the client_id as it is using a resonable strategy to create it for the wallet instance without breaking privacy (multiple client_id each one derived from a public key of the wallet instance)",
           "createdAt": "2023-05-22T20:22:19Z",
           "updatedAt": "2023-05-22T20:22:19Z"
@@ -458,7 +458,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "Is this thread also relate to the one below?\r\nhttps://github.com/vcstuff/high-assurance-profile/issues/10#issuecomment-1559871971",
           "createdAt": "2023-05-23T17:36:07Z",
           "updatedAt": "2023-05-23T17:36:07Z"
@@ -496,7 +496,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "My only concern is that also this time new specifications are born that do not address the crucial issue of trust, in a paradigm where the citizen is at the center and consequently alone, considering that there's an important demand of the trust model, at a design level, and consequentially the demand the technical and implementation profiles for certifying trust.\r\n\r\nConsidering that profiles for attesting trust exist, it would be really important to at least reference them in this new spec (and answer simple questions, like the ones here: [draft-looker-oauth-attested-key-based-client- authentication](https://github.com/vcstuff/draft-looker-oauth-attested-key-based-client-authentication/issues/3#issuecomment-1555952616)) by giving some non normative example about how to deal with these, in this new specs.\r\n\r\nin addition to the concern, I want to remove the fear that not wanting/being able to deal with the issue of trust, consequently it will not be dealt with at all, leaving a huge design hole that would allow anyone to do it \"in their own way\" and with clear security risks.",
           "createdAt": "2023-05-20T20:18:12Z",
           "updatedAt": "2023-05-20T20:19:00Z"
@@ -527,7 +527,7 @@
       "comments": [
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "semantically, the question is <<High assurance interop profile, of what?>>\r\n\r\nthe schema should have at least a subject\r\n\r\nvc-hap://?\r\n\r\nbut, anyway, if there's an high level, where are the middle and the low?\r\nHigh is high in comparison to something that is less high :-)\r\n\r\naccording to what already made with ACR Values, we should define three levels and then say, this is \"high\" ",
           "createdAt": "2023-05-20T20:23:45Z",
           "updatedAt": "2023-05-20T20:23:45Z"
@@ -551,7 +551,7 @@
       "comments": [
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "wallet capabilities should be attested in the wallet instance attestation\r\nwallet should submit its wallet instance attestation to the request_uri URL using the HTTP POST method",
           "createdAt": "2023-05-20T23:39:17Z",
           "updatedAt": "2023-05-20T23:39:17Z"
@@ -565,7 +565,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "The Wallet Solution has many capabilities, these are attested by Wallet Provider to the Wallet Instance with the Wallet Instance Attestation, this latter should contain the policy and the interop metadata attesting the wallet instance capabilities and should be presented by Wallet Instance to prove its capabilities\r\n\r\nthis is the picture I have in mind",
           "createdAt": "2023-05-22T11:39:53Z",
           "updatedAt": "2023-05-22T11:39:53Z"
@@ -603,7 +603,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "we are not forced in using verifier_attestation JOSE claim, since we may use a trust_chain jose claim\r\n\r\nthe attestation is flat, while the trust chain attests all the trust relationships between the parties that attests the accreditation status of an entity, without a central registry",
           "createdAt": "2023-05-20T23:30:52Z",
           "updatedAt": "2023-05-20T23:30:52Z"
@@ -627,7 +627,7 @@
       "comments": [
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "federation trust_chain bring the verifier metadata in the trust attestation, and the federation_entity metadata defines a standard scheme for every kind of participant, this is here\r\n\r\nhttps://openid.net/specs/openid-connect-federation-1_0.html#section-4.7",
           "createdAt": "2023-05-22T20:15:39Z",
           "updatedAt": "2023-05-22T20:15:39Z"
@@ -658,7 +658,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "My bad since I didn't understand.\r\n\r\nI assume that the SIOP, then the material issuer of the id token, is the Wallet Instance and not the Wallet Provider.\r\nI assume that a SIOP may issue an id token including the wallet instance attestation containing the public key used to verify the signature of the id token, since the wallet instance attestation has the holder binding\r\n\r\nthe verifier given the id token and the wallet instance attestation, is able to trust that the wallet is secure and compliat to eidas, considering that the Wallet Instance Attestation SHOULD contain the trust chain (or x5c...) to give the proof that the Wallet Provider, that's its issuer, is reliable and attestable as trustworthy ",
           "createdAt": "2023-05-20T20:36:26Z",
           "updatedAt": "2023-05-20T20:36:26Z"
@@ -672,7 +672,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "> I don't understand the meaning of \"since the wallet instance attestation has the holder binding\".\r\n\r\n`cnf` claim in the payload of the Wallet Instance Attestation binds the holder public key in the JWS\r\n\r\n> it requests a wallet attestation VC in the same transaction.\r\n\r\nNot sure since the pseudonym should be also presented in offline flows. The Wallet Instance Attestation should expire and at the same time be usable in a configured time window\r\n\r\nif the wallet instance should have to ask a wallet instance attestation for every id token it issues the offline flows would not possible with pseudonymization\r\n\r\nI agree with your solution and at the same time I find the limits above, so I'd go for a wallet instance attestation usable in offline flows for pseudonymizations",
           "createdAt": "2023-05-22T20:13:50Z",
           "updatedAt": "2023-05-22T20:13:50Z"
@@ -686,7 +686,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "how to establish that the wallet instance that has issued that id token is the same that own that wallet instance attestation, since this latter is the sole proof that the wallet instance is reliable?",
           "createdAt": "2023-05-23T17:38:11Z",
           "updatedAt": "2023-05-23T17:38:11Z"
@@ -841,7 +841,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/32",
       "state": "OPEN",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "I read here\r\n\r\nhttps://github.com/vcstuff/high-assurance-profile/blob/main/draft-high-assurance-profile-oid4vc-sd-jwt-vc.md#issuer-identification-and-key-resolution-to-validate-an-issued-credential-issuer-key-resolution\r\n\r\nthat only x509 and .well-known/jwt-issuer MUST be supported\r\n\r\nAt the same time I have the \"perception\" that Federation has a higher level for the attestation of requirements and keys, since it brings metadata, policy and custom attestations (trust marks), and that todate we don't have clear requirements to compare x509 or .well-known/jwt-issuer more or less high.\r\n\r\nSince this new specification is dedicated to the High profile, I think it is appropriate to do a PR to obtain the JWS `trust_chain` header parameter within this new profile",
@@ -890,7 +890,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "Oidc federation should be included in this specs since It Is a web pki that enables static trust chain to be submitted in a request or in any kind of jws, without requiring web Discovery to a domain name unless the chain Is not expired\r\n\r\n",
           "createdAt": "2023-06-22T23:45:43Z",
           "updatedAt": "2023-06-22T23:45:43Z"
@@ -974,7 +974,7 @@
       "labels": [],
       "body": "I was surprised to find that [FAPI](https://openid.net/specs/openid-financial-api-part-1-1_0.html) does not mandate refresh tokens. maybe this profile should also relax mandating refresh tokens..\r\n> the use of refresh tokens instead of long-lived access tokens for both public and confidential clients is recommended.",
       "createdAt": "2023-05-26T21:43:25Z",
-      "updatedAt": "2023-05-28T11:32:42Z",
+      "updatedAt": "2023-12-13T10:23:51Z",
       "closedAt": null,
       "comments": [
         {
@@ -983,6 +983,13 @@
           "body": "Agree to reconsider. We should be very sure and clear why we think refresh tokens are needed.\n\nIn my opinion, refresh tokens can help to achieve a better UX in the following cases:\n- Silent refresh of credentials, which is especially useful if the credential doesn't have a dynamic status management mechanisms. Given we will have that mechanism through the status list, we won't not necessarily need refresh tokens for this scenario.\n- Obtaining fresh copies of a credential that shall be used on a per RP basis or as ephemeral credentials. I don't see a compelling alternative to refresh tokens for this scenario. Do perhaps, we can make the use/implementation of refresh tokens depending on the privacy requirements of the deployment.",
           "createdAt": "2023-05-28T11:32:41Z",
           "updatedAt": "2023-05-28T11:32:41Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "I agree, in the italian impl profile we do not support the refresh token, as mentioned here\r\n\r\nhttps://github.com/italia/eudi-wallet-it-docs/issues/154",
+          "createdAt": "2023-12-13T10:23:50Z",
+          "updatedAt": "2023-12-13T10:23:50Z"
         }
       ]
     },
@@ -1061,7 +1068,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/48",
       "state": "OPEN",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [
         "OIDC.Federation"
@@ -1164,7 +1171,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/58",
       "state": "OPEN",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "              we should mandate the SVG file format for the logo, since it grants a high quality rendering in any kind of display resolution\r\n\r\n_Originally posted by @peppelinux in https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/56#discussion_r1263741725_\r\n            ",
@@ -1181,7 +1188,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I don't totally disagree with you but I'd suppose that a specific web file format for a logo may have more sense in an implementation profile than a general purpose standard\r\n\r\njust some text with some guidance/consideration I think that would be good enough, but don't know then if here or in openid4vci :-)\r\n\r\n",
           "createdAt": "2023-07-20T22:42:53Z",
           "updatedAt": "2023-07-20T22:42:53Z"
@@ -1195,14 +1202,14 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/59",
       "state": "OPEN",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [
         "OIDC.Federation"
       ],
       "body": "I-D.terbu-sd-jwt-vc doesn't support OIDC Federation, that's a webpki with trust chains and a solid alternative to X.509\r\n\r\n_Originally posted by @peppelinux in https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/56#discussion_r1269938935_\r\n\r\nTorsten's reply:\r\nnothing in the sd-jwt vc draft precludes use of OIDC Federation, in the same way as it does not preclude x.509\r\nHAIP mandates jwt issuer and x.509, adding another (mandatory to implement) option seems a complexity driver, but let's talk. Please open an issue about it as this PR is about a different topic.",
       "createdAt": "2023-07-30T15:40:32Z",
-      "updatedAt": "2023-09-17T04:03:17Z",
+      "updatedAt": "2023-12-13T10:50:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -1214,7 +1221,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I never understood why, honestly.\r\n\r\nX.509 approach attests keys, as webPKI does. Federation attests metadata and trust marks as well and give a distributed approach to implement trusted lists.\r\n\r\nI have the fear that the pursuit of simplicity is reducing the functionality and requirements that will be needed later and then it will require custom extensions in X.509. \r\n\r\nLast but not least, the requirement of non-repudiation of the public keys published, which cannot be achieved with a webpki that offers keys in plain text.\r\n\r\nIt's easier to work with new generations of developers using JWT than X.509, it's easier to build a trust mark and use it as a long lived attestation, than to bloat X.509 with things it wasn't meant for. This is a though also in terms of design of the solution",
           "createdAt": "2023-09-01T23:30:49Z",
           "updatedAt": "2023-09-01T23:30:49Z"
@@ -1232,6 +1239,13 @@
           "body": "I think @peppelinux makes an important point that we are talking about where is the \"Federation attests metadata and trust marks\" - in other words where should the meta data around the issuer and verifier be stored. In the GAIN POC the term \"Trusted Network\" is used. Additional meta data around issuers and verifiers (e.g. who is the organisation behind the issuer, verifier, who is privacy controller etc,) is going to be extremely important especially to create that \"Trusted Network\" especially for regulated industries and as governments increase regulation of digital platforms.\r\n\r\nI do think there are going to be different technical standards in this area emerge on how to create that trust both within and identity ecosystem/trust framework and between identity ecosystems/trust frameworks - including Government mandated standards - so I can see why there is debate over a particular standard being specified.\r\n\r\nSince this working group is focused on the issuer-holder-verifier, perhaps a way around this is to use the term \"verifiable data registry\" and add \"verifiable data registry\" column in 3.3. Standards where we already mention Issuer, Wallet, Verifier - which would allow us to specify which of the standards does the verifiable data registry\" need to adopt. This would allow us to add competing standards such as OIDC.Fed, pki.x509 etc. as a MAY in that fourth column. This would at least give implementers on what the alternative approaches are available to be used when implementing this group of specfications.\r\n\r\nI also not that the GAIN POC is currently referring to OpenID4IDA and OIDC.Fed within their work as a \"Discovery and Trust\" \"Control Plane\" and therefor there is logic in @peppelinux referring to OIDC.Fed. \r\n\r\nWould creating a fourth column \"verifiable data registry\" column in 3.3 and adding a row for OIDC.Fed with MAY in the fourth column be an acceptable path forward?\r\n\r\nIt may also be useful to add additional row in 3.3 for OpenID4IDA with a value of OPTIONAL.\r\n\r\nAs one of the key audiences of this specification is implementors of this group of standards I this it is important to provide guidance on what standards are available for implementors to choose on how and where that meta data should be created in order to create \"trust\" within the ecosystem.\r\n\r\nWhilst on the topic of identity trust, OIX comment \"For many types of transaction, digital or otherwise, organizations need to know who they are dealing with and what that person is able, or eligible, to do. The rise of Identity Theft means that organizations cannot rely on a person simply claiming to be who they are, independent verification and risk checks are required. Equally, genuine individuals may try to present false information about themselves in order to gain access to goods, services or environments that they do not have the eligibility for.\"\r\n\r\nThey are talking about an organisation being able to trust the individual. But they also miss the point that individuals also need to be able to trust the organisation (including the digital services they offer). As privacy regulation globally continues to shifts to protect the individual this meta data is going to be needed not only for the issuers and verifiers but also for the holder.",
           "createdAt": "2023-09-17T04:03:17Z",
           "updatedAt": "2023-09-17T04:03:17Z"
+        },
+        {
+          "author": "leifj",
+          "authorAssociation": "NONE",
+          "body": "I will put on my R&E hat and say that we do not believe a \"pure\" X.509 approach has a chance of working. Single hierarchy trust has been shown not to work many times over the last 20+ years when research and higher education has been operating trust infrastructure. As soon as the EU wallet goes beyond the very limited usecase of BA, MA and PhD degrees and start to involve research collaborations etc, single hierarchy (including trust status lists) models break down. We have ample experience that clearly show this to be true. For a quick introduction cf my blogpost at medium https://medium.com/@leifj/trust-does-not-scale-94bab5b67f5c. Note the example based on LIGO which isn't even close to unique - there are tons of these research infrastructures, each of which represent critical research and none of which is able to represent their trust requirements in a single hierarchy PKIs. \r\n\r\nFor the record: in R&E we are currently operating multiple interconnecting and overlapping trust federations with an excess of 20k services and organizations - globally (not just EU) and cross border.\r\n\r\nMaybe the argument is that the EU digital wallet won't support research but I seriously doubt this is the intent. In order to support the complexity we have *today* we will need the features present in OpenID federation - in fact we (as a community of trust operators) designed OpenID federation to reflect the complexity we have. ",
+          "createdAt": "2023-12-13T10:48:53Z",
+          "updatedAt": "2023-12-13T10:50:00Z"
         }
       ]
     },
@@ -1247,7 +1261,7 @@
       "labels": [],
       "body": "During the OAuth Security Workshop, Fabian's formal analysis highlighted that it is very hard to ensure the pre-auth code gets into the intended wallet. even when the PIN is used, if the QRcode with pre-auth code is scanned by a malicious wallet, chances are high that the user will type in the correct PIN received via a separate channel in the malicious wallet. \r\nAt the same time, I am reluctant to remove this flow, because it is important for the issuance when user authentication is done in-person in the government office.",
       "createdAt": "2023-08-26T20:20:32Z",
-      "updatedAt": "2023-09-19T15:05:13Z",
+      "updatedAt": "2023-12-13T10:24:47Z",
       "closedAt": null,
       "comments": [
         {
@@ -1305,6 +1319,13 @@
           "body": "Let us clarify what exactly we are talking about here. The attack I discovered during my formal security analysis assumes the following things:\r\n\r\n1. A malicious application is installed on the user's device\r\n2. The user selects the malicious application to process the credential offer\r\n\r\nAfter selecting the malicious app, the attacker can also ask for the user pin, which is not suspicious because the wallet is supposed to do that.\r\nAs mentioned above, the attack works even if wallet attestation is used, because the attacker injects the credential offer into an unmodified wallet.\r\nYou can see the procedure of the attack in this [sequence diagram](https://www.plantuml.com/plantuml/svg/VL5DQzj04BtlhnZSYmqfk3sQDiHEAIaKKkgMNW9bB8sZHTBiTcSsAltrtRKIUOCJw_W-tZozlHB5eB7lZBIMFGRieVOMtY-N1H9SvFhQ1QO0xvR695HjPJsomYQuGHAE0hldp1UHE1BMc9tx2xCRnoGAFxF-4ptOYcRmvgkzRtJJHJAGlZBWTflDJfeJPlOPMu9Vs7MaiomQciUWr18xGrn3kcZCCzDQ5QkM0cmfF50u6ANqZJKdtTInaBnQ4a-OiLvc1pmssi67jvTWL-CA6BKXJXPKwtXaCtaTgCuuTd2xtrD8H7AbAKufY6Bv7geewdgGgg6UxdXkHMwSw0NuGEjqnGNxZz8ZrdIH71I-MLuOTahWqXOv-h6IK4UL2k3J2kYzINGkCBnmlmZ9zBgm0Kehi7VXS16yPJCSScG5sxn8TSnoEGimWPDMnd_65sucD9C3dk-3HH_BFghSyHHl1dnwYn-k9ORlz2UIACpFJ0OVBoUrUCT2CCUg8f7Vck556LjKcx8tX8722afJJYt4HVHne8Mv8gvZt_q7).\r\nThis attack works whenever there is a state transfer from the issuer to the wallet application in the credential offer, and there is no further authentication of the user to the issuer after receiving the credential offer.\r\n@tlodderstedt To answer your question: The attack would also work with the ``issuer_state`` if there is no user authentication at the issuer after the authorization request is redirected to the issuer's authentication endpoint.",
           "createdAt": "2023-09-19T15:05:13Z",
           "updatedAt": "2023-09-19T15:05:13Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "I fully agree that pre-authorized code flow should be optional in the HAIP\r\n\r\nhere the motivations\r\nhttps://github.com/italia/eudi-wallet-it-docs/issues/172",
+          "createdAt": "2023-12-13T08:46:50Z",
+          "updatedAt": "2023-12-13T10:24:47Z"
         }
       ]
     },
@@ -1315,7 +1336,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/62",
       "state": "OPEN",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "once this PR goes in (https://github.com/openid/OpenID4VCI/pull/64/files), we should probably add `insufficient_wallet_security` or something as an error code? for now, let's open an issue on this.\r\n\r\n_Originally posted by @Sakurann in https://github.com/vcstuff/oid4vc-haip-sd-jwt-vc/pull/52#discussion_r1321313123_\r\n            ",
@@ -1504,6 +1525,53 @@
       "updatedAt": "2023-11-23T13:33:36Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 81,
+      "id": "I_kwDOJcWsFs55c8Ct",
+      "title": "Order should be an array of claims.keys",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/81",
+      "state": "OPEN",
+      "author": "ntsbs",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/blob/75a17220959a28a208b04546d4337b9b5ed5c5bd/draft-oid4vc-haip-sd-jwt-vc.md?plain=1#L294\r\n\r\nCurrently, the spec mentions the `order` field in the credential issuer metadata and it says that it is\r\n> An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.\r\n\r\nThis would mean:\r\n```\r\n[\r\n    \"Given Name\",\r\n    \"Surname\"\r\n]\r\n```\r\n\r\nTo reference the localized names makes no sense, especially since the `display` object is optional and it would be better to reference the keys of the `claims` object directly, therefore the `order` array should contain the attribute keys of the `claims` object in the order they should be displayed by the Wallet\r\n\r\nThis would mena:\r\n```\r\n[\r\n    \"given_name\", \r\n    \"last_name\"\r\n]\r\n```",
+      "createdAt": "2023-12-12T12:15:02Z",
+      "updatedAt": "2023-12-12T12:15:02Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 84,
+      "id": "I_kwDOJcWsFs55jBgS",
+      "title": "presentation_definition may be provided in the RP's metadata",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/84",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "I think that should enable the possibility to obtain the presentation_definition from the metadata instead that requiring it only in the authorization request\r\n\r\nhaving the presentation_definition in the metadata allows:\r\n\r\n1. the provisioning of metadata signed by a trusted third party, where the RP is allowed to use a specific presentation_definition\r\n2. the possibility to apply dynamic metadata policy, according to the OpenID Federation policy language\r\n\r\nCurrently in the specs we have\r\n\r\n> Presentation Definition JSON object MUST be sent using a presentation_definition parameter\r\n\r\nand it is not explicit if the presentation_definition MUST be provided in the Authorization request or in the metadata",
+      "createdAt": "2023-12-13T08:42:56Z",
+      "updatedAt": "2023-12-13T23:17:50Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "What about presentation_definition_uri? Can you solve this with that or how does it relate?",
+          "createdAt": "2023-12-13T11:01:50Z",
+          "updatedAt": "2023-12-13T11:01:50Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "metadata can be signed, withing a federation trust chain or by a TTP, and including a presentation_definition.\r\n\r\notherwise, presentation_definition_uri is a plaintext json that carries these risks:\r\n\r\n- repudiability, since it is not signed\r\n- repudiability, since it can change anytime without any verifiable proof of its past contents\r\n- dependency on external resources, relying on presentation_definition_uri means depending on an external resource just for a part of RP's capabilities, while metadata are more consistent\r\n\r\nthe only benefit I see in using presentation_definition_uri is that using HTTP GET the url should not be more long than 2048bytes, while a presentation_definition might contain a lot of information. At the same time, in the current implementation I see that request_uri is used very often ...",
+          "createdAt": "2023-12-13T23:17:49Z",
+          "updatedAt": "2023-12-13T23:17:49Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -2109,7 +2177,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/36",
       "state": "MERGED",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -2118,7 +2186,7 @@
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "591a60c45c9a4d2b9323d4d89722be0effb7b88a",
-      "headRepository": "peppelinux/high-assurance-profile",
+      "headRepository": null,
       "headRefName": "patch-1",
       "headRefOid": "428c3ea09f585f0712048d1c7c21ff6c91f792df",
       "closedAt": "2023-05-26T20:06:37Z",
@@ -2467,7 +2535,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "I have a good opinion about the possibility to use the WIA to give more guidance about how a wallet instance metadata discovery can be made, thanks to it\r\n\r\nthat's why I'd propose the following OPTIONAL claims to attests the WI capabilities, exemplified below in a non normative way\r\n\r\n````\r\n  \"attested_security_context\": \"https://trust-framework.example.org/LoA/basic\",\r\n  \"authorization_endpoint\": \"haip:\",\r\n  \"response_types_supported\": [\r\n    \"vp_token\"\r\n  ],\r\n  \"vp_formats_supported\": {\r\n    \"jwt_vp_json\": {\r\n      \"alg_values_supported\": [\"ES256\"]\r\n    },\r\n    \"jwt_vc_json\": {\r\n      \"alg_values_supported\": [\"ES256\"]\r\n    }\r\n  },\r\n  \"request_object_signing_alg_values_supported\": [\r\n    \"ES256\"\r\n  ],\r\n  \"presentation_definition_uri_supported\": false,\r\n````",
           "createdAt": "2023-07-20T22:56:44Z",
           "updatedAt": "2023-09-19T14:30:16Z"
@@ -2579,7 +2647,7 @@
             "abbreviatedOid": "74b182a"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-07-12T09:00:00Z",
@@ -2811,7 +2879,7 @@
             "abbreviatedOid": "c5214b7"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-15T10:24:13Z",
@@ -2831,7 +2899,7 @@
             "abbreviatedOid": "c5214b7"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-07-15T10:28:40Z",
@@ -2911,7 +2979,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-07-20T22:47:45Z",
@@ -3153,7 +3221,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-11T13:25:23Z",
@@ -3173,7 +3241,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-11T13:27:32Z",
@@ -3193,7 +3261,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-11T14:46:30Z",
@@ -3253,7 +3321,7 @@
             "abbreviatedOid": "72ed205"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-14T15:30:00Z",
@@ -3353,7 +3421,7 @@
             "abbreviatedOid": "c0a7c6a"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-09-19T14:07:35Z",
@@ -3373,7 +3441,7 @@
             "abbreviatedOid": "c0a7c6a"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-09-19T14:09:17Z",
@@ -3447,7 +3515,7 @@
             "abbreviatedOid": "74b182a"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-19T14:27:41Z",
@@ -3467,7 +3535,7 @@
             "abbreviatedOid": "74b182a"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-26T08:48:05Z",
@@ -3487,7 +3555,7 @@
             "abbreviatedOid": "d9e263c"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-09-26T08:50:48Z",
@@ -4168,7 +4236,7 @@
         },
         {
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "body": "There are some considerations made by service designers and accessibility domain experts that I would like to share to you.\r\n\r\nthese are not relevant for the scopes of this PR, so this proposal should be converted in a issue if you agree.\r\n\r\nThere are cases where a credential issuer would offer periodic updates about its issued credentials, cases where the issuer should communicate the recent news related to the use of the credential to the end user and owner of that credential\r\n\r\nthis could be implemented as web uri, the wallet instance periodically gets updates by hitting this refs.\r\nThe content type could be application/json if html could not be handly",
           "createdAt": "2023-07-14T13:37:56Z",
           "updatedAt": "2023-07-14T13:37:56Z"
@@ -4216,7 +4284,7 @@
             "abbreviatedOid": "6395526"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-07-14T13:31:33Z",
@@ -4316,7 +4384,7 @@
             "abbreviatedOid": "70de11b"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-20T20:38:54Z",
@@ -4356,7 +4424,7 @@
             "abbreviatedOid": "6395526"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-30T15:38:30Z",
@@ -4376,7 +4444,7 @@
             "abbreviatedOid": "70de11b"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-30T15:40:42Z",
@@ -4396,7 +4464,7 @@
             "abbreviatedOid": "2535697"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "CHANGES_REQUESTED",
           "body": "",
           "createdAt": "2023-07-30T15:41:50Z",
@@ -4456,7 +4524,7 @@
             "abbreviatedOid": "9d2ea2b"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-07-30T16:17:32Z",
@@ -4767,7 +4835,7 @@
             "abbreviatedOid": "66d4d8c"
           },
           "author": "peppelinux",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "MEMBER",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-25T13:42:41Z",
@@ -5861,7 +5929,7 @@
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/72",
       "state": "MERGED",
       "author": "peppelinux",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "According to:\r\n\r\n- [OpenID4VP Section-5.1-9 ](https://openid.github.io/OpenID4VP/openid-4-verifiable-presentations-wg-draft.html#section-5.1-9)\r\n- the non-normative example reported below, \r\n\r\n`vp_formats_supported` belongs to the wallet metadata and not to the verifier metadata/request\r\n\r\n````\r\nThe following is a non-normative example of client_metadata request parameter value in a request to present a SD-JWT VC.\r\n\r\n{\r\n    \"vp_formats\": {\r\n        \"vc+sd-jwt\": {\r\n            \"sd-jwt_alg_values\": [\r\n                \"ES256\",\r\n                \"ES384\"\r\n            ],\r\n            \"kb-jwt_alg_values\": [\r\n                \"ES256\",\r\n                \"ES384\"\r\n            ]\r\n        }\r\n    }\r\n}\r\n````\r\n\r\nfor this reason this PR changed `vp_formats_supported` in `vp_formats` because it is related to verifier's metadata",
@@ -5870,7 +5938,7 @@
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
-      "headRepository": "peppelinux/high-assurance-profile",
+      "headRepository": null,
       "headRefName": "patch-2",
       "headRefOid": "f2f63698ef68892234c4fc3b60177046aeee2b48",
       "closedAt": "2023-11-22T19:19:40Z",
@@ -5934,7 +6002,7 @@
       "labels": [],
       "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
       "createdAt": "2023-11-14T15:16:22Z",
-      "updatedAt": "2023-11-30T12:01:48Z",
+      "updatedAt": "2023-12-13T08:27:00Z",
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
@@ -5945,7 +6013,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "See also https://github.com/openid/OpenID4VP/pull/72",
+          "createdAt": "2023-12-13T08:26:59Z",
+          "updatedAt": "2023-12-13T08:26:59Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOJcWsFs5nHjbn",
@@ -6131,6 +6207,26 @@
           "createdAt": "2023-11-30T12:01:48Z",
           "updatedAt": "2023-11-30T12:01:48Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5qCnrU",
+          "commit": {
+            "abbreviatedOid": "8eb167e"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-12-13T08:19:47Z",
+          "updatedAt": "2023-12-13T08:19:56Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n   * Response mode MUST be `direct_post`. The verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 6.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post` are given in Section 11.5 of [@!OIDF.OID4VP].\r\n```",
+              "createdAt": "2023-12-13T08:19:47Z",
+              "updatedAt": "2023-12-13T08:19:56Z"
+            }
+          ]
         }
       ]
     },
@@ -6420,6 +6516,148 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 82,
+      "id": "PR_kwDOJcWsFs5h3mQJ",
+      "title": "editorial: Wallet is a defined term",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/82",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR aligns the term Wallet as a defined term within the document",
+      "createdAt": "2023-12-13T08:14:18Z",
+      "updatedAt": "2023-12-13T08:45:18Z",
+      "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
+      "headRepository": "peppelinux/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "wa",
+      "headRefOid": "4c168f55dfa5c3890be4a26f181fb31f60fb9626",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "This PR closes https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/64",
+          "createdAt": "2023-12-13T08:45:17Z",
+          "updatedAt": "2023-12-13T08:45:17Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 83,
+      "id": "PR_kwDOJcWsFs5h3sj2",
+      "title": "fix: bullet list rendering",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/83",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fix markdown rendering when navigating using github \r\n\r\n![immagine](https://github.com/openid/oid4vc-haip-sd-jwt-vc/assets/1297620/d24f605b-6ccc-4dbe-98b1-8652f1d51fe6)\r\n",
+      "createdAt": "2023-12-13T08:33:41Z",
+      "updatedAt": "2023-12-13T19:59:42Z",
+      "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
+      "headRepository": "peppelinux/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "ed1",
+      "headRefOid": "0a3258f4ce5550b2cd82d21d62bb94d14addc7bc",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't see any issues in the rendered version here: https://openid.github.io/oid4vc-haip-sd-jwt-vc/draft-oid4vc-haip-sd-jwt-vc.html",
+          "createdAt": "2023-12-13T11:05:31Z",
+          "updatedAt": "2023-12-13T11:05:31Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "@paulbastian you're right, the rendering problem is in the markdown preview in github",
+          "createdAt": "2023-12-13T19:59:41Z",
+          "updatedAt": "2023-12-13T19:59:41Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 85,
+      "id": "PR_kwDOJcWsFs5h4O3T",
+      "title": "editorials: Crypto Suites, hash alg sections, small others",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/85",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR Closes https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/69\r\n\r\n- aligns the use of the defined terms Issuer, Holder and Verifiers within the text\r\n- adds the section hash algorithms\r\n- adds Wallet Instance Attestation as defined term (since it was mentioned in the text as it were a defined term)",
+      "createdAt": "2023-12-13T10:06:53Z",
+      "updatedAt": "2023-12-13T10:18:22Z",
+      "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
+      "headRepository": "peppelinux/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "sec8",
+      "headRefOid": "3eba3e5660ded1b63934af2a4fe200b42ade2dc4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 86,
+      "id": "PR_kwDOJcWsFs5h4Z3K",
+      "title": "feat: section Media Type Registration for wallet-attestation+jwt",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/pull/86",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "this PR Closes https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/67",
+      "createdAt": "2023-12-13T10:35:16Z",
+      "updatedAt": "2023-12-13T23:09:34Z",
+      "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
+      "baseRefName": "main",
+      "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
+      "headRepository": "peppelinux/oid4vc-haip-sd-jwt-vc",
+      "headRefName": "mtr",
+      "headRefOid": "29861250a62ce38acca427c427a177a2776c03b9",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "paulbastian",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Doesn't this belong into attestation based client authentication draft?",
+          "createdAt": "2023-12-13T10:56:11Z",
+          "updatedAt": "2023-12-13T10:56:11Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "body": "I was wondering the same during its writing, I followed the related issue for its resolution. \r\n\r\nIf confirmed I can move this PR to attestation-based client auth draft. ",
+          "createdAt": "2023-12-13T23:09:33Z",
+          "updatedAt": "2023-12-13T23:09:33Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
