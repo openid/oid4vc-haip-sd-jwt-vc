@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-14T00:26:07.018466+00:00",
+  "timestamp": "2023-12-17T00:29:13.924602+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -6604,19 +6604,40 @@
       "labels": [],
       "body": "This PR Closes https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/69\r\n\r\n- aligns the use of the defined terms Issuer, Holder and Verifiers within the text\r\n- adds the section hash algorithms\r\n- adds Wallet Instance Attestation as defined term (since it was mentioned in the text as it were a defined term)",
       "createdAt": "2023-12-13T10:06:53Z",
-      "updatedAt": "2023-12-13T10:18:22Z",
+      "updatedAt": "2023-12-14T08:50:25Z",
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "75a17220959a28a208b04546d4337b9b5ed5c5bd",
       "headRepository": "peppelinux/oid4vc-haip-sd-jwt-vc",
       "headRefName": "sec8",
-      "headRefOid": "3eba3e5660ded1b63934af2a4fe200b42ade2dc4",
+      "headRefOid": "182e81bedd8da450c4e08879143273700e29a7af",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJcWsFs5qLNO6",
+          "commit": {
+            "abbreviatedOid": "3eba3e5"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-14T08:49:34Z",
+          "updatedAt": "2023-12-14T08:49:35Z",
+          "comments": [
+            {
+              "originalPosition": 128,
+              "body": "```suggestion\r\nCryptography is required by the following operations:\r\n```",
+              "createdAt": "2023-12-14T08:49:35Z",
+              "updatedAt": "2023-12-14T08:49:35Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 86,
