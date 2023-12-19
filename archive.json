@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-17T00:29:13.924602+00:00",
+  "timestamp": "2023-12-19T00:26:48.589619+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -6002,13 +6002,13 @@
       "labels": [],
       "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
       "createdAt": "2023-11-14T15:16:22Z",
-      "updatedAt": "2023-12-13T08:27:00Z",
+      "updatedAt": "2023-12-18T08:00:47Z",
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
       "headRepository": "lissi-id/oid4vc-haip-sd-jwt-vc",
       "headRefName": "71-response-uri-fix",
-      "headRefOid": "8eb167e8783afa05f7f66fc1c83cbd341c3a3551",
+      "headRefOid": "4b85b73f4441933a3820feb0469186e43694a9b7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6225,6 +6225,26 @@
               "body": "```suggestion\r\n   * Response mode MUST be `direct_post`. The verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 6.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post` are given in Section 11.5 of [@!OIDF.OID4VP].\r\n```",
               "createdAt": "2023-12-13T08:19:47Z",
               "updatedAt": "2023-12-13T08:19:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5qdPuR",
+          "commit": {
+            "abbreviatedOid": "8eb167e"
+          },
+          "author": "cryptphil",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-18T08:00:41Z",
+          "updatedAt": "2023-12-18T08:00:41Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I have fixed the capitalization of wallet, user, and verifier although it seems that it's not that consistent in the profile at the moment.",
+              "createdAt": "2023-12-18T08:00:41Z",
+              "updatedAt": "2023-12-18T08:00:41Z"
             }
           ]
         }
