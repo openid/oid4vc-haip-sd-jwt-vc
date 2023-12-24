@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-21T00:26:10.916146+00:00",
+  "timestamp": "2023-12-24T00:28:30.452227+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -1108,7 +1108,7 @@
       "id": "I_kwDOJcWsFs5qxeXb",
       "title": "Add SD-JWT VC profile for OID4VC",
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tlodderstedt",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -1117,8 +1117,8 @@
       ],
       "body": "also incorporate topics described in #47",
       "createdAt": "2023-07-06T11:21:36Z",
-      "updatedAt": "2023-07-12T16:18:53Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-21T14:13:30Z",
+      "closedAt": "2023-12-21T14:13:30Z",
       "comments": [
         {
           "author": "tlodderstedt",
@@ -1531,16 +1531,24 @@
       "id": "I_kwDOJcWsFs55c8Ct",
       "title": "Order should be an array of claims.keys",
       "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/81",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ntsbs",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/blob/75a17220959a28a208b04546d4337b9b5ed5c5bd/draft-oid4vc-haip-sd-jwt-vc.md?plain=1#L294\r\n\r\nCurrently, the spec mentions the `order` field in the credential issuer metadata and it says that it is\r\n> An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.\r\n\r\nThis would mean:\r\n```\r\n[\r\n    \"Given Name\",\r\n    \"Surname\"\r\n]\r\n```\r\n\r\nTo reference the localized names makes no sense, especially since the `display` object is optional and it would be better to reference the keys of the `claims` object directly, therefore the `order` array should contain the attribute keys of the `claims` object in the order they should be displayed by the Wallet\r\n\r\nThis would mena:\r\n```\r\n[\r\n    \"given_name\", \r\n    \"last_name\"\r\n]\r\n```",
       "createdAt": "2023-12-12T12:15:02Z",
-      "updatedAt": "2023-12-12T12:15:02Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-12-21T03:55:34Z",
+      "closedAt": "2023-12-21T03:55:33Z",
+      "comments": [
+        {
+          "author": "Sakurann",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "this is being fixed in https://github.com/openid/OpenID4VCI/pull/128/files#diff-1f424614b35a9899813079f1b1f6218631a2aedd993368ccb89bb81a9eda0289R2055",
+          "createdAt": "2023-12-21T03:55:34Z",
+          "updatedAt": "2023-12-21T03:55:34Z"
+        }
+      ]
     },
     {
       "number": 84,
@@ -1570,6 +1578,53 @@
           "body": "metadata can be signed, withing a federation trust chain or by a TTP, and including a presentation_definition.\r\n\r\notherwise, presentation_definition_uri is a plaintext json that carries these risks:\r\n\r\n- repudiability, since it is not signed\r\n- repudiability, since it can change anytime without any verifiable proof of its past contents\r\n- dependency on external resources, relying on presentation_definition_uri means depending on an external resource just for a part of RP's capabilities, while metadata are more consistent\r\n\r\nthe only benefit I see in using presentation_definition_uri is that using HTTP GET the url should not be more long than 2048bytes, while a presentation_definition might contain a lot of information. At the same time, in the current implementation I see that request_uri is used very often ...",
           "createdAt": "2023-12-13T23:17:49Z",
           "updatedAt": "2023-12-13T23:17:49Z"
+        }
+      ]
+    },
+    {
+      "number": 87,
+      "id": "I_kwDOJcWsFs56VrPj",
+      "title": "Replace SD-JWT VC profile by reference to definitions in OID4VCI and OID4VP",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/87",
+      "state": "OPEN",
+      "author": "tlodderstedt",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-21T14:14:04Z",
+      "updatedAt": "2023-12-21T14:14:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 88,
+      "id": "I_kwDOJcWsFs56ZvXx",
+      "title": "OpenID Federation 1.0 for HAIP",
+      "url": "https://github.com/openid/oid4vc-haip-sd-jwt-vc/issues/88",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "[OpenID Federation 1.0](https://openid.net/specs/openid-federation-1_0.html) provides:\r\n\r\n- a consolidated approach to build an infrastructure of trust;\r\n- a secure way to establish trust among different parties;\r\n- automatic mechanisms to evaluates the reliability and the compliance of each party to the common set of rules, and automatic mechanisms to remove the anomalies (policy language);\r\n- a flexible design where multiple technologies and protocol may exists (OAuth 2.0, OpenID Connect, other) where their metadata are described in a consolidated .well-known endpoint;\r\n- a secure way to create trust attestations, not repudiable over time, even when the cryptographic key changes.\r\n\r\n_Federations_ are groups of OAuth 2.0 Authorization Servers, OAuth 2.0 Resource Server, OpenID Providers (OPs), Relying Parties (RPs), Wallet Provider, OpenID Credential Issuers, anyother entity type, that have agreed to work together under a common set of rules and trust anchors (trusted third parties above all the other parties).\r\n\r\nThe High Assurance Interoperability Profile (HAIP) should support OpenID Federation 1.0 for the following reasons:\r\n\r\n1. **Scalability**: OpenID Federation 1.0 allows for the creation of large federations of providers and relying parties belonging to different organizations and domains. This can be beneficial for HAIP as it can potentially scale to support a large number of entities in large ecosystems where unilateral contracts and agreement between the entities would not be feasible.\r\n\r\n2. **Security**: OpenID Federation 1.0 includes security features such as the use of signed JSON Web Tokens (JWTs) for federation metadata, and their attestability through trusted third parties, which can help to ensure the integrity and authenticity of data and claims contained in it. It includes Trust Chain to guarranty that more than one entity confirms a truth about a subject, where the compromission of a single entity or statement within the trust chain would invalidate the trust evaluation.\r\n\r\n3. **Transparency**: The Federation API makes the Trust relationships transparent and navigable online by providing a standardized way to share and access trust information, enhancing trust in the ecosystem with a real-time navigation of the federation.\r\n\r\n4. **Flexibility**: \r\n    - The new wallet ecosystems may adopt a progressive approach where X.509 and Federation may exists together, offering the possibility of using X.509 and publishing the X.509 certificates issued by each subject and to each subject via the Federation API; at the same time the possibility, in the future, to abandon X.509 by continuing using only the Federation Trust Chains.\r\n    - Multiple roles and metadata may coexist in the same entity and verified within the same trust chain\r\n    - administrative properties pertaining the trust framework used or other compliance profile can be defined in the form of trust marks (verifiable attestations)\r\n    - metadata should be provided by each entity and they may be overloaded by superiors entities, in particular when metadata values are replaced or when the federation policy language applies arbitrary changes to the metadata.\r\n\r\nBy supporting OpenID Federation 1.0, HAIP can leverage this trust management mechanism, which is important in a high assurance environment where trust and security are paramounts.\r\n\r\n## Impacts on the current text\r\n\r\nThe text that needs to be extended by including a reference to OpenID Federation is the following\r\n\r\n> client_id_scheme value MUST be either x509_san_dns or verifier_attestation. The Wallet MUST support both. The Verifier MUST support at least one. \r\n\r\n> To obtain the issuer's public key for verification, verifiers MUST support Web-based key resolution, as defined in Section 5 of [[I-D.ietf-oauth-sd-jwt-vc](https://openid.github.io/oid4vc-haip-sd-jwt-vc/draft-oid4vc-haip-sd-jwt-vc.html#I-D.ietf-oauth-sd-jwt-vc)]. The JOSE header kid MUST be used to identify the respective key.\r\n\r\ntherefore, `client_id_scheme` MUST be one of: `x509_san_dns`, `verifier_attestation` AND `entity_id`; where `entity_id` refers to OpenID Federation. We may merge `entity_id` with `x509_san_dns` where a federation entity discovery process, aiming to build a federation trust chain, can be built starting from the https url used with the FQDN of the subject (contained in both `x509_san_dns` and `entity_id`). Using the FQDN contained in the certificate SAN the public key would be attested using X.509 and federation may be used to obtain trust marks and policies and metadata.\r\n\r\nNote: even the `verifier_attestation` alone could led to a federation entity discovery about its issuer, where the `iss` parameter contained in the attestation correspond to a https url of a federation entity.\r\n\r\nThe Web-based key resolution can the modular and extended with the federation entity discovery. A Federation Entity Discovery illustration [here](https://docs.google.com/presentation/d/13FvGbd-pxoKw4VMCrdjOE8MlGLAs6m04eRPHc0N_kRM/edit#slide=id.g2a20f8cf783_5_15). \r\n\r\nIn conclusion, it would be formally correct using the client_id_scheme set to `entity_id` to explicitly indicate the use of OpenID Federation. At the same time an OpenID Federation can be used with X.509 and verifier_attestation as extension.\r\n\r\n## Metadata resolution\r\n\r\nOpenID Federation Entity Configuration available at the .well-known/openid-federation endpoint should contain the metadata for each protocol/role supported by an entity. However, the metadata.$protocol-role may be an empty json object, enabling the possibility to obtain the metadata from a superior entity or using other .well-known endpoints. This enables a modular approach.\r\n\r\n## Consideration about the verifier attestations\r\n\r\nA verifier attestation must indicates within the `iss` claim the entity id of its issuer. The issuer MUST be identified and recognized as part of the federation/ecosystem in the role of verifier attester (accreditation body). the verifier_attestation should include an OpenID Trust Chain in its JWT headers, giving the evidence of the issuer state, roles and grants, at the issuance time. The federation trust chain is recommended, while a X.509 certificate chain is possible (even with less proofs and features, then requiring custom extentions). \r\n\r\n## Additional security considerations\r\n\r\nIt is a good practice to not relying only on TLS. For this reasons there are ecosystem that uses public keys published in at least two different places to let the participant of the ecosystem to double check the keys. Examples are eduGAIN SAML2 federation or the use of the eIDAS Trusted Lists. It would be required to cite in the HAIP seccons the recommendation to provide trust anchors/CAs public keys in central registries. Using Federation for the wallet ecosystem the recommendation is to provide trust anchors entity ids and public keys using the trusted lists and at the same time obtain the public keys from the TA's entity configuration, then check and confirm/use only the public keys that matches between the two.\r\n\r\n## Reference to other issues\r\n\r\n- https://github.com/oauth-wg/oauth-sd-jwt-vc/issues/41#issuecomment-1558801814\r\n\r\n",
+      "createdAt": "2023-12-22T08:29:18Z",
+      "updatedAt": "2023-12-22T16:42:20Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tlodderstedt",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm in favor of incorporating OpenID Federation in HAIP as a modular extension to the existing key management mechanisms to manage trust. I'm hesitant to add it as another key management mechanism. \r\n\r\nThis means (in my opinion) implementers could use OpenID Federation:\r\n\r\n- in addition to the Web-based key resolution to manage the trust in SD-JWT VC issuers. This means the respective issuer would place an `openid-federation` file in its `.well-known` location besides the `jwt-issuer` file. The `iss` claim value in the SD-JWT VC would be the OpenID Federation entity id in this case.  \r\n- in addition to x.509 certificates to manage the trust in SD-JWT VC issuers. This means the verifier must be able to determine the issuer's OpenID Federation entity from the `dNSName` attribute in the certificate and obtain its entity configuration based on this entity id. \r\n- in addition to the `verifier_attestation` RP authentication method to manage trust in the issuer of the respective JWT (verifier attestation). Technically, this mean to place an 'openid-federation' file in the `.well-known` location besides the `jwt-issuer` file of the RP attestation issuer. \r\n- in addition to the `x509_san_dns` RP authentication method to manage the trust in the issuer of the respective x509 cert. \r\n\r\nFor the x509 based approaches, I would like to understand what that mean with respect to x509 chains (e.g. whether the root of an x509 cert chain would be the leaf element in an OpenID Federation or which one it would be). ",
+          "createdAt": "2023-12-22T14:25:26Z",
+          "updatedAt": "2023-12-22T14:26:47Z"
+        },
+        {
+          "author": "selfissued",
+          "authorAssociation": "MEMBER",
+          "body": "I'm in favor of adding `entity_id` as a `client_id_scheme` value.",
+          "createdAt": "2023-12-22T16:42:18Z",
+          "updatedAt": "2023-12-22T16:42:18Z"
         }
       ]
     }
