@@ -1,17 +1,16 @@
-# Contributing
+# How to contribute
 
-This repository relates to activities in the Internet Engineering Task Force
-([IETF](https://www.ietf.org/)). All material in this repository is considered
-Contributions to the IETF Standards Process, as defined in the intellectual
-property policies of IETF currently designated as
-[BCP 78](https://www.rfc-editor.org/info/bcp78),
-[BCP 79](https://www.rfc-editor.org/info/bcp79) and the
-[IETF Trust Legal Provisions (TLP) Relating to IETF Documents](http://trustee.ietf.org/trust-legal-provisions.html).
+I'm really glad you're reading this, because we need volunteer developers to help this effort come to fruition.
 
-Any edit, commit, pull request, issue, comment or other change made to this
-repository constitutes Contributions to the IETF Standards Process
-(https://www.ietf.org/).
+Here are some important resources:
 
-You agree to comply with all applicable IETF policies and procedures, including,
-BCP 78, 79, the TLP, and the TLP rules regarding code components (e.g. being
-subject to a Simplified BSD License) in Contributions.
+  * [Digital Credentials Protocols (DCP) Working Group Home Page](https://openid.net/wg/digital-credentials-protocols/) should give you a little background
+  * Mailing list: Join our [mailing list](http://lists.openid.net/mailman/listinfo/openid-specs-digital-credentials-protocols) to ask questions or provide feedback
+  * Bugs? the issue tracker above is where to report them
+
+## Intellectual Policy
+
+You have to sign IPR Contribution Agreement to file issues. [More info on IPR](http://openid.net/intellectual-property/)
+
+Thanks,
+DCP Working Group Co-chairs
