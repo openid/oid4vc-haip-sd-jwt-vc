@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-26T00:25:24.283356+00:00",
+  "timestamp": "2023-12-28T00:25:55.523159+00:00",
   "repo": "openid/oid4vc-haip-sd-jwt-vc",
   "labels": [
     {
@@ -6057,7 +6057,7 @@
       "labels": [],
       "body": "Closes #71.\r\n\r\n## \ud83d\udcd1 Description\r\nThe HAIP currently defines that the response mode has to be `direct_post` with `redirect_uri`. However, using `redirect_uri` isn't allowed in the OpenID4VP spec for `direct_post`. Therefore, this PR proposes to change the Authorization Request parameter to `response_uri`.",
       "createdAt": "2023-11-14T15:16:22Z",
-      "updatedAt": "2023-12-18T08:00:47Z",
+      "updatedAt": "2023-12-27T12:17:49Z",
       "baseRepository": "openid/oid4vc-haip-sd-jwt-vc",
       "baseRefName": "main",
       "baseRefOid": "05f20e75cbab9d84dc52458cfaa9ce589b76e0b6",
@@ -6302,6 +6302,39 @@
               "updatedAt": "2023-12-18T08:00:41Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5rGnEx",
+          "commit": {
+            "abbreviatedOid": "8eb167e"
+          },
+          "author": "cryptphil",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-27T08:29:26Z",
+          "updatedAt": "2023-12-27T08:29:26Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Would you be able to take another look if the PR is okay? @peppelinux ",
+              "createdAt": "2023-12-27T08:29:26Z",
+              "updatedAt": "2023-12-27T08:29:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJcWsFs5rHhbp",
+          "commit": {
+            "abbreviatedOid": "4b85b73"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-27T12:17:49Z",
+          "updatedAt": "2023-12-27T12:17:49Z",
+          "comments": []
         }
       ]
     },
