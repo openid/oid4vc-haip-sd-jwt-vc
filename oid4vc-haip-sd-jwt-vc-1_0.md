@@ -489,6 +489,10 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 <{{schemas/presentation_definition.json}}
 
+# Acknowledgements {#Acknowledgements}
+
+We would like to thank Paul Bastian, Christian Bormann, Mike Jones, Oliver Terbu, Daniel Fett, and Giuseppe De Marco for their valuable feedback and contributions to this specification.
+
 # Notices
 
 Copyright (c) 2023 The OpenID Foundation.
