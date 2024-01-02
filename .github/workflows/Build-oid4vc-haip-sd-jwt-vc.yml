@@ -12,7 +12,8 @@ jobs:
         steps:
           - uses: actions/checkout@v3
           - name: Run the build process with Docker
-            run: |     
+            run: |  
+                ls
                 docker run \
                 -v /${{ github.workspace }}:/data danielfett/markdown2rfc \
                 openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.md
