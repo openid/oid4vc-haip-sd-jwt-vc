@@ -34,7 +34,6 @@ This document defines a profile of OpenID for Verifiable Credentials in combinat
 
 {mainmatter}
 
-
 # Introduction
 
 This document defines a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. This document is an interoperability profile that can be used by implementations in various contexts, be it a certain industry or a certain regulatory environment.
