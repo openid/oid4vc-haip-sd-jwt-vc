@@ -15,7 +15,7 @@ jobs:
             run: |     
                 docker run \
                 -v /${{ github.workspace }}:/data danielfett/markdown2rfc \
-                oid4vc-haip-sd-jwt-vc.md
+                oid4vc-haip-sd-jwt-vc-1_0.md
           - name: rename
             run: |
                 mv ./oid4vc-haip-sd-jwt-vc*.html ./oid4vc-haip-sd-jwt-vc-wg-draft.html
