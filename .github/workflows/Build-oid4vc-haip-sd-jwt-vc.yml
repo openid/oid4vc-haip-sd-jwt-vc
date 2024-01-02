@@ -15,16 +15,16 @@ jobs:
             run: |     
                 docker run \
                 -v /${{ github.workspace }}:/data danielfett/markdown2rfc \
-                draft-oid4vc-haip-sd-jwt-vc.md
+                oid4vc-haip-sd-jwt-vc.md
           - name: rename
             run: |
-                mv ./draft-oid4vc-haip-sd-jwt-vc*.html ./draft-oid4vc-haip-sd-jwt-vc-wg-draft.html
+                mv ./oid4vc-haip-sd-jwt-vc*.html ./oid4vc-haip-sd-jwt-vc-wg-draft.html
           - uses: actions/upload-artifact@v3
             with:
                 # Artifact name
                 name: output # optional
                 # Destination path
-                path: ./draft-oid4vc-haip-sd-jwt-vc*.html # optional
+                path: ./oid4vc-haip-sd-jwt-vc*.html # optional
     
     publish-to-pages:
       name: Publish to GitHub Pages
