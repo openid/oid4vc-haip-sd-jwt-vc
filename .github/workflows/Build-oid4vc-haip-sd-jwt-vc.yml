@@ -1,4 +1,4 @@
-name: oid4vc-haip-sd-jwt-vc document push
+name: draft-oid4vc-haip-sd-jwt-vc document push
 on:
   push:
     branches: [ main ]
@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-    compile-oid4vc-haip-sd-jwt-vc:
+    compile-draft-oid4vc-haip-sd-jwt-vc:
         name: Compile site assets
         runs-on: ubuntu-latest
         steps:
@@ -29,7 +29,7 @@ jobs:
     publish-to-pages:
       name: Publish to GitHub Pages
       if: github.ref == 'refs/heads/main'
-      needs: compile-oid4vc-haip-sd-jwt-vc
+      needs: compile-draft-oid4vc-haip-sd-jwt-vc
       runs-on: ubuntu-latest
       permissions:
         pages: write
