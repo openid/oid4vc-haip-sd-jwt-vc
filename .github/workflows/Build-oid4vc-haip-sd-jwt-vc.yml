@@ -1,9 +1,9 @@
 name: openid4vc-high-assurance-interoperability-profile-sd-jwt-vc document push
-
 on:
   push:
     paths:
       - 'openid4vc*.md'
+      - './.github/workflows/Build-oid4vc-haip-sd-jwt-vc.yml'
 
 jobs:
     compile-openid4vc-high-assurance-interoperability-profile-sd-jwt-vc:
