@@ -1,9 +1,9 @@
 name: openid4vc-high-assurance-interoperability-profile-sd-jwt-vc document push
+
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'openid4vc*.md'
 
 jobs:
     compile-openid4vc-high-assurance-interoperability-profile-sd-jwt-vc:
