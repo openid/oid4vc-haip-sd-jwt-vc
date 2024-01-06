@@ -287,7 +287,7 @@ The following additional Credential Issuer metadata are defined for this Credent
     * `vct`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.ietf-oauth-sd-jwt-vc], Section 4.2.2.1.
     * `claims`: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:
         * `mandatory`: OPTIONAL. Boolean which when set to `true` indicates the claim MUST be present in the issued Credential. If the `mandatory` property is omitted its default should be assumed to be `false`.
-        * `value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in [IANA media type registry for images](https://www.iana.org/assignments/media-types/media-types.xhtml#image).
+        *`value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image).
         * `display`: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:
             * `name`: OPTIONAL. String value of a display name for the claim.
             * `locale`: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 [@!RFC5646]. There MUST be only one object for each language identifier.
@@ -374,9 +374,6 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 `iat` and `exp` JWT claims express both the validity period of both the signature and the claims about the subject, unless there is a separate claim used to express the validity of the claims.
 
-# Security Considerations
-
-TBD.
 
 ## Media Type Registration
 
@@ -384,13 +381,13 @@ This section requests registration of the following media types [@RFC2046] in
 the ["Media Types" registry](https://www.iana.org/assignments/media-types/media-types.xhtml#application) in the manner described
 in [@RFC6838].
 
-To indicate that the content of a JWS is a Wallet Instance Attestation:
+To indicate that the content of a JWS is a Wallet Attestation:
 
   * Type name: application
   * Subtype name: wallet-attestation+jwt
   * Required parameters: n/a
   * Optional parameters: n/a
-  * Encoding considerations: binary; A JWT-based Wallet Instance Attestation object is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
+  * Encoding considerations: binary; A JWT-based Wallet Attestation object is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
   * Security considerations: See (#security-considerations) of [[ this specification ]]
   * Interoperability considerations: n/a
   * Published specification: [[ this specification ]]
