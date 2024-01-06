@@ -388,7 +388,7 @@ To indicate that the content of a JWS is a Wallet Attestation:
   * Required parameters: n/a
   * Optional parameters: n/a
   * Encoding considerations: binary; A JWT-based Wallet Attestation object is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
-  * Security considerations: See (#security-considerations) of [[ this specification ]]
+  * Security considerations: See (#wallet-attestation-schema) of [[ this specification ]]
   * Interoperability considerations: n/a
   * Published specification: [[ this specification ]]
   * Applications that use this media type: Applications using [[ this specification ]] for issuing and validating Wallet Instance Attestations.
