@@ -53,8 +53,8 @@ The audience of the document is implementers that require a high level of securi
 
 This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiable Credential" as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
-Wallet Instance Attestation:
-: Proof or assertion that the Wallet Instance is genuine, has not been tampered with, and can be trusted to securely handle Verifiable Credentials. The Wallet Instance Attestation MUST be issued by a trustwhorty entity or entity for which it is possible to evaluate trust in relation to a trust framework and a regulatory framework shared among all participants.
+Wallet Attestation:
+: Proof or assertion that a Wallet Instance is genuine, has not been tampered with, and can be trusted to securely handle Verifiable Credentials. The Wallet Attestation MUST be issued by an entity trusted for that purpose.
 
 # Scope
 
@@ -364,7 +364,7 @@ Cryptography is required by the following operations:
 - Attestation of trust with the entities of the ecosystem.
 - Issuance and presentation using the cryptografic proof of possession of the Wallet Instance Attestations.
 - Issuance of the Verifiable Credentials.
-- Presentation Authorization requests: the process where a Verifier requests to the Holder the presentation of the Verifiable Credentials.
+- Presentation Request: the process where a Verifier requests to the Holder the presentation of the Verifiable Credentials.
 - Presentation using the cryptografic proof of possession of the Credentials.
 
 With the aim to ensure a secure interoperability model for all ecosystem participants,
