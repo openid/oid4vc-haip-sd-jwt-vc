@@ -3,7 +3,7 @@
 This is the working area for the High Assurance Interoperability Profile of OpenID4VC with SD-JWT VC.
 
 * [Editor's Copy](https://openid.github.io/oid4vc-haip-sd-jwt-vc/#go.oid4vc-haip-sd-jwt-vc.html)
-* [Working Group Draft] (https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.html)
+* [Working Group Draft](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.html)
 
 ## Contributing
 
