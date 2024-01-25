@@ -2,7 +2,7 @@
 title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC"
 abbrev = "oid4vc-haip-sd-jwt-vc"
 ipr = "none"
-workgroup = "Digital Credential Protocols"
+workgroup = "Digital Credentials Protocols"
 keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
 
 [seriesInfo]
