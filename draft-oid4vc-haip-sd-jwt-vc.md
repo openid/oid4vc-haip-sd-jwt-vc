@@ -396,7 +396,7 @@ To indicate that the content of a JWS is a Wallet Attestation:
   * Additional information:
     * File extension(s): n/a
     * Macintosh file type code(s): n/a
-  * Person &amp; email address to contact for further information: Torsten Lodderstedt, torsten@lodderstedt.net
+  * Person & email address to contact for further information: Torsten Lodderstedt, torsten@lodderstedt.net
   * Intended usage: COMMON
   * Restrictions on usage: none
   * Author: Torsten Lodderstedt
