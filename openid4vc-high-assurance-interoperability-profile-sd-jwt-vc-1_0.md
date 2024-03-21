@@ -161,7 +161,7 @@ The Wallet Attestation MAY also contain the following claim:
 
 * `aal`: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the `cnf` claim.
 
-To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+To obtain the issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 
 This is an example of a Wallet Instance Attestation:
 
