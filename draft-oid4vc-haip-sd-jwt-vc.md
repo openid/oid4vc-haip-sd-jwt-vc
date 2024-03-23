@@ -72,7 +72,7 @@ The following aspects are in scope of this interoperability profile:
 Assumptions made are the following:
 
 * The issuers and verifiers cannot pre-discover Wallet’s capability
-* The issuer is talking to the Wallet supporting the features defined in this profile (via wallet invocation mechanism)
+* The issuer is talking to the Wallet supporting the features defined in this profile (via Wallet invocation mechanism)
 * There are mechanisms in place for the verifiers and issuers to discover each other’s capability
 
 ## Out of Scope
