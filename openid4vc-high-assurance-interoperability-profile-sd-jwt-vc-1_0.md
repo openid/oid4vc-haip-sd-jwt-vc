@@ -50,8 +50,7 @@ The audience of the document is implementers that require a high level of securi
 
 # Terminology
 
-This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiable Credential" as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
-In this document, the term "Holder" is also synonymous with "Wallet", indicating the entity that receives, stores, presents, and manages Verifiable Credentials.
+This specification uses the terms "Holder", "Issuer", "Verifier", "Wallet", and "Verifiable Credential" as defined in @!OIDF.OID4VCI] and [@!OIDF.OID4VP].
 
 # Scope
 
