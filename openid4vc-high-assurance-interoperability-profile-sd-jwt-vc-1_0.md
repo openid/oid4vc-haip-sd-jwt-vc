@@ -1,13 +1,13 @@
 %%%
-title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC"
-abbrev = "oid4vc-haip-sd-jwt-vc"
+title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 00"
+abbrev = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc"
 ipr = "none"
-workgroup = "OpenID Connect"
+workgroup = "Digital Credentials Protocols"
 keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-oid4vc-haip-sd-jwt-vc-latest"
+value = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0-00"
 status = "standard"
 
 [[author]]
@@ -33,7 +33,6 @@ organization="sprind.org"
 This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format SD-JWT VC. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc].
 
 {mainmatter}
-
 
 # Introduction
 
@@ -165,7 +164,7 @@ The Wallet Attestation MAY also contain the following claim:
 
 * `aal`: OPTIONAL. JSON String asserting the authentication level of the Wallet and the key as asserted in the `cnf` claim.
 
-To obtain the Issuer's Public key for verification, wallet attestions MUST support web-based key resolution as defined in Section 5 of [@!I-D.terbu-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+To obtain the Issuer's Public key for verification, Wallet Attestetions MUST support web-based key resolution as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 
 This is an example of a Wallet Instance Attestation:
 
@@ -208,7 +207,7 @@ This is an example of a Wallet Instance Attestation:
    * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
-   * Response mode MUST be `direct_post` with `redirect_uri` as defined in Section 6.2 of [@!OIDF.OID4VP].
+   * Response mode MUST be `direct_post`. The Verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 6.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post` are given in Section 11.5 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
@@ -276,86 +275,7 @@ Note: The Issuer MAY decide to support both options. In which case, it is at the
 
 ## OpenID4VC Credential Format Profile {#vc_sd_jwt_profile}
 
-This section specifies how SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used in conjunction with the OpenID4VC specifications.
-
-### Format Identifier
-
-The Credential format identifier is `vc+sd-jwt`. This format identifier is used in issuance and presentation requests.
-
-### Credential Issuer Metadata {#server_metadata_vc_sd-jwt}
-
-The following additional Credential Issuer metadata are defined for this Credential format to be used in addition to those defined in Section 10.2 of [@!OIDF.OID4VCI].
-
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It consists at least of the following three sub elements:
-    * `vct`: REQUIRED. JSON string designating the type of a credential as defined in [@!I-D.ietf-oauth-sd-jwt-vc], Section 4.2.2.1.
-    * `claims`: OPTIONAL. A JSON object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be a JSON object that includes a following non-exhaustive list of parameters defined by this specification:
-        * `mandatory`: OPTIONAL. Boolean which when set to `true` indicates the claim MUST be present in the issued Credential. If the `mandatory` property is omitted its default should be assumed to be `false`.
-        * `value_type`: OPTIONAL. String value determining type of value of the claim. A non-exhaustive list of valid values defined by this specification are `string`, `number`, and image media types such as `image/jpeg` as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image).
-        * `display`: OPTIONAL. An array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. Below is a non-exhaustive list of valid parameters that MAY be included:
-            * `name`: OPTIONAL. String value of a display name for the claim.
-            * `locale`: OPTIONAL. String value that identifies language of this object represented as language tag values defined in BCP47 [@!RFC5646]. There MUST be only one object for each language identifier.
-* `order`: OPTIONAL. An array of claims.display.name values that lists them in the order they should be displayed by the Wallet.
-
-The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
-
-<{{examples/credential_metadata_sd_jwt_vc.json}}
-
-### Credential Offer
-
-The following additional claims are defined for this Credential format.
-
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt).
-
-The following is a non-normative example of an object comprising `credentials_supported` parameter of Credential format `vc+sd-jwt`.
-
-<{{examples/credential_offer_sd_jwt_vc.json}}
-
-### Authorization Details {#authorization_vc_sd-jwt}
-
-The following additional claims are defined for authorization details of type `openid_credential` and this Credential format.
-
-* `credential_definition`: REQUIRED.  JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
-
-The following is a non-normative example of an authorization details object with Credential format `vc+sd-jwt`.
-
-<{{examples/authorization_details_sd_jwt_vc.json}}
-
-### Credential Request
-
-The following additional parameters are defined for Credential Requests and this Credential format.
-
-* `credential_definition`: REQUIRED. JSON object containing the detailed description of the credential type. It MUST contain at least `vct` property as defined in (#server_metadata_vc_sd-jwt). It MAY contain `claims` property as defined in (#server_metadata_vc_sd-jwt).
-
-The following is a non-normative example of a Credential Request with Credential format `vc+sd-jwt`.
-
-<{{examples/credential_request_sd_jwt_vc.json}}
-
-### Credential Response {#credential_response_jwt_vc_json}
-
-The value of the `credential` claim in the Credential Response MUST be a JSON string that is an SD-JWT VC. Credentials of this format are already suitable for transfer and, therefore, they need not and MUST NOT be re-encoded.
-
-The following is a non-normative example of a Credential Response with Credential format `vc+sd-jwt`.
-
-<{{examples/credential_response_sd_jwt_vc.txt}}
-
-### Verifier Metadata
-
-The Verifier SHOULD add a `vp_formats` element to its metadata (e.g. in the `client_metadata` authorization request parameter) to let the wallet know what protection algorithms it supports in conjunction with SD-JWT VCs. The format element MUST have the key `vc+sd-jwt`, the value is an object consisting of the following elements:
-
-* `sd-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the Verifier supports for protection of a SD-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented SD-JWT MUST match one of the array values.
-* `kb-jwt_alg_values`: OPTIONAL. A JSON array containing identifiers of cryptographic algorithms the Verifier supports for protection of a KB-JWT. If present, the `alg` JOSE header (as defined in [@!RFC7515]) of the presented KB-JWT MUST match one of the array values.
-
-The following is a non-normative example of `client_metadata` request parameter value in a request to present a SD-JWT VC.
-
-<{{examples/client_metadata_sd_jwt_vc.json}}
-
-### Presentation Definition
-
-The presentation of a SD-JWT VC is requested by adding an object named `vc+sd-jwt` to the `format` object of an `input_descriptor`. The object is empty.
-
-The following is a non-normative example of a presentation definition for a SD-JWT VC.
-
-<{{examples/presentation_definition_sd_jwt_vc.json}}
+A Credential Format Profile for Credentials complying with IETF SD-JWT VCs [@!I-D.ietf-oauth-sd-jwt-vc] is defined in Annex A.3 of [@!OIDF.OID4VCI] and Annex A.4 of [@!OIDF.OID4VP].
 
 # Crypto Suites
 
@@ -497,3 +417,15 @@ When using this profile alongside other hash algorithms, each entity SHOULD expl
 # JSON Schema for the supported Presentation Definition properties {#presentation-definition-schema}
 
 <{{schemas/presentation_definition.json}}
+
+# Acknowledgements {#Acknowledgements}
+
+We would like to thank Paul Bastian, Christian Bormann, Mike Jones, Oliver Terbu, Daniel Fett, and Giuseppe De Marco for their valuable feedback and contributions to this specification.
+
+# Notices
+
+Copyright (c) 2023 The OpenID Foundation.
+
+The OpenID Foundation (OIDF) grants to any Contributor, developer, implementer, or other interested party a non-exclusive, royalty free, worldwide copyright license to reproduce, prepare derivative works from, distribute, perform and display, this Implementers Draft or Final Specification solely for the purposes of (i) developing specifications, and (ii) implementing Implementers Drafts and Final Specifications based on such documents, provided that attribution be made to the OIDF as the source of the material, but that such attribution does not indicate an endorsement by the OIDF.
+
+The technology described in this specification was made available from contributions from various sources, including members of the OpenID Foundation and others. Although the OpenID Foundation has taken steps to help ensure that the technology is available for distribution, it takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this specification or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any independent effort to identify any such rights. The OpenID Foundation and the contributors to this specification make no (and hereby expressly disclaim any) warranties (express, implied, or otherwise), including implied warranties of merchantability, non-infringement, fitness for a particular purpose, or title, related to this specification, and the entire risk as to implementing this specification is assumed by the implementer. The OpenID Intellectual Property Rights policy requires contributors to offer a patent promise not to assert certain patent claims against other contributors and against implementers. The OpenID Foundation invites any interested party to bring to its attention any copyrights, patents, patent applications, or other proprietary rights that MAY cover technology that MAY be required to practice this specification.
