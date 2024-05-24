@@ -86,7 +86,7 @@ The following items are out of scope for the current version of this document, b
 
 ## Scenarios/Business Requirements
 
-* Combined Issuance of SD-JWT VC and ISO mdoc
+* Combined Issuance of IETF SD-JWT VC and ISO mdoc
 * Both issuer-initiated and wallet-initiated issuance
 * eIDAS PID and (Q)EAA as defined in eIDAS ARF 1.0
 
