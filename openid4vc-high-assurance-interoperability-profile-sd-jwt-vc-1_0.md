@@ -1,5 +1,5 @@
 %%%
-title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 00"
+title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 01"
 abbrev = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc"
 ipr = "none"
 workgroup = "Digital Credentials Protocols"
@@ -7,16 +7,16 @@ keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0-00"
+value = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0-01"
 status = "standard"
 
 [[author]]
 initials="K."
 surname="Yasuda"
 fullname="Kristina Yasuda"
-organization="Microsoft"
+organization="SPRIND"
    [author.address]
-   email = "kristina.yasuda@microsoft.com"
+   email = "kristina.yasuda@sprind.org"
 
 [[author]]
 initials="T."
