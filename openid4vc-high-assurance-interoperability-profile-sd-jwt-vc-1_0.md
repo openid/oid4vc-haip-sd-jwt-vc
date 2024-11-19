@@ -22,7 +22,7 @@ organization="SPRIND"
 initials="T."
 surname="Lodderstedt"
 fullname="Torsten Lodderstedt"
-organization="sprind.org"
+organization="SPRIND"
    [author.address]
    email = "torsten@lodderstedt.net"
 
