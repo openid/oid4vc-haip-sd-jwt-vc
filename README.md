@@ -8,16 +8,17 @@ This is the working area for the High Assurance Interoperability Profile of Open
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/openid/high-assurance-profile/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/openid/openid/oid4vc-haip-sd-jwt-vc/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
 
-## Command Line Usage
+### Building the HTML
 
-Formatted text and HTML versions of the draft can be built using `make`.
-```sh
-$ make
 ```
-Command line usage requires that you have the necessary software installed.  See
-[the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
+docker run -v `pwd`:/data danielfett/markdown2rfc openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.md
+```
+
+### Who do I talk to?
+
+- The WG can be reached via the mailing list [openid-specs-digital-credentials-protocols@lists.openid.net](mailto:openid-specs-digital-credentials-protocols@lists.openid.net) (join the ML [here](https://lists.openid.net/mailman/listinfo/openid-specs-digital-credentials-protocols)).
