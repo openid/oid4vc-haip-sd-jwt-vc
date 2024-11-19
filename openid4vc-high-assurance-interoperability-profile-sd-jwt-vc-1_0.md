@@ -207,7 +207,7 @@ This is an example of a Wallet Instance Attestation:
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
    * `client_id_scheme` parameter MUST be present in the Authorization Request.
    * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
-   * To obtain the issuer's public key for verification, verifiers MUST support Web-based key resolution, as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
+   * To obtain the issuer's public key for verification, verifiers MUST OpenID Federation based key resolution via Federation Entity Configuration, as defined in Section 9 of [@!OIDF.Federation]. The JOSE header `kid` MUST be used to identify the respective key.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in (#presentation-definition-schema):
 
@@ -258,10 +258,10 @@ Note: In some credential types, it is not desirable to include an expiration dat
 
 ## Issuer identification and key resolution to validate an issued Credential {#issuer-key-resolution}
 
-This profile supports two ways to represent and resolve the key required to validate the issuer signature of an SD-JWT VC, the web PKI-based key resolution and the x.509 certificates.
+This profile supports two ways to represent and resolve the key required to validate the issuer signature of an SD-JWT VC, the OpenID Federation based key resolution and the x.509 certificates.
 
-* Web-based key resolution: The key used to validate the Issuer’s signature on the SD-JWT VC MUST be obtained from the SD-JWT VC issuer's metadata as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
 * x.509 certificates: the SD-JWT VC contains the issuer's certificate along with a trust chain in the `x5c` JOSE header. In this case, the `iss` value MUST be an URL with a FQDN matching a `dNSName` Subject Alternative Name (SAN) [@!RFC5280] entry in the leaf certificate.
+* OpenID Federation: The key used to validate the Issuer's signature on the SD-JWT VC MUST be obtained via the JWKS entry inside the Entity Configuration information as defined in [@!OIDF.Federation]. The Entity Configuration Information contains a JSON Web Key set representing the entities public signing keys. The Entity Configuration can either be retrieved online (as described in Section 9 of [@!OIDF.Federation]) or embedded as a header parameter in the SD-JWT VC (as described in Section 4.3 of [@!OIDF.Federation]).
 
 Note: The issuer MAY decide to support both options. In which case, it is at the discretion of the Wallet and the Verifier which key to use for the issuer signature validation.
 
@@ -336,7 +336,7 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 <reference anchor="OIDF.SIOPv2" target="https://openid.net/specs/openid-connect-self-issued-v2-1_0.html">
   <front>
     <title>Self-Issued OpenID Provider V2</title>
-    <author ullname="Kristina Yasuda">
+    <author fullname="Kristina Yasuda">
       <organization>Microsoft</organization>
     </author>
     <author fullname="Michael B. Jones">
@@ -349,10 +349,35 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
   </front>
 </reference>
 
+<reference anchor="OIDF.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
+  <front>
+    <title>OpenID Federation 1.0 </title>
+      <author fullname="Roland Hedberg" initials="R." role="editor" surname="Hedberg">
+        <organization>independent</organization>
+      </author>
+      <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
+        <organization abbrev="Self-Issued Consulting">Self-Issued Consulting</organization>
+      </author>
+      <author fullname="Andreas Åkre Solberg" initials="A.Å." surname="Solberg">
+        <organization>Sikt</organization>
+      </author>
+      <author fullname="John Bradley" initials="J." surname="Bradley">
+        <organization abbrev="Yubico">Yubico</organization>
+      </author>
+      <author fullname="Giuseppe De Marco" initials="G." surname="De Marco">
+        <organization>independent</organization>
+      </author>
+      <author fullname="Vladimir Dzhuvinov" initials="V." surname="Dzhuvinov">
+        <organization>Connect2id</organization>
+      </author>
+   <date day="18" month="December" year="2021"/>
+  </front>
+</reference>
+
 <reference anchor="OIDF.ekyc-ida" target="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID4.html">
   <front>
     <title>OpenID Connect for Identity Assurance 1.0</title>
-    <author ullname="Torsten Lodderstedt ">
+    <author fullname="Torsten Lodderstedt ">
       <organization>yes</organization>
     </author>
     <author fullname="Daniel Fett">
