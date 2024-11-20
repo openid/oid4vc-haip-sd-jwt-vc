@@ -46,7 +46,7 @@ A full list of the open standards used in this profile can be found in Overview 
 
 ## Audience Target audience/Usage
 
-The audience of the document is implementers that require a high level of security and privacy for their solutions. A non-exhaustive list of the interested parties includes eIDAS 2.0, California Department of Motor Vehicles, Open Wallet Foundation (OWF), IDunion, GAIN, and the Trusted Web project of the Japanese government, but is expected to grow to include other jurisdictions and private sector companies.
+The audience of the document is implementers that require a high level of security and privacy for their solutions. A non-exhaustive list of the interested parties includes [eIDAS 2.0](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401183), [California Department of Motor Vehicles](https://www.dmv.ca.gov/portal/), [Open Wallet Foundation (OWF)](https://openwallet.foundation/), [IDunion](https://idunion.org/?lang=en), [GAIN](https://gainforum.org/), and [the Trusted Web project of the Japanese government](https://trustedweb.go.jp/en), but is expected to grow to include other jurisdictions and private sector companies.
 
 # Terminology
 
