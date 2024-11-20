@@ -205,8 +205,7 @@ This is an example of a Wallet Instance Attestation:
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post`. The Verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 6.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post` are given in Section 11.5 of [@!OIDF.OID4VP].
    * Authorization Request MUST be sent using the `request_uri` parameter as defined in JWT-Secured Authorization Request (JAR) [@!RFC9101].
-   * `client_id_scheme` parameter MUST be present in the Authorization Request.
-   * `client_id_scheme` value MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
+   * client_id_scheme MUST be either `x509_san_dns` or `verifier_attestation`. The Wallet MUST support both. The Verifier MUST support at least one.
    * To obtain the issuer's public key for verification, verifiers MUST support Web-based key resolution, as defined in Section 5 of [@!I-D.ietf-oauth-sd-jwt-vc]. The JOSE header `kid` MUST be used to identify the respective key.
    * Presentation Definition JSON object MUST be sent using a `presentation_definition` parameter.
    * The following features from the DIF Presentation Exchange v2.0.0 MUST be supported. A JSON schema for the supported features is in (#presentation-definition-schema):
