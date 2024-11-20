@@ -1,13 +1,13 @@
 %%%
-title = "OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - draft 01"
-abbrev = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc"
+title = "OpenID4VC High Assurance Interoperability Profile - draft 01"
+abbrev = "openid4vc-high-assurance-interoperability-profile"
 ipr = "none"
 workgroup = "Digital Credentials Protocols"
-keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc"]
+keyword = ["security", "openid4vc", "sd-jwt", "sd-jwt-vc", "mdoc"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0-01"
+value = "openid4vc-high-assurance-interoperability-profile-1_0-01"
 status = "standard"
 
 [[author]]
