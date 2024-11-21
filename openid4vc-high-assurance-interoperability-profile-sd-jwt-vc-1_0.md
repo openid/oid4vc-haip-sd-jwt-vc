@@ -58,8 +58,8 @@ The following aspects are in scope of this interoperability profile:
 
 * Profile of OID4VCI to issue IETF SD-JWT VCs (can be both remote and in-person), including
   * Wallet Attestation
-* Profile of OID4VP without using W3C Digital Credentials API [@w3c.digital_credentials_api] to present IETF SD-JWT VCs
-* Profile of OID4VP over W3C Digital Credentials API to present 
+* Profile of OID4VP to present IETF SD-JWT VCs
+* Profile of OID4VP over the W3C Digital Credentials API [@w3c.digital_credentials_api] to present 
   * IETF SD-JWT VCs 
   * ISO mdocs
 * Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)
@@ -70,7 +70,7 @@ The following aspects are in scope of this interoperability profile:
   * Issuer identification (as prerequisite for trust management)
 * Crypto Suites
 
-Note that when OID4VP is used, the Wallet and the Verifier can either be remote and in-person.
+Note that when OID4VP is used, the Wallet and the Verifier can either be remote or in-person.
 
 Assumptions made are the following:
 
@@ -84,7 +84,9 @@ The following items are out of scope for the current version of this document, b
 
 * Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.
 * Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.
-* Profile of OID4VP without using W3C Digital Credentials API to present ISO mdocs is defined in [@!ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4VP].
+* Profile of OID4VCI to issue ISO mdocs is defined in [@!ISO.23220-3].
+* Profile of OID4VP without using W3C Digital Credentials API to present ISO mdocs is 
+defined in [@!ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4VP].
 
 ## Scenarios/Business Requirements
 
@@ -252,7 +254,7 @@ The Handover element is defined as following:
 Handover = OID4VPDCAPIHandover
 OID4VPDCAPIHandover = [
   "OID4VPDCAPIHandover"
-  clintId
+  clientId
   origin
   nonce
 ]
