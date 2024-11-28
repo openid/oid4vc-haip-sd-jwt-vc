@@ -235,8 +235,8 @@ This profile defines the following additional requirements for SD-JWT VCs as def
 |exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
-* The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
-* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The Issuer MUST support use one of the mechanisms. The wallet and the verifier MUST support both mechanisms.
+* The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT VC presented by the Holder.
+* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT VC. The Issuer MUST support use one of the mechanisms. The wallet and the verifier MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
 * The `cnf` claim [@!RFC7800] MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
@@ -269,11 +269,77 @@ A Credential Format Profile for Credentials complying with IETF SD-JWT VCs [@!I-
 
 ## SD-JWT VCDM
 
+SD-JWT VCDM MAY be used. SD-JWT VCDM is a data model that follows [@!I-D.ietf-oauth-sd-jwt-vc], but is compatible with the [@!W3C.VCDM2.0].
+
+The following is a non-normative example of an unsecured payload of an SD-JWT VCDM, that is built using the example of unsecured payload in Section 3.3 of [@!I-D.ietf-oauth-sd-jwt-vc]:
+
+```json
+{
+  "vct": "https://credentials.example.com/identity_credential",
+
+//W3C VCDM 2.0 compliant claims
+  "type": ["VerifiableCredential", "https://credentials.example.com/identity_credential"],
+  "@context": ["https://www.w3.org/ns/credentials/v2"],
+  "issuer": "https://example.com/issuer",
+  "credentialSubject": {
+    "given_name": "John",
+    "family_name": "Doe",
+    "email": "johndoe@example.com",
+    "phone_number": "+1-202-555-0101",
+    "address": {
+      "street_address": "123 Main St",
+      "locality": "Anytown",
+      "region": "Anystate",
+      "country": "US"
+    },
+    "birthdate": "1940-01-01",
+    "is_over_18": true,
+    "is_over_21": true,
+    "is_over_65": true
+  }
+}
+```
+
+The following is a non-normative example of how an unsecured payload of an SD-JWT VCDM above can be used for the SD-JWT:
+
+```json
+{
+  "_sd": [
+    "vwUhdFvpylx9Sqi2YNBV1dfVK6lCbhXvkH0nThfKFT0"
+  ],
+  "iss": "https://example.com/issuer",
+  "issuer": "https://example.com/issuer",
+  "iat": 1683000000,
+  "exp": 1883000000,
+  "vct": "https://credentials.example.com/identity_credential",
+  "type": ["VerifiableCredential", "https://credentials.example.com/identity_credential"],
+  "@context": ["https://www.w3.org/ns/credentials/v2"],
+  "_sd_alg": "sha-256",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+    }
+  }
+}
+```
+
+* One of the values in `type` array MUST equal the value in `vct` claim.
+* The value of `issuer` clam MUST equal the value in `iss` claim.
+
+For the following, mechanisms defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used:
+
+* Status management (e.g., revoked, suspended, etc.)
+* Schema
+* Display information
+
 # Crypto Suites
 
 Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:
 
-* SD-JWT-VC
+* SD-JWT VC
 * Wallet Instance Attestation
 * DPoP
 * HB JWT
@@ -394,6 +460,37 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
         </author>
         <date day="4" month="May" year="2023"/>
         </front>
+</reference>
+
+<reference anchor="W3C.VCDM2.0" target="https://www.w3.org/TR/vc-data-model-2.0/">
+  <front>
+    <title>Verifiable Credentials Data Model v2.0</title>
+    <author fullname="Manu Sporny">
+      <organization>Digital Bazaar</organization>
+    </author>
+    <author fullname="Ted Thibodeau Jr">
+      <organization>OpenLink Software</organization>
+    </author>
+    <author fullname="Ivan Herman">
+      <organization>W3C</organization>
+    </author>
+    <author fullname="Michael B. Jones">
+      <organization>Invited Expert</organization>
+    </author>
+    <author fullname="Gabe Cohen">
+      <organization>Block</organization>
+    </author>
+    <author fullname="Dave  Longley">
+      <organization>Digital Bazaar</organization>
+    </author>
+    <author fullname="David Chadwick">
+      <organization>University of Kent</organization>
+    </author>
+    <author fullname="Orie Steele">
+      <organization>Transmute</organization>
+    </author>
+   <date day="19" month="October" year="2024"/>
+  </front>
 </reference>
 
 # Combined Issuance of SD-JWT VC and mdocs
