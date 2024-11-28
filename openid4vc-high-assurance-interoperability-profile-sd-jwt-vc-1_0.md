@@ -271,7 +271,6 @@ nonce = tstr
 
   * The Credential format identifier MUST be `dc+sd-jwt`.
   * IETF SD-JWT VC Credential Format specific DCQL parameters as defined in Section 6.4.1. of [@!OIDF.OID4VP] MUST be used.
-  * When Key Binding JWT is used, `aud` value in it MUST be the origin of the Verifer, obtained from the Web-platform and/or app platform, and not `client_id` received in the Request.
 
 
 # Self-Issued OP v2
