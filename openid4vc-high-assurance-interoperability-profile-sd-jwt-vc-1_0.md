@@ -107,7 +107,7 @@ Implementations of this specification do not have to implement all of the four f
 
 # OpenID for Verifiable Credential Issuance
 
-Implementations of this profile:
+The requirements for the Wallet and the Credential Issuer, unless specified otherwise:
 
 * MUST support both pre-auth code flow and authorization code flow.
 * MUST support protocol extensions for the SD-JWT VC credential format profile as defined in (#vc_sd_jwt_profile).
@@ -208,6 +208,8 @@ This is an example of a Wallet Instance Attestation:
 
 # OpenID for Verifiable Presentations profile for SD-JWT VC without using W3C Digital Credentials API
 
+The requirements for the Wallet and the Verifier, unless specified otherwise:
+
    * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
@@ -224,6 +226,8 @@ This is an example of a Wallet Instance Attestation:
     * In the `submission_requirements` object, `name`, `rule (`pick` only)`, `count`, `from` properties MUST be supported.
 
 # OpenID for Verifiable Presentations over W3C Digital Credentials API
+
+The requirements for the Wallet and the Verifier, unless specified otherwise:
 
 * MUST support Annex A in [@!OIDF.OID4VP] that defines how to use OID4VP over the W3C Digital Credentials API.
   * The Wallet MUST support both signed and unsigned requests defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed and/or unsigned requests.
@@ -282,9 +286,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-As credential format, SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used.
-
-In addition, this profile defines the following additional requirements.
+This profile defines the following additional requirements for SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 * Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
