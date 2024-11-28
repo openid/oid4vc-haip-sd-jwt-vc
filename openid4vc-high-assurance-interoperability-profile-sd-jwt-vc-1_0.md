@@ -96,10 +96,10 @@ defined in [@!ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4
 
 ## Standards Requirements
 
-This specification enable interoperable implementation of the following four flows:
+This specification enables interoperable implementation of the following four flows:
 
 * Issuance of IETF SD-JWT VC using OpenID4VCI
-* Presentation of IETF SD-JWT VC using OpenID4VP
+* Presentation of IETF SD-JWT VC using OpenID4VP without using W3C Digital Credentials API
 * Presentation of IETF SD-JWT VC using OpenID4VP over W3C Digital Credentials API
 * Presentation of ISO mdocs using OpenID4VP over W3C Digital Credentials API
 
@@ -206,7 +206,7 @@ This is an example of a Wallet Instance Attestation:
 
 * The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.
 
-# OpenID for Verifiable Presentations without using W3C Digital Credentials API
+# OpenID for Verifiable Presentations profile for SD-JWT VC without using W3C Digital Credentials API
 
    * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
