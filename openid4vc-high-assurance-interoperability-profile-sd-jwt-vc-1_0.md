@@ -237,14 +237,13 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
   * tbd
 * Support for Transaction Data as defined in Sections 5.4 and 7.4 of [@!OIDF.OID4VP] is tbd.
 
-
 ## ISO mdoc specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
   * The Credential format identifier MUST be `mso_mdoc`.
   * mdoc Credential Format specific DCQL parameters as defined in Section 6.4.2. of [@!OIDF.OID4VP] MUST be used.
   * Verifier MAY request more than one credential in the same request.
   * DeviceResponse in the VP Token MUST contain only one mdoc. Therefore, when multiple mdocs are being returned, each mdoc should be returned in a separate DeviceResponse, each matching to a respective DCQL query.
-  * Response encryption MUST be done as defined in Section B.4.3.3.2 in [@!ISO.18013-7].
+  * Specific requirements for the response encryption are tbd.
 
 ### Session Transcript
 
