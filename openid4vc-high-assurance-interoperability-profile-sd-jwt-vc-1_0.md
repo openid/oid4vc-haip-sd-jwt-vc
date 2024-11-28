@@ -221,29 +221,24 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * `subject_syntax_types_supported` value MUST be `urn:ietf:params:oauth:jwk-thumbprint`
 
-# SD-JWT VCs {#sd-jwt-vc}
+# SD-JWT VC {#sd-jwt-vc}
 
-As credential format, SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used.
-
-In addition, this profile defines the following additional requirements.
+This profile defines the following additional requirements for SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 * Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
-* The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
+* The following JWT Claims MUST be supported in addition to the requirements in Section 3.2.2.2 in [@!I-D.ietf-oauth-sd-jwt-vc]:
 
 | Claim | SD-JWT as issued by the Issuer | Normative Definition |
 |:--- |:--- |:--- |
-|iss |MUST |[@!RFC7519], Section 4.1.1 |
 |iat |MUST |[@!RFC7519], Section 4.1.6 |
-| exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |cnf|	MUST|	[@!RFC7800]|
-|vct|	MUST| [@!I-D.ietf-oauth-sd-jwt-vc]|
+|exp | SHOULD (at the discretion of the issuer) | [@!RFC7519], Section 4.1.4 |
 |status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT-VC presented by the Holder.
-* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The wallet and the verifier  MUST support both mechanisms.
+* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT-VC. The Issuer MUST support use one of the mechanisms. The wallet and the verifier MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
-* The `vct` JWT claim as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
-* The `cnf` claim [@!RFC7800] MUST conform to the definition given in [@!I-D.ietf-oauth-sd-jwt-vc]. Implementations conforming to this profile MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
+* The `cnf` claim [@!RFC7800] MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
 Note: Currently this profile only supports presentation of credentials with cryptographic Holder Binding: the holder's signature is required to proof the credential is presented by the holder it was issued to. This profile might support claim-based and biometrics-based holder binding once OpenID for Verifiable Credentials adds support for other forms of Holder Binding. See https://bitbucket.org/openid/connect/issues/1537/presenting-vc-without-a-vp-using-openid4vp
 
@@ -271,6 +266,8 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 ## OpenID4VC Credential Format Profile {#vc_sd_jwt_profile}
 
 A Credential Format Profile for Credentials complying with IETF SD-JWT VCs [@!I-D.ietf-oauth-sd-jwt-vc] is defined in Annex A.3 of [@!OIDF.OID4VCI] and Annex A.4 of [@!OIDF.OID4VP].
+
+## SD-JWT VCDM
 
 # Crypto Suites
 
