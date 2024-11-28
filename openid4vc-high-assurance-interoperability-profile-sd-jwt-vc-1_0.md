@@ -128,7 +128,7 @@ Both sending Credential Offer same-device and cross-device is supported.
 ## Token Endpoint {#token-endpoint}
 
    * The Wallets MUST perform client authentication as defined in [@!I-D.ietf-oauth-attestation-based-client-auth].
-   * Refresh tokens MUST be supported for credential refresh.
+   * Refresh tokens are RECOMMENDED to be supported for credential refresh. For details, see Section 13.5 in [@!OIDF.OID4VCI].
    * The Wallet Attestation JWT scheme is defined in (#wallet-attestation-schema).
 
 Note: It is RECOMMENDED to use ephemeral client attestation JWTs for client authentication in order to prevent linkability across Credential Issuers.
