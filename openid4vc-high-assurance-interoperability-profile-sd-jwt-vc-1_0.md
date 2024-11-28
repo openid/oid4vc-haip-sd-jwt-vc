@@ -226,7 +226,7 @@ This is an example of a Wallet Instance Attestation:
 # OpenID for Verifiable Presentations over W3C Digital Credentials API
 
 * MUST support Annex A in [@!OIDF.OID4VP] that defines how to use OID4VP over the W3C Digital Credentials API.
-  * Annex A.3.1. in [@!OIDF.OID4VP] MUST NOT be used. OID4VP requests over the W3C Digital Credentials API MUST be signed.
+  * The Wallet MUST support both signed and unsigned requests defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed and/or unsigned requests.
 * Wallet Invocation is done via the W3C Digital Credentials API or an equivalent platform API. Custom URL schemes MUST NOT be used.
 * Response Mode MUST be `w3c_dc_api.jwt`. Encryption of the response is mandatory.
 * MUST support Transaction Data defined in Sections 5.4 and 7.4 of [@!OIDF.OID4VP].
