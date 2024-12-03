@@ -292,6 +292,36 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
 
 `iat` and `exp` JWT claims express both the validity period of both the signature and the claims about the subject, unless there is a separate claim used to express the validity of the claims.
 
+
+## Media Type Registration
+
+This section requests registration of the following media types [@RFC2046] in
+the ["Media Types" registry](https://www.iana.org/assignments/media-types/media-types.xhtml#application) in the manner described
+in [@RFC6838].
+
+To indicate that the content of a JWS is a Wallet Attestation:
+
+  * Type name: application
+  * Subtype name: wallet-attestation+jwt
+  * Required parameters: n/a
+  * Optional parameters: n/a
+  * Encoding considerations: binary; A JWT-based Wallet Attestation object is a JWT; JWT values are encoded as a series of base64url-encoded values (some of which may be the empty string) separated by period ('.') characters.
+  * Security considerations: See (#wallet-attestation-schema) of [[ this specification ]]
+  * Interoperability considerations: n/a
+  * Published specification: [[ this specification ]]
+  * Applications that use this media type: Applications using [[ this specification ]] for issuing and validating Wallet Instance Attestations.
+  * Fragment identifier considerations: n/a
+  * Additional information:
+    * File extension(s): n/a
+    * Macintosh file type code(s): n/a
+  * Person & email address to contact for further information: Torsten Lodderstedt, torsten@lodderstedt.net
+  * Intended usage: COMMON
+  * Restrictions on usage: none
+  * Author: Torsten Lodderstedt
+  * Change controller: IETF
+  * Provisional registration? No
+
+
 {backmatter}
 
 <reference anchor="OIDF.OID4VCI" target="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
