@@ -236,7 +236,7 @@ This profile defines the following additional requirements for SD-JWT VCs as def
 |status|SHOULD (at the discretion of the issuer)| [@!I-D.ietf-oauth-status-list]|
 
 * The Issuer MUST NOT make any of the JWT Claims in the table above to be selectively disclosable, so that they are always present in the SD-JWT VC presented by the Holder.
-* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT VC. The Issuer MUST support use one of the mechanisms. The wallet and the verifier MUST support both mechanisms.
+* It is at the discretion of the Issuer whether to use `exp` claim and/or a `status` claim to express the validity period of an SD-JWT VC. The Issuer MUST use one of the mechanisms. The wallet and the verifier MUST support both mechanisms.
 * The `iss` claim MUST be an HTTPS URL. The `iss` value is used to obtain Issuer’s signing key as defined in (#issuer-key-resolution).
 * The `cnf` claim [@!RFC7800] MUST include the JSON Web Key [@!RFC7517] in the `jwk` sub claim.
 
@@ -269,7 +269,7 @@ A Credential Format Profile for Credentials complying with IETF SD-JWT VCs [@!I-
 
 ## SD-JWT VCDM
 
-SD-JWT VCDM MAY be used. SD-JWT VCDM is a data model that follows [@!I-D.ietf-oauth-sd-jwt-vc], but is compatible with the [@!W3C.VCDM2.0].
+SD-JWT VCDM is a data model that follows [@!I-D.ietf-oauth-sd-jwt-vc], but is compatible with the [@!W3C.VCDM2.0]. SD-JWT VCDM MAY be used.
 
 The following is a non-normative example of an unsecured payload of an SD-JWT VCDM, that is built using the example of unsecured payload in Section 3.3 of [@!I-D.ietf-oauth-sd-jwt-vc]:
 
@@ -277,7 +277,7 @@ The following is a non-normative example of an unsecured payload of an SD-JWT VC
 {
   "vct": "https://credentials.example.com/identity_credential",
 
-//W3C VCDM 2.0 compliant claims
+  //W3C VCDM 2.0 compliant claims
   "type": ["VerifiableCredential", "https://credentials.example.com/identity_credential"],
   "@context": ["https://www.w3.org/ns/credentials/v2"],
   "issuer": "https://example.com/issuer",
@@ -329,11 +329,12 @@ The following is a non-normative example of how an unsecured payload of an SD-JW
 * One of the values in `type` array MUST equal the value in `vct` claim.
 * The value of `issuer` clam MUST equal the value in `iss` claim.
 
-For the following, mechanisms defined in [@!I-D.ietf-oauth-sd-jwt-vc] are used:
+The following mechanisms defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used instead of their W3C VCDM 2.0 counter part:
 
 * Status management (e.g., revoked, suspended, etc.)
 * Schema
 * Display information
+* Validity information
 
 # Crypto Suites
 
