@@ -84,9 +84,9 @@ The following items are out of scope for the current version of this document, b
 
 * Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.
 * Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.
-* Profile of OID4VCI to issue ISO mdocs is defined in [@!ISO.23220-3].
+* Profile of OID4VCI to issue ISO mdocs is defined in ISO 23220-3.
 * Profile of OID4VP without using W3C Digital Credentials API to present ISO mdocs is 
-defined in [@!ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4VP].
+defined in [@ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4VP].
 
 ## Scenarios/Business Requirements
 
@@ -230,9 +230,9 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
 The requirements for the Wallet and the Verifier, unless specified otherwise:
 
 * MUST support Annex A in [@!OIDF.OID4VP] that defines how to use OID4VP over the W3C Digital Credentials API.
-  * The Wallet MUST support both signed and unsigned requests defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed and/or unsigned requests.
+  * The Wallet MUST support both signed and unsigned requests defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed requests, unsigned requests, or both.
 * Wallet Invocation is done via the W3C Digital Credentials API or an equivalent platform API. Custom URL schemes MUST NOT be used.
-* Response Mode MUST be `w3c_dc_api.jwt`. Encryption of the response is mandatory.
+* Response Mode MUST be `dc_api.jwt`. The response MUST be encrypted.
 * The DQCL query and response as defined in Section 6 of [@!OIDF.OID4VP] MUST be used. Presentation Exchange as defined in Sections 5.4 and 5.5 of [@!OIDF.OID4VP] MUST NOT be used. Below is the list of features in the DQCL query and response that MUST be supported:
   * tbd
 * Support for Transaction Data as defined in Sections 5.4 and 7.4 of [@!OIDF.OID4VP] is tbd.
@@ -250,7 +250,7 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
 The SessionTranscript as defined in [@ISO.18013-5] shall be used with the following changes:
 
 * DeviceEngagementBytes MUST be null.
-* EReaderKeyBytes MUST ne null
+* EReaderKeyBytes MUST be null
 
 The Handover element is defined as following:
 
@@ -263,9 +263,9 @@ OID4VPDCAPIHandover = [
   nonce
 ]
 
-clientId = tstr
-origin = tstr
-nonce = tstr
+clientId = tstr ; using UTF-8
+origin = tstr ; using UTF-8
+nonce = tstr ; using UTF-8
 ```
 
 * `clientId` and `nonce` parameters in the Handover MUST be the `client_id` and `nonce` parameters included in the Request from the Verifier.
@@ -451,6 +451,16 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
             <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
           </author>
           <date year="2024"/>
+        </front>
+</reference>
+
+<reference anchor="ISO.23220-3" target="https://www.iso.org/standard/79125.html">
+        <front>
+          <title>ISO/IEC DTS 23220-3 Cards and security devices for personal identification — Building blocks for identity management via mobile devices</title>
+          <author>
+            <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
+          </author>
+          <date year="2023"/>
         </front>
 </reference>
 
