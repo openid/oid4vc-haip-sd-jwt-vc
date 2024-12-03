@@ -18,7 +18,7 @@ jobs:
                 openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.md
           - name: rename
             run: |
-                mv ./openid4vc-high-assurance-interoperability-profile-sd-jwt-vc*.html ./openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-wg-draft.html
+                mv ./openid4vc-high-assurance-interoperability-profile*.html ./openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-wg-draft.html
           - uses: actions/upload-artifact@v3
             with:
                 # Artifact name
