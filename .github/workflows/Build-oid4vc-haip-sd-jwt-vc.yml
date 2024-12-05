@@ -28,7 +28,7 @@ jobs:
     
     publish-to-pages:
       name: Publish to GitHub Pages
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/fix-publishing-etc'
       needs: compile-openid4vc-high-assurance-interoperability-profile
       runs-on: ubuntu-latest
       permissions:
