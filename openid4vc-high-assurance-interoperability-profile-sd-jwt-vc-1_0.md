@@ -206,7 +206,7 @@ This is an example of a Wallet Instance Attestation:
 
 * The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.
 
-# OpenID for Verifiable Presentations profile for SD-JWT VC without using W3C Digital Credentials API
+# OpenID for Verifiable Presentations profile for SD-JWT VC over HTTPS
 
 The requirements for the Wallet and the Verifier, unless specified otherwise:
 
@@ -242,7 +242,7 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
   * The Credential format identifier MUST be `mso_mdoc`.
   * mdoc Credential Format specific DCQL parameters as defined in Section 6.4.2. of [@!OIDF.OID4VP] MUST be used.
   * Verifier MAY request more than one credential in the same request.
-  * DeviceResponse in the VP Token MUST contain only one mdoc. Therefore, when multiple mdocs are being returned, each mdoc should be returned in a separate DeviceResponse, each matching to a respective DCQL query.
+  * When multiple mdocs are being returned, each mdoc should be returned in a separate DeviceResponse, each matching to a respective DCQL query. In this case, resulting in VP Token contains multiple DeviceResponses.
   * Specific requirements for the response encryption are tbd.
 
 ### Session Transcript
