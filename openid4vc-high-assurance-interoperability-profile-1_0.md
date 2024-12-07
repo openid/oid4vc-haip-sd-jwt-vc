@@ -242,7 +242,6 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
   * ISO mdoc Credential Format specific DCQL parameters as defined in Annex B.3.1. of [@!OIDF.OID4VP] MUST be used.
   * Verifier MAY request more than one Credential in the same request.
   * When multiple ISO mdocs are being returned, each ISO mdoc MUST be returned in a separate DeviceResponse (as defined in 8.3.2.1.2.2 of [@!ISO.18013-5]), each matching to a respective DCQL query. Therefore, the resulting `vp_token` contains multiple DeviceResponses.
-  * Specific requirements for the response encryption are tbd.
 
 ### Session Transcript
 
