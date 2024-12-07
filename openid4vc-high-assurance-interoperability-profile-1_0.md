@@ -234,7 +234,6 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
 * Response Mode MUST be `dc_api.jwt`. The response MUST be encrypted.
 * The DCQL query and response as defined in Section 6 of [@!OIDF.OID4VP] MUST be used. Presentation Exchange as defined in Sections 5.4 and 5.5 of [@!OIDF.OID4VP] MUST NOT be used. Below is the list of features in the DCQL query and response that MUST be supported:
   * tbd
-* Support for Transaction Data as defined in Sections 5.4 and 7.4 of [@!OIDF.OID4VP] is tbd.
 
 ## ISO mdoc specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
