@@ -65,7 +65,7 @@ The following aspects are in scope of this interoperability profile:
 * Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)
 * Profile of IETF SD-JWT VC that includes the following aspects
   * Status Management of the Credentials, including revocation
-  * Cryptographic Holder Binding
+  * Cryptographic Key Binding
   * Issuer key resolution
   * Issuer identification (as prerequisite for trust management)
 * Crypto Suites
@@ -226,10 +226,10 @@ The requirements for the Wallet and the Verifier, unless specified otherwise:
 
 # OpenID for Verifiable Presentations over W3C Digital Credentials API
 
-The requirements for the Wallet and the Verifier, unless specified otherwise:
+The following requirements apply for both, the Wallet and the Verifier, unless specified otherwise:
 
 * MUST support Annex A in [@!OIDF.OID4VP] that defines how to use OpenID4VP over the W3C Digital Credentials API.
-  * The Wallet MUST support both signed and unsigned requests defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed requests, unsigned requests, or both.
+  * The Wallet MUST support both signed and unsigned requests as defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MUST support signed requests, unsigned requests, or both.
 * Wallet Invocation is done via the W3C Digital Credentials API or an equivalent platform API. Custom URL schemes MUST NOT be used.
 * Response Mode MUST be `dc_api.jwt`. The response MUST be encrypted.
 * Specific requirements for the response encryption are tbd.
@@ -272,7 +272,7 @@ nonce = tstr ; using UTF-8
 
 ## IETF SD-JWT VC specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
-  * The Credential format identifier MUST be `dc+sd-jwt`.
+  * The Credential Format identifier MUST be `dc+sd-jwt`.
   * IETF SD-JWT VC Credential Format specific DCQL parameters as defined in Section 6.4.1. of [@!OIDF.OID4VP] MUST be used.
 
 
@@ -285,7 +285,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-This profile defines the following additional requirements for SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
+This profile defines the following additional requirements for IETF SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 * Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
@@ -471,6 +471,9 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
           </author>
           <author fullname="Sam Goto">
             <organization>Google</organization>
+          </author>
+          <author fullname="Tim Cappalli">
+            <organization>Okta</organization>
           </author>
         </front>
 </reference>
