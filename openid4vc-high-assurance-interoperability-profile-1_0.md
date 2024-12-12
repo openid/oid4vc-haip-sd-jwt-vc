@@ -96,7 +96,7 @@ defined in [@ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4V
 
 ## Standards Requirements
 
-This specification enables interoperable implementation of the following flows:
+This specification enables interoperable implementations of the following flows:
 
 * Issuance of IETF SD-JWT VC using OpenID4VCI
 * Presentation of IETF SD-JWT VC using OpenID4VP without using W3C Digital Credentials API
@@ -107,7 +107,7 @@ Implementations of this specification do not have to implement all of the flows 
 
 # OpenID for Verifiable Credential Issuance
 
-The requirements for the Wallet and the Credential Issuer, unless specified otherwise:
+Both the Wallet and the Credential Issuer:
 
 * MUST support both pre-authorized code flow and authorization code flow.
 * MUST support protocol extensions for the SD-JWT VC credential format profile as defined in (#vc_sd_jwt_profile).
@@ -208,9 +208,8 @@ This is an example of a Wallet Instance Attestation:
 
 # OpenID for Verifiable Presentations profile for IETF SD-JWT VC over HTTPS
 
-The requirements for the Wallet and the Verifier, unless specified otherwise:
+Requirements for both the Wallet and the Verifier:
 
-   * MUST support protocol extensions for IETF SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post.jwt`. The Verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 7.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post.jwt` are given in Section 12.4 of [@!OIDF.OID4VP].
@@ -238,8 +237,10 @@ The following requirements apply for both, the Wallet and the Verifier, unless s
 
 ## ISO mdoc specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
+Requirements for both the Wallet and the Verifier:
+
   * The Credential Format Identifier MUST be `mso_mdoc`.
-  * ISO mdoc Credential Format specific DCQL parameters as defined in Annex B.3.1. of [@!OIDF.OID4VP] MUST be used.
+  * ISO mdoc Credential Format specific DCQL parameters as defined in Annex B.3.1 of [@!OIDF.OID4VP] MUST be used.
   * Verifier MAY request more than one Credential in the same request.
   * When multiple ISO mdocs are being returned, each ISO mdoc MUST be returned in a separate DeviceResponse (as defined in 8.3.2.1.2.2 of [@!ISO.18013-5]), each matching to a respective DCQL query. Therefore, the resulting `vp_token` contains multiple DeviceResponses.
 
@@ -272,8 +273,10 @@ nonce = tstr ; using UTF-8
 
 ## IETF SD-JWT VC specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
-  * The Credential Format identifier MUST be `dc+sd-jwt`.
-  * IETF SD-JWT VC Credential Format specific DCQL parameters as defined in Section 6.4.1. of [@!OIDF.OID4VP] MUST be used.
+Requirements for both the Wallet and the Verifier:
+
+    * The Credential Format identifier MUST be `dc+sd-jwt`.
+  * IETF SD-JWT VC Credential Format specific DCQL parameters as defined in Section 6.4.1 of [@!OIDF.OID4VP] MUST be used.
 
 
 # Self-Issued OP v2
