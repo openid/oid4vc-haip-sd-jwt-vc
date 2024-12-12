@@ -56,7 +56,7 @@ This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiabl
 
 The following aspects are in scope of this interoperability profile:
 
-* Profile of OpenID4VCI to issue IETF SD-JWT VCs (can be both remote and in-person), including
+* Profile of OpenID4VCI to issue IETF SD-JWT VCs, including
   * Wallet Attestation
 * Profile of OpenID4VP to present IETF SD-JWT VCs
 * Profile of OpenID4VP over the W3C Digital Credentials API [@w3c.digital_credentials_api] to present 
