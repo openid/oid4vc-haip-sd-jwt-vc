@@ -30,7 +30,7 @@ organization="SPRIND"
 
 .# Abstract
 
-This document defines a profile of OpenID for Verifiable Credentials in combination with the credential format SD-JWT VC. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], and SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc].
+This document defines a profile of OpenID for Verifiable Credentials in combination with the credential formats IETF SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc] and ISO mdoc [@!ISO.18013-5]. The aim is to select features and to define a set of requirements for the existing specifications to enable interoperability among Issuers, Wallets and Verifiers of Credentials where a high level of security and privacy is required. The profiled specifications include OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI], OpenID for Verifiable Presentations [@!OIDF.OID4VP], Self-Issued OpenID Provider v2 [@!OIDF.SIOPv2], IETF SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc], and ISO mdoc [@!ISO.18013-5].
 
 {mainmatter}
 
@@ -40,7 +40,7 @@ This document defines a set of requirements for the existing specifications to e
 
 This document is not a specification, but a profile. It refers to the specifications required for implementations to interoperate among each other and for the optionalities mentioned in the referenced specifications, defines the set of features to be mandatory to implement.
 
-The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential format used is SD-JWT VC as specified in [@!I-D.ietf-oauth-sd-jwt-vc]. Additionally, considerations are given on how deployments can perform a combined issuance of credentials in both SD-JWT VC and ISO mdoc [@ISO.18013-5] formats.
+The profile uses OpenID for Verifiable Credential Issuance [@!OIDF.OID4VCI] and OpenID for Verifiable Presentations [@!OIDF.OID4VP] as the base protocols for issuance and presentation of Credentials, respectively. The credential formats used are IETF SD-JWT VC as specified in [@!I-D.ietf-oauth-sd-jwt-vc] and ISO mdoc [@!ISO.18013-5]. Additionally, considerations are given on how the issuance of Credentials in both IETF SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc] and ISO mdoc [@ISO.18013-5] formats can be performed in the same transaction.
 
 A full list of the open standards used in this profile can be found in Overview of the Open Standards Requirements (reference).
 
@@ -56,16 +56,21 @@ This specification uses the terms "Holder", "Issuer", "Verifier", and "Verifiabl
 
 The following aspects are in scope of this interoperability profile:
 
-* Protocol for issuance of the Verifiable Credentials (can be both remote and in-person) (OID4VCI)
-* Protocol for online presentation of Verifiable Credentials (can be both remote and in-person) (OID4VP)
+* Profile of OpenID4VCI to issue IETF SD-JWT VCs, including
+  * Wallet Attestation
+* Profile of OpenID4VP to present IETF SD-JWT VCs
+* Profile of OpenID4VP over the W3C Digital Credentials API [@w3c.digital_credentials_api] to present 
+  * IETF SD-JWT VCs 
+  * ISO mdocs
 * Protocol for User Authentication by the Wallet at a Verifier (SIOP v2)
-* Wallet Attestation (during Credential issuance)
-* Credential Format (SD-JWT VC)
-* Status Management of the Credentials, including revocation
-* Cryptographic Holder Binding
-* Issuer key resolution
-* Issuer identification (as prerequisite for trust management)
+* Profile of IETF SD-JWT VC that includes the following aspects
+  * Status management of the Credentials, including revocation
+  * Cryptographic Key Binding
+  * Issuer key resolution
+  * Issuer identification (as prerequisite for trust management)
 * Crypto Suites
+
+Note that when OpenID4VP is used, the Wallet and the Verifier can either be remote or in-person.
 
 Assumptions made are the following:
 
@@ -79,6 +84,9 @@ The following items are out of scope for the current version of this document, b
 
 * Trust Management, i.e. authorization of an issuer to issue certain types of credentials, authorization of the Wallet to be issued certain types of credentials, authorization of  the Verifier to receive certain types of credentials.
 * Protocol for presentation of Verifiable Credentials for offline use-cases, e.g. over BLE.
+* Profile of OpenID4VCI to issue ISO mdoc [@!ISO.18013-5] is defined in ISO 23220-3.
+* Profile of OpenID4VP without using W3C Digital Credentials API to present ISO mdocs is 
+defined in [@ISO.18013-7]. For more details, also see Annex B.3 in [@!OIDF.OID4VP].
 
 ## Scenarios/Business Requirements
 
@@ -88,20 +96,20 @@ The following items are out of scope for the current version of this document, b
 
 ## Standards Requirements
 
-Unless explicitly stated, all normative requirements apply to all participating entities: Issuers, Wallets and Verifiers.
+This specification enables interoperable implementations of the following flows:
 
-| (as defined in this profile) | Issuer | Wallet | Verifier |
-|:--- |:--- |:--- |:--- |
-|OID4VP| N/A |MUST|MUST|
-|OID4VCI| MUST|MUST|N/A|
-|SIOPv2|N/A|MUST|SHOULD|
-|SD-JWT VC profile as defined in (#sd-jwt-vc) |MUST|MUST|MUST|
+* Issuance of IETF SD-JWT VC using OpenID4VCI
+* Presentation of IETF SD-JWT VC using OpenID4VP
+* Presentation of IETF SD-JWT VC using OpenID4VP over W3C Digital Credentials API
+* Presentation of ISO mdocs using OpenID4VP over W3C Digital Credentials API
+
+Implementations of this specification do not have to implement all of the flows listed above, but they MUST be compliant to all of the requirements for a particular flow they chose to implement.
 
 # OpenID for Verifiable Credential Issuance
 
-Implementations of this profile:
+Both the Wallet and the Credential Issuer:
 
-* MUST support both pre-auth code flow and authorization code flow.
+* MUST support both pre-authorized code flow and authorization code flow.
 * MUST support protocol extensions for the SD-JWT VC credential format profile as defined in (#vc_sd_jwt_profile).
 * MUST support sender-constrained tokens using the mechanism defined in [@!RFC9449].
 * MUST support [@!RFC7636] with `S256` as the code challenge method.
@@ -198,9 +206,10 @@ This is an example of a Wallet Instance Attestation:
 
 * The Credential Issuer MUST publish a mapping of every Credential Type it supports to a scope value.
 
-# OpenID for Verifiable Presentations
+# OpenID for Verifiable Presentations profile for IETF SD-JWT VC
 
-   * MUST support protocol extensions for SD-JWT VC credential format profile as defined in this specification (#vc_sd_jwt_profile).
+Requirements for both the Wallet and the Verifier:
+
    * As a way to invoke the Wallet, at least a custom URL scheme `haip://` MUST be supported. Implementations MAY support other ways to invoke the wallets as agreed by trust frameworks/ecosystems/jurisdictions, not limited to using other custom URL schemes.
    * Response type MUST be `vp_token`.
    * Response mode MUST be `direct_post.jwt`. The Verifier MUST return `redirect_uri` in response to the HTTP POST request from the Wallet, where the Wallet redirects the User to, as defined in Section 7.2 of [@!OIDF.OID4VP]. Implementation considerations for the response mode `direct_post.jwt` are given in Section 12.4 of [@!OIDF.OID4VP].
@@ -214,6 +223,70 @@ This is an example of a Wallet Instance Attestation:
     * In the `input-descriptors` object, `id`, `name`, `purpose`, `group`, `format`, and `constraints` properties MUST be supported. In the `constraints` object, `limit_disclosure`, and `fields` properties MUST be supported. In the `fields` object, `path` and `filter` properties MUST be supported. A `path` MUST contain exactly one entry with a static path to a certain claim. A `filter` MUST only contain `type` elements of value `string` and `const` elements.
     * In the `submission_requirements` object, `name`, `rule (`pick` only)`, `count`, `from` properties MUST be supported.
 
+# OpenID for Verifiable Presentations over W3C Digital Credentials API
+
+The following requirements apply for both, the Wallet and the Verifier, unless specified otherwise:
+
+* MUST support Annex A in [@!OIDF.OID4VP] that defines how to use OpenID4VP over the W3C Digital Credentials API.
+  * The Wallet MUST support both signed and unsigned requests as defined in Annex A.3.1 and A.3.2 of [@!OIDF.OID4VP]. The Verifier MAY support signed requests, unsigned requests, or both.
+* Wallet Invocation is done via the W3C Digital Credentials API or an equivalent platform API. Any other mechanism, including Custom URL schemes, MUST NOT be used.
+* Response Mode MUST be `dc_api.jwt`. The response MUST be encrypted.
+* Specific requirements for the response encryption are tbd (https://github.com/openid/oid4vc-haip/issues/131).
+* The DCQL query and response as defined in Section 6 of [@!OIDF.OID4VP] MUST be used. Presentation Exchange as defined in Sections 5.4 and 5.5 of [@!OIDF.OID4VP] MUST NOT be used. Below is the list of features in the DCQL query and response that MUST be supported:
+  * tbd (https://github.com/openid/oid4vc-haip/issues/142)
+
+## ISO mdoc specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
+
+Requirements for both the Wallet and the Verifier:
+
+  * The Credential Format Identifier MUST be `mso_mdoc`.
+  * ISO mdoc Credential Format specific DCQL parameters as defined in Annex B.3.1 of [@!OIDF.OID4VP] MUST be used.
+  * Verifier MAY request more than one Credential in the same request.
+  * When multiple ISO mdocs are being returned, each ISO mdoc MUST be returned in a separate `DeviceResponse` (as defined in 8.3.2.1.2.2 of [@!ISO.18013-5]), each matching to a respective DCQL query. Therefore, the resulting `vp_token` contains multiple `DeviceResponse` instances.
+
+### Session Transcript
+
+The `SessionTranscript` as defined in Section 9.1.5.1 in [@ISO.18013-5] MUST be used with the following changes:
+
+* `DeviceEngagementBytes` MUST be null.
+* `EReaderKeyBytes` MUST be null.
+
+```
+SessionTranscript = [
+  null,
+  null,
+  Handover
+]
+```
+
+The `Handover` element is defined as following:
+
+```
+Handover = OID4VPDCAPIHandover
+OID4VPDCAPIHandover = [
+  "OID4VPDCAPIHandover"
+  clientId
+  origin
+  nonce
+]
+
+clientId = tstr ; using UTF-8
+origin = tstr ; using UTF-8
+nonce = tstr ; using UTF-8
+```
+
+* "OID4VPDCAPIHandover" is a string that identifies the type of handover structure as a security measure to prevent confusion of handovers.
+* `clientId` and `nonce` parameters in the Handover MUST be the `client_id` and `nonce` parameters included in the Authorization Request from the Verifier.
+* `origin` in the Handover is the origin of the Verifer, obtained from the Web-platform and/or app platform.
+
+## IETF SD-JWT VC specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
+
+Requirements for both the Wallet and the Verifier:
+
+    * The Credential Format identifier MUST be `dc+sd-jwt`.
+  * IETF SD-JWT VC Credential Format specific DCQL parameters as defined in Section 6.4.1 of [@!OIDF.OID4VP] MUST be used.
+
+
 # Self-Issued OP v2
 
 To authenticate the user, subject identifier in a Self-Issued ID Token MUST be used as defined in [@!OIDF.SIOPv2].
@@ -223,9 +296,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VCs {#sd-jwt-vc}
 
-As credential format, SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used.
-
-In addition, this profile defines the following additional requirements.
+This profile defines the following additional requirements for IETF SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 * Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported Content (differentiate issuance & presentation)
@@ -380,6 +451,41 @@ Note: When using this profile with other cryptosuites, it is recommended to be e
             <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
           </author>
           <date year="2021"/>
+        </front>
+</reference>
+
+<reference anchor="ISO.18013-7" target="https://www.iso.org/standard/82772.html">
+        <front>
+          <title>ISO/IEC DTS 18013-7 Personal identification — ISO-compliant driving license — Part 7: Mobile driving license (mDL) add-on functions</title>
+          <author>
+            <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
+          </author>
+          <date year="2024"/>
+        </front>
+</reference>
+
+<reference anchor="ISO.23220-3" target="https://www.iso.org/standard/79125.html">
+        <front>
+          <title>ISO/IEC DTS 23220-3 Cards and security devices for personal identification — Building blocks for identity management via mobile devices</title>
+          <author>
+            <organization> ISO/IEC JTC 1/SC 17 Cards and security devices for personal identification</organization>
+          </author>
+          <date year="2023"/>
+        </front>
+</reference>
+
+<reference anchor="w3c.digital_credentials_api" target="https://wicg.github.io/digital-credentials/">
+        <front>
+          <title>Digital Credentials API</title>
+		  <author fullname="Marcos Caceres">
+            <organization>Apple Inc.</organization>
+          </author>
+          <author fullname="Sam Goto">
+            <organization>Google</organization>
+          </author>
+          <author fullname="Tim Cappalli">
+            <organization>Okta</organization>
+          </author>
         </front>
 </reference>
 
