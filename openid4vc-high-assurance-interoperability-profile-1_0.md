@@ -244,7 +244,7 @@ Requirements for both the Wallet and the Verifier:
   * Verifier MAY request more than one Credential in the same request.
   * When multiple ISO mdocs are being returned, each ISO mdoc MUST be returned in a separate `DeviceResponse` (as defined in 8.3.2.1.2.2 of [@!ISO.18013-5]), each matching to a respective DCQL query. Therefore, the resulting `vp_token` contains multiple `DeviceResponse` instances.
   * The `SessionTranscript` and `Handover` CBOR structures MUST be generated in accordance with Annex B.3.4.1 of [@!OIDF.OID4VP].  
-  * The hash function used to compute the `OID4VPDCAPIHandoverInfoHash` value in the `OID4VPDCAPIHandover` CBOR structure, as defined in Annex B.3.4.1, MUST be SHA-256.
+  * The hash function used to compute the `OID4VPDCAPIHandoverInfoHash` value in the `OID4VPDCAPIHandover` CBOR structure, as defined in Annex B.3.4.1, MUST be one of the following: SHA-256, SHA-384, SHA-512.
 
 ## IETF SD-JWT VC specific requirements for OpenID for Verifiable Presentations over W3C Digital Credentials API
 
