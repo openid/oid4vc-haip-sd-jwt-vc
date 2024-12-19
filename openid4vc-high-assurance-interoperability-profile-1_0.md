@@ -343,6 +343,75 @@ Note: The issuer MAY decide to support both options. In which case, it is at the
 
 A Credential Format Profile for Credentials complying with IETF SD-JWT VCs [@!I-D.ietf-oauth-sd-jwt-vc] is defined in Annex A.3 of [@!OIDF.OID4VCI] and Annex A.4 of [@!OIDF.OID4VP].
 
+## SD-JWT VC Data Model (SD-JWT VCDM)
+
+SD-JWT VCDM is a data model that follows IETF SD-JWT VC [@!I-D.ietf-oauth-sd-jwt-vc], but allows the usage of [@!W3C.VCDM1.1] or [@!W3C.VCDM2.0]. When IETF SD-JWT VC is mentioned in this specification, SD-JWT VCDM define in this section MAY be used.
+
+For backward compatibility with JWT processors, the following registered JWT claims MUST be used, instead of their respective counterpart properties in [@!W3C.VCDM1.1] or [@!W3C.VCDM2.0]:
+
+* `exp` Claim MUST represent the `expirationDate` property, encoded as a UNIX timestamp (NumericDate).
+* `iss` Claim MUST represent the `issuer` property.
+* `iat` Claim MUST represent `issuanceDate` property, encoded as a UNIX timestamp (NumericDate).
+* `status` Claim MUST represent `credentialStatus` property.
+* `schema` Claim MUST represent the `credentialSchema` property.
+* `sub` Claim MUST represent the `id` property of `credentialSubject` property.
+
+IETF SD-JWT VC is extended with the following claims:
+
+* `vcdm`: OPTIONAL. Contains properties defined in [@!W3C.VCDM1.1] or [@!W3C.VCDM2.0] that are not represented by their counterpart JWT Claims as defined above.
+
+The following is a non-normative example of an unsecured payload of an SD-JWT VCDM, that is built using the example of unsecured payload in Section 3.3 of [@!I-D.ietf-oauth-sd-jwt-vc]:
+
+```json
+{
+  "vct": "https://credentials.example.com/identity_credential",
+  //W3C VCDM 2.0 compliant claims
+  "vcdm": {
+    "@context": ["https://www.w3.org/ns/credentials/v2"],
+    "type": ["VerifiableCredential", "https://credentials.example.com/identity_credential"],
+    "credentialSubject": {
+      "given_name": "John",
+      "family_name": "Doe",
+      "email": "johndoe@example.com",
+      "phone_number": "+1-202-555-0101",
+      "address": {
+        "street_address": "123 Main St",
+        "locality": "Anytown",
+        "region": "Anystate",
+        "country": "US"
+      },
+      "birthdate": "1940-01-01",
+      "is_over_18": true,
+      "is_over_21": true,
+      "is_over_65": true
+    }
+  }
+}
+```
+
+The following is a non-normative example of how an unsecured payload of an SD-JWT VCDM above can be used for the SD-JWT:
+
+```json
+{
+  "_sd": [
+    "vwUhdFvpylx9Sqi2YNBV1dfVK6lCbhXvkH0nThfKFT0"
+  ],
+  "iss": "https://example.com/issuer",
+  "iat": 1683000000,
+  "exp": 1883000000,
+  "vct": "https://credentials.example.com/identity_credential",
+  "_sd_alg": "sha-256",
+  "cnf": {
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
+      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
+    }
+  }
+}
+```
+
 # Crypto Suites
 
 Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:
