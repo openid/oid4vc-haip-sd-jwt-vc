@@ -223,7 +223,7 @@ To authenticate the user, subject identifier in a Self-Issued ID Token MUST be u
 
 # SD-JWT VC {#sd-jwt-vc}
 
-This profile defines the following additional requirements for SD-JWT VCs as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
+This profile defines the following additional requirements for IETF SD-JWT VC as defined in [@!I-D.ietf-oauth-sd-jwt-vc].
 
 * Compact serialization MUST be supported as defined in [@!I-D.ietf-oauth-selective-disclosure-jwt]. JSON serialization MAY be supported.
 * The following JWT Claims MUST be supported in addition to the requirements in Section 3.2.2.2 in [@!I-D.ietf-oauth-sd-jwt-vc]:
@@ -327,7 +327,7 @@ The following is a non-normative example of how an unsecured payload of an SD-JW
 ```
 
 * One of the values in `type` array MUST equal the value in `vct` claim.
-* The value of `issuer` clam MUST equal the value in `iss` claim.
+* The value of `issuer` claim MUST equal the value in `iss` claim.
 
 The following mechanisms defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used instead of their W3C VCDM 2.0 counter part:
 
@@ -340,10 +340,11 @@ The following mechanisms defined in [@!I-D.ietf-oauth-sd-jwt-vc] MUST be used in
 
 Issuers, holders and verifiers MUST support P-256 (secp256r1) as a key type with ES256 JWT algorithm for signing and signature validation whenever this profiles requires to do so:
 
-* SD-JWT VC
+* IETF SD-JWT VC
+* SD-JWT VCDM
 * Wallet Instance Attestation
 * DPoP
-* HB JWT
+* Key Binding JWT
 * Authorization request during presentation
 
 SHA256 MUST be supported by all the entities as the hash algorithm to generate and validate the digests in the SD-JWT VC.
